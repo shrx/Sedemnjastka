@@ -20,7 +20,11 @@ def make_map(config):
 
     # CUSTOM ROUTES HERE
 
-    map.connect('/{controller}/{action}')
-    map.connect('/{controller}/{action}/{id}')
+    map.connect('/', controller='archive', action='index')
+    map.connect('/archive', controller='archive', action='index')
+    map.connect('/archive/{page:\d+}', controller='archive', action='index')
+
+    map.connect('topic', '/topics/{id:\d+}')
+    map.connect('user', '/users/{id:\d+}')
 
     return map

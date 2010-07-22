@@ -16,16 +16,22 @@ def init_model(engine):
 
     orm.mapper(Post, t_posts)
     orm.mapper(Topic, t_topics)
-    orm.mapper(User, t_users)
-
-
-class Post(object):
-    __tablename__ = 'posts'
-
-
-class Topic(object):
-    __tablename__ = 'topics'
+    orm.mapper(User, t_users, properties={
+            'topics': orm.relationship(Topic, backref='user')})
 
 
 class User(object):
-    __tablename__ = 'users'
+    pass
+
+
+class Post(object):
+    pass
+
+
+class Topic(object):
+
+    def full_title(self):
+        if self.subtitle:
+            return ', '.join([self.title, self.subtitle])
+        else:
+            return self.title
