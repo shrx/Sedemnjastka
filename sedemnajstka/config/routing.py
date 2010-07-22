@@ -26,7 +26,8 @@ def make_map(config):
     map.connect('/archive/{page:\d+}', controller='archive', action='index')
 
     # topics
-    map.connect('topic', '/topics/{id:\d+}')
+    map.connect('topic', '/topics/{id:\d+}', controller='topics', action='show')
+    map.connect('/topics/{id:\d+}/{page:\d+}', controller='topics', action='show')
 
     # users
     map.connect('/users', controller='users', action='index')
