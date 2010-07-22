@@ -1,3 +1,4 @@
+<%inherit file="/base.mako" />
 <h1>${c.user.nick_name}</h1>
 <dl>
     <dt>stevilo postov:</dt>

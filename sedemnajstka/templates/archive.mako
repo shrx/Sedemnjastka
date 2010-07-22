@@ -1,3 +1,4 @@
+<%inherit file="/base.mako" />
 ${c.topics.pager()}
 <table>
     % for topic, user in c.topics:
