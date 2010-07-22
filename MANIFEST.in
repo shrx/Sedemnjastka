@@ -1,0 +1,3 @@
+include sedemnajstka/config/deployment.ini_tmpl
+recursive-include sedemnajstka/public *
+recursive-include sedemnajstka/templates *
