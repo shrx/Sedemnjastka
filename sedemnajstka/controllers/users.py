@@ -26,7 +26,7 @@ class UsersController(BaseController):
             page=int(page),
             items_per_page=40)
 
-        c.title = 'posti od uporabnika'
+        c.title = 'posti od ' + c.user.nick_name
         return render('/users/posts.mako')
 
     def topics(self, id, page=1):
@@ -37,11 +37,11 @@ class UsersController(BaseController):
             page=int(page),
             items_per_page=25)
 
-        c.title = 'teme od uporabnika'
+        c.title = 'teme od ' + c.user.nick_name
         return render('/users/topics.mako')
 
     def show(self, id):
         c.user = Session.query(User).filter(User.id==id).first()
 
-        c.title = 'uporabnik'
+        c.title = c.user.nick_name
         return render('/users/show.mako')

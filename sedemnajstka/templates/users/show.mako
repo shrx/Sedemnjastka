@@ -1,5 +1,5 @@
 <%inherit file="/base.mako" />
-<h1>${c.user.nick_name | n}</h1>
+<h1>${c.user.nick_name}</h1>
 <dl>
     <dt>stevilo postov:</dt>
     <dd><a href="${url('user_posts', id=c.user.id)}">${c.user.num_of_posts}</a></dt>
