@@ -41,8 +41,7 @@ def load_environment(global_conf, app_conf):
         directories=paths['templates'],
         error_handler=handle_mako_error,
         module_directory=os.path.join(app_conf['cache_dir'], 'templates'),
-        input_encoding='utf-8', default_filters=[],
-        imports=['from webhelpers.html import escape'])
+        input_encoding='utf-8')
 
     # Setup the SQLAlchemy database engine
     engine = engine_from_config(config, 'sqlalchemy.')
