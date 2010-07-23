@@ -5,13 +5,23 @@
         <link href="/favicon.png" rel="icon" type="image/png" />
         <link href="/style.css" rel="stylesheet" type="text/css" />
         <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+        % if hasattr(c, 'title'):
+        <title>${c.title} - nigger.it.cx</title>
+        % else:
         <title>nigger.it.cx</title>
+        % endif
     </head>
     <body>
         <p class="navigation">
             [ <a href="/">ARHIV</a> |
             <a href="/users">UPORABNIKI</a> ]
-            <span class="title">[ nigger.it.cx ]</span>
+            <span class="title">
+                % if hasattr(c, 'title'):
+                [ ${c.title} ]
+                % else:
+                [ nigger.it.cx ]
+                % endif
+            </span>
         </p>
         ${self.body()}
     </body>

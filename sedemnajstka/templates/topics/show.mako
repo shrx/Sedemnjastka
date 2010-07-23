@@ -1,9 +1,17 @@
 <%inherit file="/base.mako" />
-<h1>${c.topic.full_title()}</h1>
 ${c.posts.pager()}
 <ol>
-    % for post in c.posts:
-    <li>${post.body | n}</li>
+    <% num = 0 %>
+    % for post, user in c.posts:
+    % if num % 2 == 0:
+    <li class="even">
+    % else:
+    <li class="odd">
+    % endif
+        <h2><a href="${url('user', id=user.id)}">${user.nick_name | n}</a></h2>
+        <p class="meta"><em>${post.created_at}</em></p>
+        <p>${post.body | n}</p>
+    </li>
     % endfor
 </ol>
 ${c.posts.pager()}

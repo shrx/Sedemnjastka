@@ -15,8 +15,11 @@ class TopicsController(BaseController):
     def show(self, id, page=1):
         c.topic = Session.query(Topic).filter(Topic.id==int(id)).first()
         c.posts = webhelpers.paginate.Page(
-            Session.query(Post).filter(Post.topic_id==c.topic.id). \
+            Session.query(Post, User).filter(Post.user_id==User.id). \
+                filter(Post.topic_id==c.topic.id). \
                 order_by(Post.created_at.desc()),
             page=int(page),
             items_per_page=40)
+
+        c.title = c.topic.full_title()
         return render('/topics/show.mako')

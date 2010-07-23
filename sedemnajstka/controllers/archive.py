@@ -18,4 +18,6 @@ class ArchiveController(BaseController):
                 order_by(Topic.last_post_created_at.desc()),
             page=int(page),
             items_per_page=50)
+
+        c.title = 'arhiv'
         return render('/archive.mako')
