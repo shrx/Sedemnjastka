@@ -17,7 +17,7 @@ class TopicsController(BaseController):
         c.posts = webhelpers.paginate.Page(
             Session.query(Post, User).filter(Post.user_id==User.id). \
                 filter(Post.topic_id==c.topic.id). \
-                order_by(Post.created_at.desc()),
+                order_by(Post.created_at),
             page=int(page),
             items_per_page=40)
 
