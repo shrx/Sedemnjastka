@@ -3,4 +3,6 @@ syntax: glob
 backups/*
 data/*
 scripts/config.ini
+sedemnajstka/development.ini
+sedemnajstka/test.ini
 *.pyc
