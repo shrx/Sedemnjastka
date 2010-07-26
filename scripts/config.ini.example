@@ -1,0 +1,37 @@
+[database]
+url = sqlite://
+
+[forum]
+url = http://www.joker.si/mn3njalnik/
+
+username =
+password =
+
+[misc]
+datetime_format = %d.%m.%Y, %H:%M
+greetings = Aloha, Ave, Ciao, Howdy, Moin, Yo
+partings = Adios, Hasta la vista, Sayonara
+
+# Logging configuration
+[loggers]
+keys = root
+
+[handlers]
+keys = console
+
+[formatters]
+keys = simple
+
+[logger_root]
+handlers = console
+level = INFO
+
+[handler_console]
+args = (sys.stdout,)
+class = StreamHandler
+formatter = simple
+level = INFO
+
+[formatter_simple]
+format = %(asctime)s - %(name)s - %(levelname)s - %(message)s
+datefmt = %H:%M:%S
