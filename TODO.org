@@ -1,0 +1,6 @@
+* Archiver script
+*** TODO Set some timeouts for browser
+*** TODO If an HTTP GET fails, it should retry, in increasing periods of time
+* Website
+*** TODO Put those charts back up
+*** TODO Bring back the "kralji gnoja" page
