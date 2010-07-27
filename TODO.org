@@ -1,6 +1,7 @@
 * Archiver script
 *** TODO Set some timeouts for browser
 *** TODO If an HTTP GET fails, it should retry, in increasing periods of time
+*** TODO Have to take into account possible timezone differences between user accounts!
 * Website
 *** TODO Put those charts back up
 *** TODO Bring back the "kralji gnoja" page
