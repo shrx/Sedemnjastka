@@ -5,3 +5,8 @@
 * Website
 *** TODO Put those charts back up
 *** TODO Bring back the "kralji gnoja" page
+*** TODO For every user, a list of topics they've posted in
+*** TODO An info page, w/ time of last update, next update,...
+*** TODO List of users with most posts in their topics
+*** TODO Search
+*** TODO Voting as a ranking system?
