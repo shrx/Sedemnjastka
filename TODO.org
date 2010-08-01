@@ -1,12 +1,12 @@
 * Archiver script
-*** TODO Set some timeouts for browser
-*** TODO If an HTTP GET fails, it should retry, in increasing periods of time
-*** TODO Have to take into account possible timezone differences between user accounts!
+** TODO Set some timeouts for browser
+** TODO If an HTTP GET fails, it should retry, in increasing periods of time
+** TODO Have to take into account possible timezone differences between user accounts!
 * Website
-*** TODO Put those charts back up
-*** TODO Bring back the "kralji gnoja" page
-*** TODO For every user, a list of topics they've posted in
-*** TODO An info page, w/ time of last update, next update,...
-*** TODO List of users with most posts in their topics
-*** TODO Search
-*** TODO Voting as a ranking system?
+** TODO Put those charts back up
+** TODO Bring back the "kralji gnoja" page
+** TODO For every user, a list of topics they've posted in
+** TODO An info page, w/ time of last update, next update,...
+** TODO List of users with most posts in their topics
+** TODO Search
+** TODO Voting as a ranking system?
