@@ -82,7 +82,7 @@ forum_s = Scraper({
         'next_page' : u'//a[@title="Sledeča stran"]/@href',
         'topics[]'  : ('//a[contains(@href, "who_posted")]', Scraper({
                     'id'       : lambda t: t.attrib['href'][22:-2],
-                    'odgovori' : './text()',
+                    'odgovori' : lambda t: int(''.join(t.text.split('.'))),
                     'subtitle' : '../..//div[@class="desc"]/text()',
                     'title'    : '../..//a[contains(@title, "Ta tema")]/text()',
                     'user_id'  : scrape_uid,
