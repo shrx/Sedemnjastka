@@ -1,5 +1,3 @@
-syntax: glob
-
 backups/*
 data/*
 scripts/config.ini
