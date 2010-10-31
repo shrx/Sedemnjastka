@@ -41,7 +41,7 @@ config.read('config.ini')
 BASE_URL = config.get('forum', 'url').rstrip('/')
 
 logging.config.fileConfig('config.ini')
-logger = logging.getLogger('root')
+logger = logging.getLogger(config.get('misc', 'logger'))
 
 # Set up database
 engine = sqlalchemy.create_engine(config.get('database', 'url'))

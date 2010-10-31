@@ -9,8 +9,11 @@ password =
 
 [misc]
 datetime_format = %d.%m.%Y, %H:%M
+
 greetings = Aloha, Ave, Ciao, Howdy, Moin, Yo
 partings = Adios, Hasta la vista, Sayonara
+
+logger = root
 
 # Logging configuration
 [loggers]
