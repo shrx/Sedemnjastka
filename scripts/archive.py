@@ -7,6 +7,7 @@ import logging
 import logging.config
 import random
 import re
+import os.path
 
 import lxml.etree
 import lxml.html
@@ -36,11 +37,11 @@ cj.set_policy(MyCookiePolicy())
 browser.set_cookiejar(cj)
 
 config = ConfigParser.ConfigParser()
-config.read('config.ini')
+config.read(os.path.join(os.path.dirname(__file__), 'config.ini'))
 
 BASE_URL = config.get('forum', 'url').rstrip('/')
 
-logging.config.fileConfig('config.ini')
+logging.config.fileConfig(os.path.join(os.path.dirname(__file__), 'config.ini'))
 logger = logging.getLogger(config.get('misc', 'logger'))
 
 # Set up database
