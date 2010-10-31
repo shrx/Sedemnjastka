@@ -16,7 +16,24 @@ import sqlalchemy.orm
 
 from scraper import Scraper
 
+
+class MyCookiePolicy(mechanize.DefaultCookiePolicy):
+
+    def set_ok(self, cookie, request):
+        if not mechanize.DefaultCookiePolicy.set_ok(self, cookie, request):
+            return False
+        # This is a bad cookie.
+        # IPB just seems to append to it the topics we've read, until it
+        # overflows the platform specific limit on header field sizes.
+        if cookie.name == 'mn3njalnik_topicsread':
+            return False
+        return True
+
+
 browser = mechanize.Browser()
+cj = mechanize.CookieJar()
+cj.set_policy(MyCookiePolicy())
+browser.set_cookiejar(cj)
 
 config = ConfigParser.ConfigParser()
 config.read('config.ini')
