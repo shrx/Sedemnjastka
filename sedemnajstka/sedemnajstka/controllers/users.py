@@ -21,7 +21,9 @@ class UsersController(BaseController):
     def posts(self, id, page=1):
         c.user = Session.query(User).filter(User.id==int(id)).first()
         c.posts = webhelpers.paginate.Page(
-            Session.query(Post).filter(Post.user_id==c.user.id). \
+            Session.query(Post, Topic). \
+                filter(Post.topic_id==Topic.id). \
+                filter(Post.user_id==c.user.id). \
                 order_by(Post.created_at.desc()),
             page=int(page),
             items_per_page=40)
