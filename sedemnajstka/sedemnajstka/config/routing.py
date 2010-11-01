@@ -39,4 +39,7 @@ def make_map(config):
     map.connect('user_topics', '/users/{id:\d+}/topics', controller='users', action='topics')
     map.connect('/users/{id:\d+}/topics/{page:\d+}', controller='users', action='topics')
 
+    # rankings
+    map.connect('/rankings', controller='rankings', action='index')
+
     return map

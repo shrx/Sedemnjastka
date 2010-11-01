@@ -14,6 +14,7 @@
     <body>
         <p class="navigation">
             [ <a href="/">ARHIV</a> |
+            <a href="/rankings">KRALJI GNOJA</a> |
             <a href="/users">UPORABNIKI</a> ]
             <span class="title">
                 % if hasattr(c, 'title'):
