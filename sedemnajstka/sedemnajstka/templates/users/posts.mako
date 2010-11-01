@@ -1,9 +1,8 @@
 <%inherit file="/base.mako" />
 ${c.posts.pager()}
 <ol>
-    <% num = 0 %>
-    % for post in c.posts:
-    % if num % 2 == 0:
+    % for i, post in enumerate(c.posts):
+    % if i % 2 == 0:
     <li class="even">
     % else:
     <li class="odd">
