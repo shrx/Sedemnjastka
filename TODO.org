@@ -1,4 +1,5 @@
 * Archiver script
+** TODO User's badges?
 ** TODO Cycling login
 ** TODO Set some timeouts for browser
 ** TODO If an HTTP GET fails, it should retry, in increasing periods of time
