@@ -12,6 +12,7 @@ ${c.posts.pager()}
         <p class="meta"><em>${post.created_at}</em></p>
         <p>${post.body}</p>
     </li>
+    <% num += 1 %>
     % endfor
 </ol>
 ${c.posts.pager()}
