@@ -108,7 +108,7 @@ forum_s = Scraper({
         })
 
 def scrape_created_at(tree):
-    today = tree.xpath('//table[@id="gfooter"]//td/text()')[-1][17:27]
+    today = tree.xpath('//table[@id="gfooter"]//td/text()')[-1].split(' ')[3]
     created_at = tree.xpath('../../..//span[@class="postdetails"]')[0]. \
         text_content().strip()
 
