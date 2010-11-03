@@ -7,7 +7,7 @@ ${c.posts.pager()}
     % else:
     <li class="odd">
     % endif
-        <h2><a href="${url('user', id=user.id)}">${user.nick_name}</a></h2>
+        <h2><a href="${url('user', id=user.id)}" name="post-${post.id}">${user.nick_name}</a></h2>
         <p class="meta"><em>${post.created_at}</em></p>
         <p>${post.body}</p>
     </li>

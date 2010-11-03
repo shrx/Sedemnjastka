@@ -9,7 +9,7 @@ ${c.posts.pager()}
     % endif
         <h2><a href="${url('user', id=c.user.id)}">${c.user.nick_name}</a></h2>
         <p class="meta"><em>@ ${post.created_at},
-        v: <a href="${url('topic', id=topic.id)}">${topic.title}</a></em></p>
+        v: <a href="${url('topic', id=topic.id)}#post-${post.id}">${topic.title}</a></em></p>
         <p>${post.body}</p>
     </li>
     % endfor
