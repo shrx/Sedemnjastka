@@ -8,9 +8,11 @@
 ** TODO Do authorship analysis on posts
 ** TODO Quotes database
 ** TODO Put those charts back up
-** TODO Bring back the "kralji gnoja" page
+** DONE Bring back the "kralji gnoja" page
+   CLOSED: [2010-11-03 Wed 12:01]
 ** TODO For every user, a list of topics they've posted in
-** TODO An info page, w/ time of last update, next update,...
+** DONE An info page, w/ time of last update, next update,...
+   CLOSED: [2010-11-03 Wed 12:01]
 ** TODO List of users with most posts in their topics
 ** TODO Search
 ** TODO Voting as a ranking system?
