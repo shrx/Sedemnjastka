@@ -7,7 +7,7 @@
 
 Further required Python packages:
 
-    * Pylons
-    * lxml
-    * mechanize
-    * SQLAlchemy
+* Pylons
+* lxml
+* mechanize
+* SQLAlchemy
