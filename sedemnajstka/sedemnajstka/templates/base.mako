@@ -25,6 +25,7 @@
     <body>
         <p class="navigation">
             [ <a href="/">ARHIV</a> |
+            <a href="/info">INFO</a> |
             <a href="/rankings">KRALJI GNOJA</a> |
             <a href="/users">UPORABNIKI</a> ]
             <span class="title">

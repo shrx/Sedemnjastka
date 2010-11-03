@@ -42,4 +42,7 @@ def make_map(config):
     # rankings
     map.connect('/rankings', controller='rankings', action='index')
 
+    # info
+    map.connect('/info', controller='info', action='index')
+
     return map
