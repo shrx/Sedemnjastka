@@ -51,9 +51,15 @@ metadata = sqlalchemy.MetaData(engine)
 Session = sqlalchemy.orm.sessionmaker(bind=engine)
 session = Session()
 
+info_table = sqlalchemy.Table('info', metadata, autoload=True)
 posts_table = sqlalchemy.Table('posts', metadata, autoload=True)
 topics_table = sqlalchemy.Table('topics', metadata, autoload=True)
 users_table = sqlalchemy.Table('users', metadata, autoload=True)
+
+
+class Info(object):
+
+    __tablename__ = 'info'
 
 
 class Post(object):
@@ -87,6 +93,7 @@ class User(object):
         self.nick_name = nick_name and unicode(nick_name)
 
 
+sqlalchemy.orm.mapper(Info, info_table)
 sqlalchemy.orm.mapper(Post, posts_table)
 sqlalchemy.orm.mapper(Topic, topics_table)
 sqlalchemy.orm.mapper(User, users_table)
@@ -256,7 +263,15 @@ def login(username, password):
         raise LoginError
 
 
+def update_info():
+    alr = session.query(Info).filter(Info.attribute=='archive_last_run').first()
+    alr.value = datetime.now().strftime(config.get('misc', 'datetime_format'))
+    session.commit()
+
+
 def main():
+    update_info()
+
     login(config.get('forum', 'username'), config.get('forum', 'password'))
 
     greetings = config.get('misc', 'greetings').split(', ')

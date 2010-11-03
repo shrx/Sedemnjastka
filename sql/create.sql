@@ -34,3 +34,13 @@ CREATE TABLE posts (
 CREATE INDEX posts_created_at_idx ON posts (created_at);
 CREATE INDEX posts_topic_id_idx ON posts (topic_id);
 CREATE INDEX posts_user_id_idx ON posts (user_id);
+
+-- Create and populate metadata info table with defaults
+CREATE TABLE info (
+    id serial PRIMARY KEY,
+
+    attribute varchar(255) UNIQUE,
+    value varchar(255)
+);
+
+INSERT INTO info (attribute) VALUES ('archive_last_run');
