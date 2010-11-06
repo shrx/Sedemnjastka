@@ -6,9 +6,9 @@
         <link href="/style.css" rel="stylesheet" type="text/css" />
         <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
         % if hasattr(c, 'title'):
-        <title>${c.title} - nigger.it.cx</title>
+        <title>${c.title} - www.sedemnajst.si</title>
         % else:
-        <title>nigger.it.cx</title>
+        <title>www.sedemnajst.si</title>
         % endif
         <script type="text/javascript">
             var _gaq = _gaq || [];
@@ -32,7 +32,7 @@
                 % if hasattr(c, 'title'):
                 [ ${c.title} ]
                 % else:
-                [ nigger.it.cx ]
+                [ www.sedemnajst.si ]
                 % endif
             </span>
         </p>
