@@ -1,4 +1,5 @@
 * Archiver script
+** TODO Track uptime with fancy display on site
 ** TODO User's badges?
 ** TODO Cycling login
 ** TODO Set some timeouts for browser
@@ -6,6 +7,7 @@
 ** TODO Have to take into account possible timezone differences between user accounts!
 * Website
 ** TODO Do authorship analysis on posts
+** TODO Users can claim their accounts, through ZS
 ** TODO Quotes database
 ** TODO Put those charts back up
 ** DONE Bring back the "kralji gnoja" page
