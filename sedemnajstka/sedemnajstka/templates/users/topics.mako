@@ -1,15 +1,30 @@
 <%inherit file="/base.mako" />
-${c.topics.pager()}
-<table>
-    % for i, topic in enumerate(c.topics):
-    % if i % 2 == 0:
-    <tr class="even">
-    % else:
-    <tr class="odd">
-    % endif
-        <td><a href="${url('topic', id=topic.id)}">${topic.full_title()}</a></td>
-        <td><a href="${url('user', id=c.user.id)}">${c.user.nick_name}</a></td>
-    </tr>
-    % endfor
+<h2>${c.title}</h2>
+<div class="pager">
+    ${c.topics.pager(format='Skok na stran $link_previous ~2~ $link_next',
+                     separator=', ',
+                     symbol_next='Naslednja',
+                     symbol_previous=u'Prejsnja')}
+</div>
+<table class="topics">
+    <thead>
+        <tr>
+            <th>Teme</th>
+            <th>Odgovori</th>
+        </tr>
+    </thead>
+    <tbody>
+        % for i, topic in enumerate(c.topics):
+        <tr>
+            <td class="title"><a href="${url('topic', id=topic.id)}">${topic.full_title()}</a></td>
+            <td class="posts">${topic.num_of_posts}</td>
+        </tr>
+        % endfor
+    </tbody>
 </table>
-${c.topics.pager()}
+<div class="pager">
+    ${c.topics.pager(format='Skok na stran $link_previous ~2~ $link_next',
+                     separator=', ',
+                     symbol_next='Naslednja',
+                     symbol_previous=u'Prejsnja')}
+</div>
