@@ -38,7 +38,10 @@ body {
     text-transform: lowercase;
 }
 
-.navigation a:link, .navigation a:visited { font-weight: normal; }
+.navigation a:link, .navigation a:visited {
+    color: #fff;
+    font-weight: normal;
+}
 
 /* Pager */
 .pager { font-weight: bold; }
