@@ -125,6 +125,10 @@ a[href="/users/16752"] {
     color: #b53389;
 }
 
+a[href="/users/16752"]:after {
+    content: "-hime";
+}
+
 a[href="/users/16752"]:before {
     content: url(images/rose.gif);
 }
