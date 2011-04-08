@@ -13,7 +13,7 @@
 	    % else:
 	<tr class="odd">
 	    % endif
-            <td><a href="${url('user', id=user.id)}">${user.nick_name}</a></td>
+            <td><a href="${url('user', id=user.id)}" name="user-${user.id}">${user.nick_name}</a></td>
 	    <td>${user.num_of_posts}</td>
 	</tr>
 	% endfor
