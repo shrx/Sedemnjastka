@@ -121,10 +121,20 @@ a[href="/users/1583"]:before {
 
 /* Ezekiel */
 a[href="/users/16752"] {
-    /* fandango pink */
+    /* Fandango Pink */
     color: #b53389;
 }
 
 a[href="/users/16752"]:before {
     content: url(images/rose.gif);
+}
+
+/* Vladimir Gajšek */
+a[href="/users/14638"] {
+    /* Gray-asparagus */
+    color: #465945;
+}
+
+a[href="/users/14638"]:before {
+    content: url(images/donator.gif);
 }
