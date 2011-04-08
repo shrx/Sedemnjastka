@@ -108,3 +108,23 @@ th { text-align: center; }
 .topics td.posts { background-color: #ffeebb; }
 
 .topics td.title { background-color: #ffe495; }
+
+/* schatz */
+a[href="/users/1583"] {
+    /* Royal Blue */
+    color: #002366;
+}
+
+a[href="/users/1583"]:before {
+    content: url(images/crown.gif);
+}
+
+/* Ezekiel */
+a[href="/users/16752"] {
+    /* fandango pink */
+    color: #b53389;
+}
+
+a[href="/users/16752"]:before {
+    content: url(images/rose.gif);
+}
