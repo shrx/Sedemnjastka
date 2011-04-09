@@ -228,26 +228,27 @@ class Crawler:
         self.archive = Archive()
 
     def crawl(self):
-        browser.open('%s/?act=SF&f=17' % BASE_URL)
-        data = forum_s.scrape(lxml.html.parse(browser.response()))
+        next_page = '%s/?act=SF&f=17' % BASE_URL
+        while next_page:
+            browser.open(next_page)
+            data = forum_s.scrape(lxml.html.parse(browser.response()))
 
-        while True:
             for topic in data['topics[]']:
+                next_page = data['next_page']
                 ot = session.query(Topic).get(topic['id'])
+                # if this is an old topic in need of update
                 if ot and ot.num_of_posts < int(topic['odgovori']) + 1:
                     logger.info('Archiving *OLD* topic #%s.' % ot.id)
                     self.archive.archive(ot)
+                # if this is a new topic
                 elif not ot:
                     nt = Topic(topic['id'], topic['title'],
                                topic['subtitle'], topic['user_id'])
                     logger.info('Archiving *NEW* topic #%s.' % nt.id)
                     self.archive.archive(nt)
-
-            if data['next_page'] is not None:
-                browser.open(data['next_page'])
-                data = forum_s.scrape(lxml.html.parse(browser.response()))
-            else:
-                break
+                # else it is an already up-to-date topic, so we're done
+                else:
+                    next_page = None
 
 
 def login(username, password):
