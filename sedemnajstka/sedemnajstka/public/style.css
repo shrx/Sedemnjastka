@@ -140,3 +140,13 @@ a[href="/users/14638"] {
 a[href="/users/14638"]:before {
     content: url(images/donator.gif);
 }
+
+/* viddek */
+a[href="/users/16506"] {
+    /* Gray-asparagus */
+    color: #465945;
+}
+
+a[href="/users/16506"]:before {
+    content: url(images/donator.gif);
+}
