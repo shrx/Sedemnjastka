@@ -19,6 +19,15 @@ body {
 
 .clear { clear: both; }
 
+h3 {
+    background-color: black;
+    color: #ffcf3e;
+    font-size: 1em;
+    margin-bottom: 0;
+    padding: 4px;
+    text-align: center;
+}
+
 /* Evens and odds */
 .even { background-color: #ffeebb; }
 
@@ -106,6 +115,17 @@ th { text-align: center; }
 .topics td.posts { background-color: #ffeebb; }
 
 .topics td.title { background-color: #ffe495; }
+
+.yello {
+    background-color: #ffe495;
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+.yello img {
+    display: block;
+    margin: 0 auto;
+}
 
 /* schatz */
 a[href="/users/1583"] {
