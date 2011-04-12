@@ -17,6 +17,8 @@ body {
     width: 90em;
 }
 
+.chart_ctrl { text-align: center; }
+
 .clear { clear: both; }
 
 h3 {

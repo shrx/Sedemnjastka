@@ -1,7 +1,7 @@
 """The application's model objects"""
 import sqlalchemy as sa
 from sqlalchemy import orm
-from sqlalchemy.sql import select, func
+from sqlalchemy.sql import select, func, and_
 
 from sedemnajstka.model import meta
 
@@ -36,22 +36,28 @@ class Info(object):
 
 class User(object):
 
-    def posts_per_dow(self):
+    def posts_per_dow(self, start_date=None, end_date=None):
         q = select([func.date_part('isodow', t_posts.c.created_at),
                     func.count(t_posts.c.id)]). \
-                    where(t_posts.c.user_id==self.id). \
+                    where(and_(t_posts.c.user_id==self.id,
+                               t_posts.c.created_at>=start_date,
+                               t_posts.c.created_at<end_date)). \
                     group_by('1'). \
                     order_by('1')
+
         data = dict(meta.Session.execute(q).fetchall())
         days = dict([(day, 0) for day in range(1, 8)])
         return dict(days, **data).values()
 
-    def posts_per_hour(self):
+    def posts_per_hour(self, start_date=None, end_date=None):
         q = select([func.date_part('hour', t_posts.c.created_at),
                     func.count(t_posts.c.id)]). \
-                    where(t_posts.c.user_id==self.id). \
-                    group_by('1'). \
-                    order_by('1')
+                    where(and_(t_posts.c.user_id==self.id,
+                               t_posts.c.created_at>=start_date,
+                               t_posts.c.created_at<end_date)). \
+                               group_by('1'). \
+                               order_by('1')
+
         data = dict(meta.Session.execute(q).fetchall())
         hours = dict([(hour, 0) for hour in range(0, 24)])
         return dict(hours, **data).values()
