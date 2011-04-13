@@ -9,6 +9,7 @@
 ** TODO Do authorship analysis on posts
 ** TODO Users can claim their accounts, through ZS
 ** TODO Quotes database
+** TODO Favorites for topics
 ** TODO Put those charts back up
 ** DONE Bring back the "kralji gnoja" page
    CLOSED: [2010-11-03 Wed 12:01]
