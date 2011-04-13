@@ -9,6 +9,7 @@
 ** TODO Do authorship analysis on posts
 ** TODO Users can claim their accounts, through ZS
 ** TODO Quotes database
+** TODO Global and per user word cloud
 ** TODO Favorites for topics
 ** TODO Put those charts back up
 ** DONE Bring back the "kralji gnoja" page
