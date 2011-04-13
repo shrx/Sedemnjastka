@@ -130,45 +130,45 @@ th { text-align: center; }
 }
 
 /* schatz */
-a[href="/users/1583"] {
+a.elita[href="/users/1583"] {
     /* Royal Blue */
     color: #002366;
 }
 
-a[href="/users/1583"]:before {
+a.elita[href="/users/1583"]:before {
     content: url(images/crown.gif);
 }
 
 /* Ezekiel */
-a[href="/users/16752"] {
+a.elita[href="/users/16752"] {
     /* Fandango Pink */
     color: #b53389;
 }
 
-a[href="/users/16752"]:after {
+a.elita[href="/users/16752"]:after {
     content: "-hime";
 }
 
-a[href="/users/16752"]:before {
+a.elita[href="/users/16752"]:before {
     content: url(images/rose.gif);
 }
 
 /* Vladimir Gajšek */
-a[href="/users/14638"] {
+a.elita[href="/users/14638"] {
     /* Gray-asparagus */
     color: #465945;
 }
 
-a[href="/users/14638"]:before {
+a.elita[href="/users/14638"]:before {
     content: url(images/donator.gif);
 }
 
 /* viddek */
-a[href="/users/16506"] {
+a.elita[href="/users/16506"] {
     /* Gray-asparagus */
     color: #465945;
 }
 
-a[href="/users/16506"]:before {
+a.elita[href="/users/16506"]:before {
     content: url(images/donator.gif);
 }

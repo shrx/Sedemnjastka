@@ -1,5 +1,5 @@
 <%inherit file="/base.mako" />
-<h2><a href="${url('user', id=c.user.id)}">${c.user.nick_name}</a></h2>
+<h2><a href="${url('user', id=c.user.id)}" class="elita">${c.user.nick_name}</a></h2>
 <h3>statistika</h3>
 <div class="yello">
     <dl>

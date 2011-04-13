@@ -21,7 +21,7 @@
         <tr class="odd">
         % endif
             <td class="author">
-                <p><strong><a href="${url('user', id=user.id)}" name="post-${post.id}">${user.nick_name}</a></strong></p>
+                <p><strong><a href="${url('user', id=user.id)}" name="post-${post.id}" class="elita">${user.nick_name}</a></strong></p>
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${user.id}.gif" />
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${user.id}.jpg" />
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${user.id}.png" />

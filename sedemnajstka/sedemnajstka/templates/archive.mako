@@ -18,7 +18,7 @@
         <tr>
             <td class="title"><a href="${url('topic', id=topic.id)}">${topic.full_title()}</a></td>
             <td class="posts">${topic.num_of_posts}</td>
-            <td class="author"><a href="${url('user', id=user.id)}">${user.nick_name}</a></td>
+            <td class="author"><a href="${url('user', id=user.id)}" class="elita">${user.nick_name}</a></td>
         </tr>
         % endfor
     </tbody>

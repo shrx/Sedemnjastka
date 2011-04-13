@@ -6,7 +6,7 @@
                      symbol_next='Naslednja',
                      symbol_previous=u'Prejsnja')}
 </div>
-<table>
+<table class="posts">
     <thead>
         <tr>
             <th>Avtor</th>
@@ -20,8 +20,8 @@
         % else:
         <tr class="odd">
         % endif
-            <td>
-                <p><strong>${c.user.nick_name}</strong></p>
+            <td class="author">
+                <p><strong><a href="${url('user', id=c.user.id)}" name="post-${post.id}" class="elita">${c.user.nick_name}</a></strong></p>
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${c.user.id}.gif" />
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${c.user.id}.jpg" />
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${c.user.id}.png" />
@@ -41,7 +41,7 @@
         % endif
             <td><a href="#top">Nazaj na vrh</a></td>
             <td>
-                <a href="${url('user', id=c.user.id)}" name="post-${post.id}">
+                <a href="${url('user', id=c.user.id)}">
                     <img src="/images/icon_profile.gif" width="59" height="18" alt="profil" />
                 </a>
             </td>
