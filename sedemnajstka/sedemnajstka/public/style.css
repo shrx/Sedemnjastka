@@ -13,6 +13,11 @@ body {
     color: #000;
     font-family: Tahoma, Verdana, Helvetica, sans-serif;
     font-size: 11px;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
     margin: 1em auto;
     width: 90em;
 }
@@ -117,6 +122,15 @@ th { text-align: center; }
 .topics td.posts { background-color: #ffeebb; }
 
 .topics td.title { background-color: #ffe495; }
+
+.warning {
+    background-color: #000;
+    color: #00ff00;
+    font-family: monospace;
+    font-weight: bold;
+    padding: 4px;
+    text-align: center;
+}
 
 .yello {
     background-color: #ffe495;
