@@ -7,6 +7,7 @@
 ** TODO Have to take into account possible timezone differences between user accounts!
 * Website
 ** TODO Do authorship analysis on posts
+** TODO Users world map (would require claimed accounts first?)
 ** TODO Users can claim their accounts, through ZS
 ** TODO Quotes database
 ** TODO Global and per user word cloud
