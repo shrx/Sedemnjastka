@@ -3,9 +3,9 @@
 <h3>statistika</h3>
 <div class="yello">
     <dl>
-	<dt><strong>število postov:</strong></dt>
+	<dt>število postov</dt>
 	<dd><a href="${url('user_posts', id=c.user.id)}">${c.user.num_of_posts}</a></dd>
-	<dt><strong>število tem:</strong></dt>
+	<dt>število tem</dt>
 	<dd><a href="${url('user_topics', id=c.user.id)}">${c.user.num_of_topics}</a></dd>
     </dl>
 </div>

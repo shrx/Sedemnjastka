@@ -26,6 +26,10 @@ body {
 
 .clear { clear: both; }
 
+dt { font-weight: bold; }
+
+dt:after { content: ":"; }
+
 h3 {
     background-color: black;
     color: #ffcf3e;
