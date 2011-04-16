@@ -9,3 +9,6 @@ import os
 import pylons
 
 from webhelpers.html.tags import *
+
+from webhelpers.pylonslib.flash import Flash as _Flash
+flash = _Flash()

@@ -27,12 +27,30 @@
                     <div class="clear"></div>
                 </div>
             </div>
-            <p class="navigation">
-                <a href="/">Arhiv</a> |
-                <a href="/info">Info</a> |
-                <a href="/rankings">Kralji Gnoja</a> |
-                <a href="/users">Uporabniki</a>
-            </p>
+            <div id="nav">
+                <div id="nav-l">
+                    <a href="/">Arhiv</a> |
+                    <a href="/info">Info</a> |
+                    <a href="/rankings">Kralji Gnoja</a> |
+                    <a href="/users">Uporabniki</a>
+                </div>
+                <div id="nav-r">
+                    % if 'user' in session:
+                    <p>ojla, <a href="${url('user', id=session['user'].id)}">${session['user'].nick_name}</a>! (<a href="${url('logout')}">odjava</a>)</p>
+                    % else:
+                    <a href="${url('login')}">prijava</a>
+                    % endif
+                </div>
+                <div class="clear"></div>
+            </div>
+            <% messages = h.flash.pop_messages() %>
+            % if messages:
+            <ul id="flash-messages">
+                % for message in messages:
+                <li>${message}</li>
+                % endfor
+            </ul>
+            % endif
             ${self.body()}
         </div>
     </body>

@@ -1,16 +1,21 @@
 # -*- coding: utf-8 -*-
 
 import datetime
+import hashlib
 import logging
 import time
+import uuid
 
 import webhelpers.paginate
 
-from pylons import request, response, session, tmpl_context as c, url
+from pylons import request, response, session, tmpl_context as c, url, config
 from pylons.controllers.util import abort, redirect
 
+from sedemnajstka.lib import mn3njalnik
 from sedemnajstka.lib.base import BaseController, render, Session
 from sedemnajstka.model import User, Topic, Post
+
+import sedemnajstka.lib.helpers as h
 
 from GChartWrapper import HorizontalBarStack, VerticalBarStack
 
@@ -136,3 +141,48 @@ class UsersController(BaseController):
         c.years = years
         c.title = c.user.nick_name
         return render('/users/show.mako')
+
+    def claim(self, id):
+        c.user = Session.query(User).filter(User.id==id). \
+            filter(User.password==None).first()
+        if not c.user:
+            abort(404)
+
+        if request.method == 'POST':
+            c.user.token = uuid.uuid4().get_hex()
+            Session.add(c.user)
+            Session.commit()
+
+            mn3 = mn3njalnik.Mn3njalnik()
+            try:
+                mn3.login(config['mn3njalnik.username'],
+                          config['mn3njalnik.password'])
+                mn3.pm(c.user.nick_name,
+                       'Polasti se svojega racuna se danes!',
+                       render('/users/pm.mako'))
+                h.flash(u'Imaš ZS—velik uspeh!')
+            except:
+                h.flash('Oh ne, nekaj je šlo napak.')
+
+        c.title = u'polasti se svojega računa'
+        return render('/users/claim.mako')
+
+    def passwd(self, token):
+        c.user = Session.query(User).filter(User.token==token).first()
+        if not c.user:
+            abort(404)
+
+        if request.method == 'POST':
+            if request.params['passwd'] == request.params['passwd_confirm']:
+                c.user.password = hashlib.sha256(request.params['passwd']). \
+                    hexdigest()
+                c.user.token = None
+                Session.add(c.user)
+                Session.commit()
+                h.flash(u'Uspeh—zdaj se lahko prijaviš.')
+                redirect(url('login'))
+            else:
+                h.flash('Gesli se ne ujemata. :(')
+
+        c.title = 'nastavi geslo'
+        return render('/users/passwd.mako')

@@ -10,6 +10,10 @@ debug = false
 smtp_server = localhost
 error_email_from = paste@localhost
 
+[mn3njalnik]
+username =
+password =
+
 [server:main]
 use = egg:Paste#http
 host = 127.0.0.1
@@ -38,6 +42,8 @@ sqlalchemy.url = sqlite:///%(here)s/development.db
 # execute malicious code after an exception is raised.
 set debug = false
 
+mn3njalnik.username =
+mn3njalnik.password =
 
 # Logging configuration
 [loggers]

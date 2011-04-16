@@ -20,6 +20,10 @@ def make_map(config):
 
     # CUSTOM ROUTES HERE
 
+    # auth
+    map.connect('login', '/login', controller='auth', action='login')
+    map.connect('logout', '/logout', controller='auth', action='logout')
+
     # archive
     map.connect('/', controller='archive', action='index')
     map.connect('/archive', controller='archive', action='index')
@@ -38,6 +42,9 @@ def make_map(config):
 
     map.connect('user_topics', '/users/{id:\d+}/topics', controller='users', action='topics')
     map.connect('/users/{id:\d+}/topics/{page:\d+}', controller='users', action='topics')
+
+    map.connect('claim', '/users/{id:\d+}/claim', controller='users', action='claim')
+    map.connect('passwd', '/users/passwd/{token}', controller='users', action='passwd')
 
     # rankings
     map.connect('/rankings', controller='rankings', action='index')

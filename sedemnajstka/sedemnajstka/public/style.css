@@ -26,6 +26,8 @@ body {
 
 .clear { clear: both; }
 
+dl.flat dd { margin: 0; }
+
 dt { font-weight: bold; }
 
 dt:after { content: ":"; }
@@ -39,10 +41,26 @@ h3 {
     text-align: center;
 }
 
+ul#flash-messages {
+    color: #ff0000;
+    background-color: #ffffcc;
+    font-size: 12px;
+    font-style: italic;
+    margin-left: 40px;
+    padding: 4px;
+    list-style: none;
+}
+
 /* Evens and odds */
 .even { background-color: #ffeebb; }
 
 .odd { background-color: #ffe495; }
+
+/* Forms */
+input[type="submit"] {
+    background-color: #fff;
+    color: #000;
+}
 
 /* Header */
 #header img { float: left; }
@@ -52,7 +70,7 @@ h3 {
 #header-r { background: url(images/header_r.gif) right no-repeat; }
 
 /* Nav */
-.navigation {
+#nav {
     background-color: #000;
     color: #fff;
     margin: 0;
@@ -60,10 +78,16 @@ h3 {
     text-transform: lowercase;
 }
 
-.navigation a:link, .navigation a:visited {
+#nav a:link, #nav a:visited {
     color: #fff;
     font-weight: normal;
 }
+
+#nav p { margin: 0; }
+
+#nav-l { float: left; }
+
+#nav-r { float: right; }
 
 /* Pager */
 .pager { font-weight: bold; }

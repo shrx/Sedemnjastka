@@ -3,9 +3,10 @@ DROP TABLE IF EXISTS users, topics, posts;
 CREATE TABLE users (
     id integer PRIMARY KEY,
 
-    -- last_posted_at timestamp,
     nick_name varchar(255) NOT NULL,
-    -- num_of_npms integer DEFAULT 0 NOT NULL,
+    password varchar(64),
+    token varchar(32)
+
     num_of_posts integer DEFAULT 0 NOT NULL,
     num_of_topics integer DEFAULT 0 NOT NULL
 );
