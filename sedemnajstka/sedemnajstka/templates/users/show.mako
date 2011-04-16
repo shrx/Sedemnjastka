@@ -1,8 +1,9 @@
 <%inherit file="/base.mako" />
 <h2><a href="${url('user', id=c.user.id)}" class="elita">${c.user.nick_name}</a></h2>
 % if c.user.password == None:
-<p><em>${c.user.nick_name} se še ni polastil/a svojega računa. ${c.user.nick_name}, če si to ti,
-zakaj ne <a href="${url('claim', id=c.user.id)}">prevzameš svojega računa</a> zdaj.</em></p>
+<p style="text-decoration: line-through"><em>${c.user.nick_name} se še ni polastil/a svojega računa. ${c.user.nick_name}, če si to ti,
+zakaj ne prevzameš svojega računa zdaj.</em></p>
+<p>Nič ne boš! Zakajti ZSji ne delujejo. :(</p>
 % endif
 <h3>statistika</h3>
 <div class="yello">
