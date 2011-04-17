@@ -81,7 +81,6 @@ input[type="submit"] {
     color: #fff;
     margin: 0;
     padding: 2px 4px;
-    text-transform: lowercase;
 }
 
 #nav a:link, #nav a:visited {
@@ -91,7 +90,10 @@ input[type="submit"] {
 
 #nav p { margin: 0; }
 
-#nav-l { float: left; }
+#nav-l {
+    float: left;
+    text-transform: lowercase;
+}
 
 #nav-r { float: right; }
 
