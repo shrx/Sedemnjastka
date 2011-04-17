@@ -145,6 +145,8 @@ th { text-align: center; }
     padding-top: 0;
 }
 
+.quote { float: right; }
+
 .topics td.author { background-color: #ffd555; }
 
 .topics td.posts { background-color: #ffeebb; }
@@ -164,6 +166,16 @@ th { text-align: center; }
     background-color: #ffe495;
     border: 1px solid #000;
     padding: 10px;
+}
+
+/* Voting */
+a.upvote { color: #009530; }
+
+a.downvote { color: #cc0000; }
+
+.votes {
+    font-size: 14px;
+    float: right;
 }
 
 /* schatz */

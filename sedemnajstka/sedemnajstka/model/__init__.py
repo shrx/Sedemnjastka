@@ -8,6 +8,8 @@ from sedemnajstka.model import meta
 
 t_info = None
 t_posts = None
+t_quotes = None
+t_quote_votes = None
 t_topics = None
 t_users = None
 
@@ -17,20 +19,30 @@ def init_model(engine):
     meta.Session.configure(bind=engine)
     meta.Base.metadata.bind = engine
 
-    global t_info, t_posts, t_topics, t_users
+    global t_info, t_posts, t_quotes, t_quote_votes, t_topics, t_users
     t_info = sa.Table('info', meta.Base.metadata, autoload=True)
     t_posts = sa.Table('posts', meta.Base.metadata, autoload=True)
+    t_quotes = sa.Table('quotes', meta.Base.metadata, autoload=True)
+    t_quote_votes = sa.Table('quote_votes', meta.Base.metadata, autoload=True)
     t_topics = sa.Table('topics', meta.Base.metadata, autoload=True)
     t_users = sa.Table('users', meta.Base.metadata, autoload=True)
 
     orm.mapper(Info, t_info)
-    orm.mapper(Post, t_posts)
+    orm.mapper(Post, t_posts, properties={
+            'user': orm.relationship(User, backref='posts'),
+            'topic': orm.relationship(Topic, backref='posts')})
+    orm.mapper(Quote, t_quotes, properties={
+            'post': orm.relationship(Post, uselist=False, backref=orm.backref('quote', uselist=False))})
+    orm.mapper(QuoteVote, t_quote_votes, properties={
+            'quote': orm.relationship(Quote, backref='votes'),
+            'user': orm.relationship(User, backref='quote_votes')})
     orm.mapper(Topic, t_topics)
     orm.mapper(User, t_users, properties={
             'topics': orm.relationship(Topic, backref='user')})
 
 
 class Info(object):
+
     pass
 
 
@@ -66,6 +78,26 @@ class User(object):
 class Post(object):
 
     pass
+
+
+class Quote(object):
+
+    def __init__(self, post):
+        self.post = post
+
+    def voted_by(self, user):
+        return meta.Session.query(QuoteVote). \
+            filter(QuoteVote.quote==self). \
+            filter(QuoteVote.user==user). \
+            count() != 0
+
+
+class QuoteVote(object):
+
+    def __init__(self, quote, user, is_upvote):
+        self.quote = quote
+        self.user = user
+        self.upvoted = (is_upvote == True)
 
 
 class Topic(object):

@@ -54,4 +54,13 @@ def make_map(config):
     # info
     map.connect('/info', controller='info', action='index')
 
+    # quotes
+    map.connect('/quotes', controller='quotes', action='create', conditions=dict(method=['PUT']))
+    map.connect('quote', '/quotes/{id:\d+}', controller='quotes', action='show')
+    map.connect('quote_post', '/quotes/new/{post:\d+}', controller='quotes', action='new')
+    map.connect('quotes', '/quotes', controller='quotes', action='index', conditions=dict(method=['GET']))
+
+    map.connect('quote_upvote', '/quotes/{id:\d+}/vote/up', controller='quotes', action='vote', way='up')
+    map.connect('quote_downvote', '/quotes/{id:\d+}/vote/down', controller='quotes', action='vote', way='down')
+
     return map

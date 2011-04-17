@@ -32,6 +32,24 @@ CREATE TABLE posts (
     user_id integer REFERENCES users
 );
 
+CREATE TABLE quotes (
+    id serial PRIMARY KEY,
+
+    downvotes integer DEFAULT 0 NOT NULL,
+    upvotes integer DEFAULT 0 NOT NULL,
+
+    post_id integer NOT NULL REFERENCES posts UNIQUE
+);
+
+CREATE TABLE quote_votes (
+    quote_id integer REFERENCES quotes,
+    user_id integer REFERENCES users,
+
+    upvoted boolean NOT NULL,
+
+    PRIMARY KEY (quote_id, user_id)
+);
+
 CREATE INDEX posts_created_at_idx ON posts (created_at);
 CREATE INDEX posts_topic_id_idx ON posts (topic_id);
 CREATE INDEX posts_user_id_idx ON posts (user_id);
