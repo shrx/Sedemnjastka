@@ -43,6 +43,8 @@ def make_map(config):
     map.connect('user_topics', '/users/{id:\d+}/topics', controller='users', action='topics')
     map.connect('/users/{id:\d+}/topics/{page:\d+}', controller='users', action='topics')
 
+    map.connect('user_edit', '/users/edit', controller='users', action='edit')
+
     # map.connect('claim', '/users/{id:\d+}/claim', controller='users', action='claim')
     # map.connect('passwd', '/users/passwd/{token}', controller='users', action='passwd')
 

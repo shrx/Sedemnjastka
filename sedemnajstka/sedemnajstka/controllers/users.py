@@ -47,6 +47,8 @@ years = [(i, i) for i in range(2009, time.localtime()[0] + 1)]
 
 class UsersController(BaseController):
 
+    requires_auth = ['edit']
+
     def index(self):
         c.users = Session.query(User).order_by(User.nick_name)
 
@@ -186,3 +188,27 @@ class UsersController(BaseController):
 
         c.title = 'nastavi geslo'
         return render('/users/passwd.mako')
+
+    def edit(self):
+        c.user = session['user']
+        if not c.user:
+            abort(404)
+
+        if request.method == 'POST':
+            if 'new_passwd' in request.params:
+                if c.user.password == hashlib. \
+                        sha256(request.params['cur_passwd']).hexdigest():
+                    if request.params['new_passwd'] == request. \
+                            params['new_passwd_confirm']:
+                        c.user.password = hashlib. \
+                            sha256(request.params['new_passwd']).hexdigest()
+                        Session.add(c.user)
+                        Session.commit()
+                        h.flash(u'Podatki so bili uspešno posodobljeni.')
+                    else:
+                        h.flash('Gesli se ne ujemata.')
+                else:
+                    h.flash(u'Napačno trenutno geslo.')
+
+        c.title = 'uredi svoje podatke'
+        return render('/users/edit.mako')

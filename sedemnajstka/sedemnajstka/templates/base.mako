@@ -36,7 +36,7 @@
                 </div>
                 <div id="nav-r">
                     % if 'user' in session:
-                    <p>ojla, <a href="${url('user', id=session['user'].id)}">${session['user'].nick_name}</a>! (<a href="${url('logout')}">odjava</a>)</p>
+                    <p>ojla, <a href="${url('user_edit')}">${session['user'].nick_name}</a>! (<a href="${url('logout')}">odjava</a>)</p>
                     % else:
                     <a href="${url('login')}">prijava</a>
                     % endif
