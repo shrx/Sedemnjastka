@@ -229,3 +229,13 @@ a.elita[href="/users/16506"] {
 a.elita[href="/users/16506"]:before {
     content: url(images/donator.gif);
 }
+
+/* Mr Shears */
+a.elita[href="/users/1947"] {
+    /* Vermillion */
+    color: #e34234;
+}
+
+a.elita[href="/users/1947"]:before {
+    content: url(images/sunglasses.png);
+}
