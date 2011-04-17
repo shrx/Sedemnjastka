@@ -30,6 +30,7 @@
             <div id="nav">
                 <div id="nav-l">
                     <a href="/">Arhiv</a> |
+                    <a href="/quotes">baza navedkov</a> |
                     <a href="/info">Info</a> |
                     <a href="/rankings">Kralji Gnoja</a> |
                     <a href="/users">Uporabniki</a>

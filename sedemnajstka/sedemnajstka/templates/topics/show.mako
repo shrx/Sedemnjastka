@@ -38,9 +38,8 @@
         % endif
             <td><a href="#top">Nazaj na vrh</a></td>
             <td>
-                <a href="${url('user', id=user.id)}">
-                    <img src="/images/icon_profile.gif" width="59" height="18" alt="profil" />
-                </a>
+                <a href="${url('user', id=user.id)}" class="profile"><img src="/images/icon_profile.gif" width="59" height="18" alt="profil" /></a>
+                <a href="${url('quote_post', post=post.id)}" class="quote"><img src="/images/icon_quote.gif" width="59" height="18" alt="navedek" /></a>
             </td>
         </tr>
         % endfor
