@@ -1,4 +1,6 @@
 """The application's model objects"""
+import datetime
+
 import sqlalchemy as sa
 from sqlalchemy import orm
 from sqlalchemy.sql import select, func, and_
@@ -32,7 +34,8 @@ def init_model(engine):
             'user': orm.relationship(User, backref='posts'),
             'topic': orm.relationship(Topic, backref='posts')})
     orm.mapper(Quote, t_quotes, properties={
-            'post': orm.relationship(Post, uselist=False, backref=orm.backref('quote', uselist=False))})
+            'post': orm.relationship(Post, uselist=False, backref=orm.backref('quote', uselist=False)),
+            'user': orm.relationship(User, backref=orm.backref('quotes'))})
     orm.mapper(QuoteVote, t_quote_votes, properties={
             'quote': orm.relationship(Quote, backref='votes'),
             'user': orm.relationship(User, backref='quote_votes')})
@@ -82,8 +85,10 @@ class Post(object):
 
 class Quote(object):
 
-    def __init__(self, post):
+    def __init__(self, post, user):
+        self.created_at = datetime.datetime.now()
         self.post = post
+        self.user = user
 
     def voted_by(self, user):
         return meta.Session.query(QuoteVote). \
@@ -95,6 +100,7 @@ class Quote(object):
 class QuoteVote(object):
 
     def __init__(self, quote, user, is_upvote):
+        self.created_at = datetime.datetime.now()
         self.quote = quote
         self.user = user
         self.upvoted = (is_upvote == True)
