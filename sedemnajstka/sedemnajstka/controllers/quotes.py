@@ -33,9 +33,10 @@ class QuotesController(BaseController):
         post = Session.query(Post). \
             filter(Post.id==int(request.params['post'])).first()
 
-        quote = Quote(post)
+        quote = Quote(post, session['user'])
         Session.add(quote)
         Session.commit()
+        Session.refresh(session['user'])
 
         h.flash('Uspeh')
         redirect(url('quote', id=quote.id))

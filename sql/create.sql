@@ -35,16 +35,20 @@ CREATE TABLE posts (
 CREATE TABLE quotes (
     id serial PRIMARY KEY,
 
+    created_at timestamp NOT NULL,
+
     downvotes integer DEFAULT 0 NOT NULL,
     upvotes integer DEFAULT 0 NOT NULL,
 
-    post_id integer NOT NULL REFERENCES posts UNIQUE
+    post_id integer NOT NULL REFERENCES posts UNIQUE,
+    quoted_by integer NOT NULL REFERENCES users
 );
 
 CREATE TABLE quote_votes (
     quote_id integer REFERENCES quotes,
     user_id integer REFERENCES users,
 
+    created_at timestamp NOT NULL,
     upvoted boolean NOT NULL,
 
     PRIMARY KEY (quote_id, user_id)
