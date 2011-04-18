@@ -4,13 +4,13 @@
 <table class="posts">
     <thead>
         <tr>
-	    <th>Avtor</th>
-	    <th>Sporočilo</th>
+            <th>Avtor</th>
+            <th>Sporočilo</th>
         </tr>
     </thead>
     <tbody>
         <tr class="even">
-	    <td class="author">
+            <td class="author">
                 <p><strong><a href="${url('user', id=quote.post.user.id)}" name="post-${quote.post.id}" class="elita">${quote.post.user.nick_name}</a></strong></p>
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${quote.post.user.id}.gif" />
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${quote.post.user.id}.jpg" />
@@ -18,9 +18,9 @@
                 <p>Sporočil: ${quote.post.user.num_of_posts}</p>
                 <p><strong>Napisano:</strong></p>
                 <p>${quote.post.created_at}</p>
-	    </td>
-	    <td>
-		<p><em><a href="${url('topic', id=quote.post.topic.id)}#post-${quote.post.id}">${quote.post.topic.title}</a></em></p>
+            </td>
+            <td>
+                <p><em><a href="${url('topic', id=quote.post.topic.id)}#post-${quote.post.id}">${quote.post.topic.title}</a></em></p>
                 ${quote.post.body}
             </td>
         </tr>

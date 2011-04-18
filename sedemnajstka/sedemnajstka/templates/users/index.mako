@@ -1,21 +1,21 @@
 <%inherit file="/base.mako" />
 <table>
     <thead>
-	<tr>
-	    <th>Ime</th>
-	    <th>Sporočil</th>
-	</tr>
+        <tr>
+            <th>Ime</th>
+            <th>Sporočil</th>
+        </tr>
     </thead>
     <tbody>
-	% for i, user in enumerate(c.users):
-	% if i % 2 == 0:
-	<tr class="even">
-	    % else:
-	<tr class="odd">
-	    % endif
+        % for i, user in enumerate(c.users):
+        % if i % 2 == 0:
+        <tr class="even">
+            % else:
+        <tr class="odd">
+            % endif
             <td><a href="${url('user', id=user.id)}" name="user-${user.id}" class="elita">${user.nick_name}</a></td>
-	    <td>${user.num_of_posts}</td>
-	</tr>
-	% endfor
+            <td>${user.num_of_posts}</td>
+        </tr>
+        % endfor
     </tbody>
 </table>

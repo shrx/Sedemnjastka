@@ -30,9 +30,9 @@
                 <p>${post.created_at}</p>
             </td>
             <td>
-		<p><em><a href="${url('topic', id=topic.id)}#post-${post.id}">${topic.title}</a></em></p>
-		${post.body}
-	    </td>
+                <p><em><a href="${url('topic', id=topic.id)}#post-${post.id}">${topic.title}</a></em></p>
+                ${post.body}
+            </td>
         </tr>
         % if i % 2 == 0:
         <tr class="even">
