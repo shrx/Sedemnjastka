@@ -126,10 +126,7 @@ input[type="submit"] {
     padding-left: 0.5em;
 }
 
-.quotetop {
-    content: "Navedek:";
-    font-weight: bold;
-}
+.quotetop { font-weight: bold; }
 
 .quotemain {
     background-color: #fff4d2;
