@@ -36,6 +36,12 @@
                 <div id="header-r">
                     <h1><a href="/"><img src="/images/header_l.gif" width="496" height="79" alt="sedemnajst.si" /></a></h1>
                     <div class="clear"></div>
+                    <div id="search">
+                        <form action="/search" method="GET">
+                            <input type="text" name="q" size="25" />
+                            <input type="submit" value="išči" />
+                        </form>
+                    </div>
                 </div>
             </div>
             <div id="nav">
