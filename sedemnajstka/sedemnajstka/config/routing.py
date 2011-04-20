@@ -63,4 +63,7 @@ def make_map(config):
     map.connect('quote_upvote', '/quotes/{id:\d+}/vote/up', controller='quotes', action='vote', way='up')
     map.connect('quote_downvote', '/quotes/{id:\d+}/vote/down', controller='quotes', action='vote', way='down')
 
+    # search
+    map.connect('search', '/search', controller='search', action='index')
+
     return map

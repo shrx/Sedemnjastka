@@ -13,6 +13,17 @@
         % else:
         <title>sedemnajst.si</title>
         % endif
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-22838996-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
     </head>
     <body>
         % if h.os.path.basename(h.pylons.config['__file__']) == 'development.ini':
@@ -25,6 +36,12 @@
                 <div id="header-r">
                     <h1><a href="/"><img src="/images/header_l.gif" width="496" height="79" alt="sedemnajst.si" /></a></h1>
                     <div class="clear"></div>
+                    <div id="search">
+                        <form action="/search" method="GET">
+                            <input type="text" name="q" size="25" />
+                            <input type="submit" value="išči" />
+                        </form>
+                    </div>
                 </div>
             </div>
             <div id="nav">

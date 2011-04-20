@@ -68,12 +68,28 @@ input[type="submit"] {
     color: #000;
 }
 
+/* Search */
+#search {
+    bottom: 0;
+    padding: 6px;
+    position: absolute;
+    right: 0;
+}
+
+.hl strong {
+    background-color: yellow;
+    color: red;
+}
+
 /* Header */
 #header img { float: left; }
 
 #header { background: url(images/header_m.gif) repeat-x; }
 
-#header-r { background: url(images/header_r.gif) right no-repeat; }
+#header-r {
+    background: url(images/header_r.gif) right no-repeat;
+    position: relative;
+}
 
 /* Nav */
 #nav {
