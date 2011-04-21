@@ -13,7 +13,7 @@
         <tbody>
             <tr class="even">
                 <td class="author">
-                    <p><strong><a href="${url('user', id=c.post.user.id)}" name="post-${c.post.id}" class="elita">${c.post.user.nick_name}</a></strong></p>
+                    <p><strong>${h.link_to(c.post.user.nick_name, url('user', id=c.post.user.id), class_='elita')}</strong></p>
                     <img src="http://www.joker.si/mn3njalnik/uploads//av-${c.post.user.id}.gif" />
                     <img src="http://www.joker.si/mn3njalnik/uploads//av-${c.post.user.id}.jpg" />
                     <img src="http://www.joker.si/mn3njalnik/uploads//av-${c.post.user.id}.png" />

@@ -17,7 +17,7 @@
     <tbody>
         <tr class="even">
             <td class="author">
-                <p><strong><a href="${url('user', id=user.id)}" name="post-${post.id}" class="elita">${user.nick_name}</a></strong></p>
+                <p><strong>${h.link_to(user.nick_name, url('user', id=user.id), class_='elita')}</strong></p>
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${user.id}.gif" />
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${user.id}.jpg" />
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${user.id}.png" />
@@ -26,7 +26,7 @@
                 <p>${post.created_at}</p>
             </td>
             <td>
-                <p><em><a href="${url('topic', id=topic.id)}#post-${post.id}">${topic.title}</a></em></p>
+                <p><em>${h.link_to(topic.title, url('topic', id=topic.id))}</em></p>
                 <div class="hl">
                     ${hl}
                 </div>

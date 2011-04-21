@@ -21,7 +21,7 @@
         <tr class="odd">
         % endif
             <td class="author">
-                <p><strong><a href="${url('user', id=c.user.id)}" name="post-${post.id}" class="elita">${c.user.nick_name}</a></strong></p>
+                <p><strong>${h.link_to(c.user.nick_name, url('user', id=c.user.id), class_='elita')}</strong></p>
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${c.user.id}.gif" />
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${c.user.id}.jpg" />
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${c.user.id}.png" />
@@ -30,7 +30,7 @@
                 <p>${post.created_at}</p>
             </td>
             <td>
-                <p><em><a href="${url('topic', id=topic.id)}#post-${post.id}">${topic.title}</a></em></p>
+                <p><em>${h.link_to(topic.title, url('topic', id=topic.id))}</em></p>
                 ${post.body}
             </td>
         </tr>
