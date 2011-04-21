@@ -1,5 +1,5 @@
 <%inherit file="/base.mako" />
-<h2><a href="${url('user', id=c.user.id)}" class="elita">${c.user.nick_name}</a></h2>
+<h2>${h.link_to(c.user.nick_name, url('user', id=c.user.id), class_='elita')}</h2>
 % if c.user.password == None:
 <p style="text-decoration: line-through"><em>${c.user.nick_name} se še ni polastil/a svojega računa. ${c.user.nick_name}, če si to ti,
 zakaj ne prevzameš svojega računa zdaj.</em></p>
@@ -9,9 +9,9 @@ zakaj ne prevzameš svojega računa zdaj.</em></p>
 <div class="yello">
     <dl>
         <dt>število postov</dt>
-        <dd><a href="${url('user_posts', id=c.user.id)}">${c.user.num_of_posts}</a></dd>
+        <dd>${h.link_to(c.user.num_of_posts, url('user_posts', id=c.user.id))}</dd>
         <dt>število tem</dt>
-        <dd><a href="${url('user_topics', id=c.user.id)}">${c.user.num_of_topics}</a></dd>
+        <dd>${h.link_to(c.user.num_of_topics, url('user_topics', id=c.user.id))}</dd>
     </dl>
 </div>
 <h3>posti glede na dan tedna</h3>

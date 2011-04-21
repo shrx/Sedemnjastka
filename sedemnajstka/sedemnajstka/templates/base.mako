@@ -54,9 +54,9 @@
                 </div>
                 <div id="nav-r">
                     % if 'user' in session:
-                    <p>ojla, <a href="${url('user_edit')}">${session['user'].nick_name}</a>! (<a href="${url('logout')}">odjava</a>)</p>
+                    <p>ojla, ${h.link_to(session['user'].nick_name, url('user_edit'))}! (${h.link_to('odjava', url('logout'))})</p>
                     % else:
-                    <a href="${url('login')}">prijava</a>
+                    ${h.link_to('prijava', url('login'))}
                     % endif
                 </div>
                 <div class="clear"></div>

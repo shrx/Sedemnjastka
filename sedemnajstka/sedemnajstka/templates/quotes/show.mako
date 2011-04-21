@@ -10,7 +10,7 @@
     <tbody>
         <tr class="even">
             <td class="author">
-                <p><strong><a href="${url('user', id=c.quote.post.user.id)}" name="post-${c.quote.post.id}" class="elita">${c.quote.post.user.nick_name}</a></strong></p>
+                <p><strong>${h.link_to(c.quote.post.user.nick_name, url('user', id=c.quote.post.user.id), class_='elita')}</strong></p>
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${c.quote.post.user.id}.gif" />
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${c.quote.post.user.id}.jpg" />
                 <img src="http://www.joker.si/mn3njalnik/uploads//av-${c.quote.post.user.id}.png" />
@@ -19,7 +19,7 @@
                 <p>${c.quote.post.created_at}</p>
             </td>
             <td>
-                <p><em><a href="${url('topic', id=c.quote.post.topic.id)}#post-${c.quote.post.id}">${c.quote.post.topic.title}</a></em></p>
+                <p><em>${h.link_to(c.quote.post.topic.title, url('topic', id=c.quote.post.topic.id))}</em></p>
                 ${c.quote.post.body}
             </td>
         </tr>
@@ -29,9 +29,9 @@
                 <a href="${url('user', id=c.quote.post.user.id)}" class="profile"><img src="/images/icon_profile.gif" width="59" height="18" alt="profil" /></a>
                 <div class="votes">
                     % if 'user' in session and not c.quote.voted_by(session['user']):
-                    <a href="${url('quote_upvote', id=c.quote.id)}" class="upvote">+</a>
+                    ${h.link_to('+', url('quote_upvote', id=c.quote.id), class_='upvote')}
                     (${c.quote.upvotes - c.quote.downvotes})
-                    <a href="${url('quote_downvote', id=c.quote.id)}" class="downvote">-</a>
+                    ${h.link_to('-', url('quote_downvote', id=c.quote.id), class_='downvote')}
                     % else:
                     (${c.quote.upvotes - c.quote.downvotes})
                     % endif
