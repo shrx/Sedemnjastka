@@ -22,9 +22,7 @@
         % endif
             <td class="author">
                 <p><strong>${h.link_to(user.nick_name, url('user', id=user.id), class_='elita')}</strong></p>
-                <img src="http://www.joker.si/mn3njalnik/uploads//av-${user.id}.gif" />
-                <img src="http://www.joker.si/mn3njalnik/uploads//av-${user.id}.jpg" />
-                <img src="http://www.joker.si/mn3njalnik/uploads//av-${user.id}.png" />
+                <img src="${user.avatar}" />
                 <p>Sporočil: ${user.num_of_posts}</p>
                 <p><strong>Napisano:</strong></p>
                 <p>${post.created_at}</p>
