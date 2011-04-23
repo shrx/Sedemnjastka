@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS users, topics, posts;
 CREATE TABLE users (
     id integer PRIMARY KEY,
 
+    avatar varchar(255),
     nick_name varchar(255) NOT NULL,
     password varchar(64),
     token varchar(32)

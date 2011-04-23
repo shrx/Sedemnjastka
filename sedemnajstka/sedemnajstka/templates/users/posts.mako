@@ -18,9 +18,7 @@
         <tr class="even">
             <td class="author">
                 <p><strong>${h.link_to(c.user.nick_name, url('user', id=c.user.id), class_='elita')}</strong></p>
-                <img src="http://www.joker.si/mn3njalnik/uploads//av-${c.user.id}.gif" />
-                <img src="http://www.joker.si/mn3njalnik/uploads//av-${c.user.id}.jpg" />
-                <img src="http://www.joker.si/mn3njalnik/uploads//av-${c.user.id}.png" />
+                <img src="${c.user.avatar}" />
                 <p>Sporočil: ${c.user.num_of_posts}</p>
                 <p><strong>Napisano:</strong></p>
                 <p>${post.created_at}</p>
