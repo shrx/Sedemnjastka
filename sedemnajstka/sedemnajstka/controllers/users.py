@@ -159,7 +159,7 @@ class UsersController(BaseController):
             try:
                 mn3.login(config['mn3njalnik.username'],
                           config['mn3njalnik.password'])
-                mn3.pm(c.user.nick_name,
+                mn3.pm(c.user.nick_name.encode('utf-8'),
                        'Polasti se svojega racuna se danes!',
                        """
 Oj, ti!
