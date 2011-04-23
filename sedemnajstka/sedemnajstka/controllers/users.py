@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import bcrypt
 import datetime
-import hashlib
 import logging
 import time
 import uuid
@@ -188,8 +188,8 @@ Lep pozdrav, in ostani vedno /17/
 
         if request.method == 'POST':
             if request.params['passwd'] == request.params['passwd_confirm']:
-                c.user.password = hashlib.sha256(request.params['passwd']). \
-                    hexdigest()
+                c.user.password = bcrypt.hashpw(request.params['passwd'],
+                                                bcrypt.gensalt())
                 c.user.token = None
                 Session.add(c.user)
                 Session.commit()
@@ -208,12 +208,13 @@ Lep pozdrav, in ostani vedno /17/
 
         if request.method == 'POST':
             if 'new_passwd' in request.params:
-                if c.user.password == hashlib. \
-                        sha256(request.params['cur_passwd']).hexdigest():
+                if bcrypt.hashpw(request.params['cur_passwd'],
+                          c.user.password) == c.user.password:
                     if request.params['new_passwd'] == request. \
                             params['new_passwd_confirm']:
-                        c.user.password = hashlib. \
-                            sha256(request.params['new_passwd']).hexdigest()
+                        c.user.password = \
+                            bcrypt.hashpw(request.params['new_passwd'],
+                                          bcrypt.gensalt())
                         Session.add(c.user)
                         Session.commit()
                         h.flash(u'Podatki so bili uspešno posodobljeni.')

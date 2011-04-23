@@ -5,7 +5,7 @@ CREATE TABLE users (
 
     avatar varchar(255),
     nick_name varchar(255) NOT NULL,
-    password varchar(64),
+    password varchar(60),
     token varchar(32)
 
     num_of_posts integer DEFAULT 0 NOT NULL,
