@@ -88,9 +88,10 @@ class User(object):
 
     __tablename__ = 'users'
 
-    def __init__(self, id, nick_name):
+    def __init__(self, id, nick_name, avatar=None):
         self.id = id and int(id)
         self.nick_name = nick_name and unicode(nick_name)
+        self.avatar = avatar
 
 
 sqlalchemy.orm.mapper(Info, info_table)
@@ -155,6 +156,12 @@ topic_s = Scraper({
         })
 
 
+profile_s = Scraper({
+        'avatar': '//div[@class="pp-name"]//img[contains(@src, "//av")]/@src',
+        'nick_name': '//h3/text()',
+        })
+
+
 class Error(Exception):
     pass
 
@@ -180,7 +187,8 @@ class Archive:
         if not user:
             browser.open('%s/?showuser=%s' % (BASE_URL, topic.user_id))
             tree = lxml.html.parse(browser.response())
-            user = User(topic.user_id, tree.xpath('//h3/text()')[0])
+            data = profile_s.scrape(tree)
+            user = User(topic.user_id, data['nick_name'], data['avatar'])
             session.add(user)
             session.commit()
 
@@ -203,7 +211,10 @@ class Archive:
             for post in data['posts[]']:
                 user = session.query(User).get(post['user_id'])
                 if not user:
-                    user = User(post['user_id'], post['nick_name'])
+                    browser.open('%s/?showuser=%s' % (BASE_URL, post['user_id']))
+                    tree = lxml.html.parse(browser.response())
+                    data = profile_s.scrape(tree)
+                    user = User(post['user_id'], data['nick_name'], data['avatar'])
                     session.add(user)
                     session.commit()
 
