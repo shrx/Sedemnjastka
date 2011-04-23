@@ -161,7 +161,19 @@ class UsersController(BaseController):
                           config['mn3njalnik.password'])
                 mn3.pm(c.user.nick_name,
                        'Polasti se svojega racuna se danes!',
-                       render('/users/pm.mako'))
+                       """
+Oj, ti!
+
+Svojega racuna na nasi strani http://sedemnajst.si se lahko polastis zdaj:
+
+http://sedemnajst.si/users/passwd/%s
+
+Zahteva za to sporocilo je bila podana iz sledecega IP naslova:
+
+%s
+
+Lep pozdrav, in ostani vedno /17/
+                       """ % (c.user.token, request.environ['REMOTE_ADDR']))
                 h.flash(u'Imaš ZS—velik uspeh!')
             except:
                 h.flash('Oh ne, nekaj je šlo napak.')
