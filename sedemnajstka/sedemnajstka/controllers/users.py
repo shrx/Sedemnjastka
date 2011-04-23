@@ -176,7 +176,7 @@ Lep pozdrav, in ostani vedno /17/
                        """ % (c.user.token, request.environ['REMOTE_ADDR']))
                 h.flash(u'Imaš ZS—velik uspeh!')
             except:
-                h.flash('Oh ne, nekaj je šlo napak.')
+                h.flash(u'Oh ne, nekaj je šlo napak.')
 
         c.title = u'polasti se svojega računa'
         return render('/users/claim.mako')
