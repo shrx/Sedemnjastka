@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import hashlib
+import bcrypt
 import logging
 
 from pylons import request, response, session, tmpl_context as c, url
@@ -21,8 +21,8 @@ class AuthController(BaseController):
                 filter(User.nick_name==request.params['nick_name']) . \
                 filter(User.password!=None).first()
 
-            hpass = hashlib.sha256(request.params['password']).hexdigest()
-            if user and user.password == hpass:
+            if user and bcrypt.hashpw(request.params['password'],
+                                      user.password) == user.password:
                 session['user'] = user
                 session.save()
                 if 'return_to' in session:
