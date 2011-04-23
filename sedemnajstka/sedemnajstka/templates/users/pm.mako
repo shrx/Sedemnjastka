@@ -1,4 +1,4 @@
-Oj, ${c.user.nick_name}!
+Oj, ti!
 
 Svojega racuna na nasi strani http://sedemnajst.si se lahko polastis zdaj:
 
