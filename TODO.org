@@ -8,16 +8,20 @@
 * Website
 ** TODO Do authorship analysis on posts
 ** TODO Users world map (would require claimed accounts first?)
-** TODO Users can claim their accounts, through ZS
-** TODO Quotes database
 ** TODO Global and per user word cloud
 ** TODO Favorites for topics
-** TODO Put those charts back up
+** TODO For every user, a list of topics they've posted in
+** TODO List of users with most posts in their topics
+** TODO Voting as a ranking system?
+** DONE Users can claim their accounts, through ZS
+   CLOSED: [2011-04-24 Sun 18:25]
+** DONE Quotes database
+   CLOSED: [2011-04-24 Sun 18:25]
+** DONE Put those charts back up
+   CLOSED: [2011-04-24 Sun 18:25]
 ** DONE Bring back the "kralji gnoja" page
    CLOSED: [2010-11-03 Wed 12:01]
-** TODO For every user, a list of topics they've posted in
 ** DONE An info page, w/ time of last update, next update,...
    CLOSED: [2010-11-03 Wed 12:01]
-** TODO List of users with most posts in their topics
-** TODO Search
-** TODO Voting as a ranking system?
+** DONE Search
+   CLOSED: [2011-04-24 Sun 18:25]
