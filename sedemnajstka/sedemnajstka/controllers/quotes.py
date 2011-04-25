@@ -42,7 +42,8 @@ class QuotesController(BaseController):
         redirect(url('quote', id=quote.id))
 
     def index(self):
-        c.quotes = Session.query(Quote).order_by(Quote.upvotes-Quote.downvotes)
+        c.quotes = Session.query(Quote). \
+            order_by((Quote.upvotes-Quote.downvotes).desc())
         c.title = 'baza navedkov'
         return render('/quotes/index.mako')
 

@@ -2,9 +2,9 @@
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
         <link href="/favicon.png" rel="icon" type="image/png" />
         <link href="/style.css" rel="stylesheet" type="text/css" />
-        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
         <script src="https://www.google.com/jsapi?key=ABQIAAAAIiJO64nS9X44-5zAPRx_CBQ2dbh21h_ChSbOJ2YbyL15pL-xehSxEyXymi-V54dT254KfCJZfHpG4A" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript"></script>
         <script src="/js/application.js" type="text/javascript"></script>
