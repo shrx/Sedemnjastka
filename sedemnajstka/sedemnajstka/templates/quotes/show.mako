@@ -19,6 +19,9 @@
             <td>
                 <p><em>${h.link_to(c.quote.post.topic.title, url('topic', id=c.quote.post.topic.id))}</em></p>
                 ${c.quote.post.body}
+                <br />
+                <br />
+                <iframe src="http://www.facebook.com/plugins/like.php?href=${'http://' + request.environ['HTTP_HOST'] + url('quote', id=c.quote.id) | u}&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=verdana&amp;height=35&amp;locale=sl_SI" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
             </td>
         </tr>
         <tr class="even">
