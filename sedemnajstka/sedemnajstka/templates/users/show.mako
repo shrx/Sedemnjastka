@@ -16,34 +16,48 @@ zakaj ne <a href="${url('claim', id=c.user.id)}">prevzameš svojega računa</a> 
 <h3>posti glede na dan tedna</h3>
 <div class="yello">
     <div class="chart">
-        ${c.posts_per_dow.img()}
-        ${h.form(url('user', id=c.user.id))}
-        <p>
-            Omeji čas od
-            ${h.select('ppdow_start_month', c.ppdow_start_month, c.months)}
-            ${h.select('ppdow_start_year', c.ppdow_start_year, c.years)}
-            do
-            ${h.select('ppdow_end_month', c.ppdow_end_month, c.months)}
-            ${h.select('ppdow_end_year', c.ppdow_end_year, c.years)}
-            ${h.submit('submit', u'Osveži, Polde!')}
-        </p>
-        ${h.end_form}
+        <div id="ppdow-tabs">
+	    <ul>
+                <li>${h.link_to('Zadnji teden', url('user_chart_2', id=c.user.id, type='ppdow', limit=7))}</li>
+                <li>${h.link_to('Zadnji trije meseci', url('user_chart_2', id=c.user.id, type='ppdow', limit=90))}</li>
+                <li>${h.link_to('Zadnje pol leta', url('user_chart_2', id=c.user.id, type='ppdow', limit=180))}</li>
+                <li>${h.link_to('Zadnje leto', url('user_chart_2', id=c.user.id, type='ppdow', limit=360))}</li>
+                <li>${h.link_to('Vseskozi', url('user_chart_1', id=c.user.id, type='ppdow'))}</li>
+	    </ul>
+            <form>
+                <p>
+                    Omeji čas od
+                    <input class="datepicker" name="ppdow-start-date" id="ppdow-start-date" />
+                    do
+                    <input class="datepicker" name="ppdow-end-date" id="ppdow-end-date" />
+                    ${h.hidden('ppdow-user-id', c.user.id)}
+                    <input type="submit" value="Naredi, Polde!" id="ppdow-do" />
+                </p>
+            </form>
+        </div>
     </div>
 </div>
 <h3>posti glede na uro v dnevu</h3>
 <div class="yello">
     <div class="chart">
-        ${c.posts_per_hour.img()}
-        ${h.form(url('user', id=c.user.id))}
-        <p>
-            Omeji čas od
-            ${h.select('pph_start_month', c.pph_start_month, c.months)}
-            ${h.select('pph_start_year', c.pph_start_year, c.years)}
-            do
-            ${h.select('pph_end_month', c.pph_end_month, c.months)}
-            ${h.select('pph_end_year', c.pph_end_year, c.years)}
-            ${h.submit('submit', u'Osveži, Polde!')}
-        </p>
-        ${h.end_form}
+        <div id="pph-tabs">
+	    <ul>
+                <li>${h.link_to('Zadnji teden', url('user_chart_2', id=c.user.id, type='pph', limit=7))}</li>
+                <li>${h.link_to('Zadnji trije meseci', url('user_chart_2', id=c.user.id, type='pph', limit=90))}</li>
+                <li>${h.link_to('Zadnje pol leta', url('user_chart_2', id=c.user.id, type='pph', limit=180))}</li>
+                <li>${h.link_to('Zadnje leto', url('user_chart_2', id=c.user.id, type='pph', limit=360))}</li>
+                <li>${h.link_to('Vseskozi', url('user_chart_1', id=c.user.id, type='pph'))}</li>
+	    </ul>
+            <form>
+                <p>
+                    Omeji čas od
+                    <input class="datepicker" id="pph-start-date" />
+                    do
+                    <input class="datepicker" id="pph-end-date" />
+                    ${h.hidden('pph-user-id', c.user.id)}
+                    <input type="submit" value="Naredi, Polde!" id="pph-do" />
+                </p>
+            </form>
+        </div>
     </div>
 </div>

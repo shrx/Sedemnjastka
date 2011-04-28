@@ -53,12 +53,11 @@ class User(object):
 
     def posts_per_dow(self, start_date=None, end_date=None):
         q = select([func.date_part('isodow', t_posts.c.created_at),
-                    func.count(t_posts.c.id)]). \
-                    where(and_(t_posts.c.user_id==self.id,
-                               t_posts.c.created_at>=start_date,
-                               t_posts.c.created_at<end_date)). \
-                    group_by('1'). \
-                    order_by('1')
+                    func.count(t_posts.c.id)],
+                    t_posts.c.user_id==self.id).group_by('1').order_by('1')
+    
+        if start_date: q = q.where(t_posts.c.created_at>=start_date)
+        if end_date: q = q.where(t_posts.c.created_at<end_date)
 
         data = dict(meta.Session.execute(q).fetchall())
         days = dict([(day, 0) for day in range(1, 8)])
@@ -66,12 +65,11 @@ class User(object):
 
     def posts_per_hour(self, start_date=None, end_date=None):
         q = select([func.date_part('hour', t_posts.c.created_at),
-                    func.count(t_posts.c.id)]). \
-                    where(and_(t_posts.c.user_id==self.id,
-                               t_posts.c.created_at>=start_date,
-                               t_posts.c.created_at<end_date)). \
-                               group_by('1'). \
-                               order_by('1')
+                    func.count(t_posts.c.id)],
+                    t_posts.c.user_id==self.id).group_by('1').order_by('1')
+    
+        if start_date: q = q.where(t_posts.c.created_at>=start_date)
+        if end_date: q = q.where(t_posts.c.created_at<end_date)
 
         data = dict(meta.Session.execute(q).fetchall())
         hours = dict([(hour, 0) for hour in range(0, 24)])
