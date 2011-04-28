@@ -29,22 +29,6 @@ days = [(1, 'Ponedeljek'),
         (6, 'Sobota'),
         (7, 'Nedelja')]
 
-months = [(1, 'Januar'),
-          (2, 'Februar'),
-          (3, 'Marec'),
-          (4, 'April'),
-          (5, 'Maj'),
-          (6, 'Junij'),
-          (7, 'Julij'),
-          (8, 'Avgust'),
-          (9, 'September'),
-          (10, 'Oktober'),
-          (11, 'November'),
-          (12, 'December')]
-
-# 2009 is the year the archive was started
-years = [(i, i) for i in range(2009, time.localtime()[0] + 1)]
-
 class UsersController(BaseController):
 
     requires_auth = ['edit']
@@ -81,66 +65,8 @@ class UsersController(BaseController):
 
     def show(self, id):
         c.user = Session.query(User).filter(User.id==id).first()
+        if not c.user: abort(404)
 
-        # Posts per DOW
-        try:
-            c.ppdow_start_month = int(request.params['ppdow_start_month'])
-            c.ppdow_start_year = int(request.params['ppdow_start_year'])
-            c.ppdow_end_month = int(request.params['ppdow_end_month'])
-            c.ppdow_end_year = int(request.params['ppdow_end_year'])
-        except KeyError:
-            c.ppdow_start_month = 1
-            c.ppdow_start_year = years[0][0]
-            c.ppdow_end_month = 12
-            c.ppdow_end_year = years[-1][0]
-
-        ppdow_start_date = datetime.date(c.ppdow_start_year,
-                                         c.ppdow_start_month, 1)
-        ppdow_end_date = datetime.date(c.ppdow_end_year, c.ppdow_end_month, 1)
-
-        data = c.user.posts_per_dow(start_date=ppdow_start_date,
-                                    end_date=ppdow_end_date)
-        chart = HorizontalBarStack(data)
-        chart.axes.type('xy')
-        chart.axes.label(0, '0', '100')
-        chart.axes.label(1, *reversed([i[1] for i in days]))
-        chart.fill('bg', 's', 'ffe495')
-        chart.grid(10, 0, 10, 0)
-        chart.scale(0, max(data))
-        chart.size(680, 220)
-
-        c.posts_per_dow = chart
-
-        # Posts per hour
-        try:
-            c.pph_start_month = int(request.params['pph_start_month'])
-            c.pph_start_year = int(request.params['pph_start_year'])
-            c.pph_end_month = int(request.params['pph_end_month'])
-            c.pph_end_year = int(request.params['pph_end_year'])
-        except KeyError:
-            c.pph_start_month = 1
-            c.pph_start_year = years[0][0]
-            c.pph_end_month = 12
-            c.pph_end_year = years[-1][0]
-
-        pph_start_date = datetime.date(c.pph_start_year, c.pph_start_month, 1)
-        pph_end_date = datetime.date(c.pph_end_year, c.pph_end_month, 1)
-
-        data = c.user.posts_per_hour(start_date=pph_start_date,
-                                     end_date=pph_end_date)
-        chart = VerticalBarStack(data)
-        chart.axes.type('yx')
-        chart.axes.label(0, '0', '100')
-        chart.axes.label(1, *range(0, 24))
-        chart.fill('bg', 's', 'ffe495')
-        chart.grid(0, 10, 10, 0)
-        chart.scale(0, max(data))
-        chart.size(680, 300)
-
-        c.posts_per_hour = chart
-
-        c.months = months
-        c.years = years
         c.title = c.user.nick_name
         return render('/users/show.mako')
 
@@ -225,3 +151,45 @@ Lep pozdrav, in ostani vedno /17/
 
         c.title = 'uredi svoje podatke'
         return render('/users/edit.mako')
+
+    def charts(self, id, type, limit=None, start=None, end=None):
+        user = Session.query(User).get(id)
+        if not user: abort(404)
+
+        if limit:
+            start_date = datetime.date.today() - \
+                datetime.timedelta(days=int(limit))
+            end_date = None
+        elif start and end:
+            start = [int(i) for i in start.split('-')]
+            start_date = datetime.date(start[0], start[1], start[2])
+            end = [int(i) for i in end.split('-')]
+            end_date = datetime.date(end[0], end[1], end[2])
+        else:
+            start_date = None
+            end_date = None
+
+        if type == 'ppdow':
+            data = user.posts_per_dow(start_date=start_date, end_date=end_date)
+            chart = HorizontalBarStack(data)
+            chart.axes.type('xy')
+            chart.axes.label(0, '0', '100')
+            chart.axes.label(1, *reversed([i[1] for i in days]))
+            chart.fill('bg', 's', 'feeebd')
+            chart.grid(10, 0, 10, 0)
+            chart.scale(0, max(data))
+            chart.size(680, 220)
+        elif type == 'pph':
+            data = user.posts_per_hour(start_date=start_date, end_date=end_date)
+            chart = VerticalBarStack(data)
+            chart.axes.type('yx')
+            chart.axes.label(0, '0', '100')
+            chart.axes.label(1, *range(0, 24))
+            chart.fill('bg', 's', 'feeebd')
+            chart.grid(0, 10, 10, 0)
+            chart.scale(0, max(data))
+            chart.size(680, 300)
+        else:
+            abort(400)
+
+        return chart.img()
