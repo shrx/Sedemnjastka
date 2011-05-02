@@ -9,5 +9,5 @@
         <dd>${h.password('passwd_confirm')}</dd>
     </dl>
     <p>${h.submit('submit', u'Nastavi geslo in se polasti svojega računa')}</p>
-    ${h.end_form}
+    ${h.end_form()}
 </div>

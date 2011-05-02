@@ -40,9 +40,11 @@
                     <h1><a href="/"><img src="/images/header_l.gif" width="496" height="79" alt="sedemnajst.si" /></a></h1>
                     <div class="clear"></div>
                     <div id="search">
-                        <form action="/search" method="GET">
-                            <input type="text" name="q" size="25" />
-                            <input type="submit" value="išči" />
+                        <form action="/search" method="get">
+                            <p>
+                                <input type="text" name="q" size="25" />
+                                <input type="submit" value="Išči" />
+                            </p>
                         </form>
                     </div>
                 </div>
@@ -64,7 +66,7 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <a href="http://github.com/ans/sedemnajstka"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
+            <a href="http://github.com/ans/sedemnajstka"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" /></a>
             <% messages = h.flash.pop_messages() %>
             % if messages:
             <ul id="flash-messages">
@@ -76,14 +78,16 @@
             ${self.body()}
             <div id="footer">
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                    <input type="hidden" name="cmd" value="_donations" />
-                    <input type="hidden" name="business" value="XM5WN5RDUBAGC" />
-                    <input type="hidden" name="lc" value="SI" />
-                    <input type="hidden" name="item_name" value="sedemnajst.si" />
-                    <input type="hidden" name="currency_code" value="EUR" />
-                    <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted" />
-                    <input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
-                    <img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/scr/pixel.gif" width="1" height="1" />
+                    <p>
+                        <input type="hidden" name="cmd" value="_donations" />
+                        <input type="hidden" name="business" value="XM5WN5RDUBAGC" />
+                        <input type="hidden" name="lc" value="SI" />
+                        <input type="hidden" name="item_name" value="sedemnajst.si" />
+                        <input type="hidden" name="currency_code" value="EUR" />
+                        <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted" />
+                        <input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!" />
+                        <img alt="" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/scr/pixel.gif" width="1" height="1" />
+                    </p>
                 </form>
                 <img src="/images/powered_by_gnu_emacs.png" width="100" height="36" alt="Powered by GNU Emacs" />
                 <img src="/images/button-k1.png" width="88" height="30" alt="Powered by Debian" />

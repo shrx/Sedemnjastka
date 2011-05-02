@@ -81,6 +81,8 @@ input[type="submit"] {
     color: red;
 }
 
+#search p { margin: 0 }
+
 /* Header */
 #header img { float: left; }
 
