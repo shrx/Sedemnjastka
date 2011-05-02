@@ -54,7 +54,6 @@ class User(object):
                 # re-
                 else: raise
 
-        print 'DOWNIN for %s' % self.nick_name
         resp = browser.open('%s/?showuser=%s' % (BASE_URL, self.id))
         self.avatar = profile_s.scrape(lxml.html.parse(resp))['avatar']
 
