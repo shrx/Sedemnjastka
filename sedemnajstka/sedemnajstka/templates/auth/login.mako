@@ -9,5 +9,5 @@
         <dd>${h.password('password', size=42)}</dd>
     </dl>
     <p>${h.submit('submit', 'Prijavi me')}</p>
-    ${h.end_form}
+    ${h.end_form()}
 </div>

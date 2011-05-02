@@ -14,7 +14,7 @@
             <tr class="even">
                 <td class="author">
                     <p><strong>${h.link_to(c.post.user.nick_name, url('user', id=c.post.user.id), class_='elita')}</strong></p>
-                    <img src="${c.post.user.avatar}" />
+                    <img src="${c.post.user.avatar}" alt="${c.post.user.nick_name}" />
                     <p>Sporočil: ${c.post.user.num_of_posts}</p>
                     <p><strong>Napisano:</strong></p>
                     <p>${c.post.created_at}</p>

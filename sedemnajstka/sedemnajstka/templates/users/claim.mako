@@ -8,10 +8,10 @@
     zahtevajo avtentikacijo.</p>
     <p>Nepridipravi, pozor! Skupaj z zgoraj omenjenim linkom bo v uporabnikov ZS
     predal odpotoval tudi IP naslov iz kjer se vrši ta zahteva.</p>
-    ${h.form('claim', id=c.user.id)}
+    ${h.form(url('claim', id=c.user.id))}
     <p>
         ${h.hidden('id', c.user.id)}
         ${h.submit('submit', u'Polasti se svojega računa zdaj!')}
     </p>
-    ${h.end_form}
+    ${h.end_form()}
 </div>

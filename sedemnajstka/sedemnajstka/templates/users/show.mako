@@ -24,7 +24,7 @@ zakaj ne <a href="${url('claim', id=c.user.id)}">prevzameš svojega računa</a> 
                 <li>${h.link_to('Zadnje leto', url('user_chart_2', id=c.user.id, type='ppdow', limit=360))}</li>
                 <li>${h.link_to('Vseskozi', url('user_chart_1', id=c.user.id, type='ppdow'))}</li>
 	    </ul>
-            <form>
+            <form action="">
                 <p>
                     Omeji čas od
                     <input class="datepicker" name="ppdow-start-date" id="ppdow-start-date" />
@@ -48,7 +48,7 @@ zakaj ne <a href="${url('claim', id=c.user.id)}">prevzameš svojega računa</a> 
                 <li>${h.link_to('Zadnje leto', url('user_chart_2', id=c.user.id, type='pph', limit=360))}</li>
                 <li>${h.link_to('Vseskozi', url('user_chart_1', id=c.user.id, type='pph'))}</li>
 	    </ul>
-            <form>
+            <form action="">
                 <p>
                     Omeji čas od
                     <input class="datepicker" id="pph-start-date" />

@@ -11,5 +11,5 @@
         <dd>${h.password('new_passwd_confirm')}</dd>
     </dl>
     <p>${h.submit('submit', 'Shrani')}</p>
-    ${h.end_form}
+    ${h.end_form()}
 </div>
