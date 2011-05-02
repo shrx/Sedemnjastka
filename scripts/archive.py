@@ -213,8 +213,8 @@ class Archive:
                 if not user:
                     browser.open('%s/?showuser=%s' % (BASE_URL, post['user_id']))
                     tree = lxml.html.parse(browser.response())
-                    data = profile_s.scrape(tree)
-                    user = User(post['user_id'], data['nick_name'], data['avatar'])
+                    d2 = profile_s.scrape(tree)
+                    user = User(post['user_id'], d2['nick_name'], d2['avatar'])
                     session.add(user)
                     session.commit()
 

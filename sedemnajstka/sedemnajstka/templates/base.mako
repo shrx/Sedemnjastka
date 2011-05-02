@@ -85,6 +85,10 @@
                     <input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
                     <img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/scr/pixel.gif" width="1" height="1" />
                 </form>
+                <img src="/images/powered_by_gnu_emacs.png" width="100" height="36" alt="Powered by GNU Emacs" />
+                <img src="/images/button-k1.png" width="88" height="30" alt="Powered by Debian" />
+                <img src="/images/pythonPowered2.png" width="93" height="46" alt="Powered by Python" />
+                <img src="/images/pg-power.png" width="130" height="47" alt="Powered by Postgres" />
             </div>
         </div>
     </body>
