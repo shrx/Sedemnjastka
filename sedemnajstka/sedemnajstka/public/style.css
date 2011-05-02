@@ -254,3 +254,13 @@ a.elita[href="/users/1947"] {
 a.elita[href="/users/1947"]:before {
     content: url(images/sunglasses.png);
 }
+
+/* loky3000 */
+a.elita[href="/users/4735"] {
+    /* Hot pink */
+    color: #ff69b4;
+}
+
+a.elita[href="/users/4735"]:before {
+    content: url(images/axe.png);
+}
