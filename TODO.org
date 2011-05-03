@@ -7,6 +7,7 @@
 ** TODO Have to take into account possible timezone differences between user accounts!
 * Website
 ** TODO Do authorship analysis on posts
+** TODO Sort quotes by Wilson score
 ** TODO API
 ** TODO Users world map (would require claimed accounts first?)
 ** TODO Global and per user word cloud
