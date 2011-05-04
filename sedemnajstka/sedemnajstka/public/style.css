@@ -264,3 +264,13 @@ a.elita[href="/users/4735"] {
 a.elita[href="/users/4735"]:before {
     content: url(images/axe.png);
 }
+
+/* Lord Jocker */
+a.elita[href="/users/10787"] {
+    /* Tyrian Purple */
+    color: #66023c;
+}
+
+a.elita[href="/users/10787"]:before {
+    content: url(images/tamaki2.png);
+}
