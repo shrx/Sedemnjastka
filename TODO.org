@@ -6,6 +6,7 @@
 ** TODO If an HTTP GET fails, it should retry, in increasing periods of time
 ** TODO Have to take into account possible timezone differences between user accounts!
 * Website
+** TODO Continuous page loading with AJAX, possibly optional
 ** TODO Do authorship analysis on posts
 ** TODO Reconsider HTML and CSS work, use of tables, look into CSS frameworks
 ** TODO Sort quotes by Wilson score
