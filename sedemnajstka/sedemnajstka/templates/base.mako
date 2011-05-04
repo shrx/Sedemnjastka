@@ -61,7 +61,21 @@
                     % if 'user' in session:
                     <p>ojla, ${h.link_to(session['user'].nick_name, url('user_edit'))}! (${h.link_to('odjava', url('logout'))})</p>
                     % else:
-                    ${h.link_to('prijava', url('login'))}
+                    ${h.link_to('prijava', url('login'), id='open-login-dialog')}
+                    <div id="login-dialog">
+                        ${h.form('/login')}
+                        <dl class="flat">
+                            <dt>uporabniško ime</dt>
+                            <dd>${h.text('nick_name', size=42)}</dd>
+                            <dt>geslo</dt>
+                            <dd>${h.password('password', size=42)}</dd>
+                        </dl>
+                        <p>
+                            ${h.hidden('return_to', request.url)}
+                            ${h.submit('submit', 'Prijavi me')}
+                        </p>
+                        ${h.end_form()}
+                    </div>
                     % endif
                 </div>
                 <div class="clear"></div>

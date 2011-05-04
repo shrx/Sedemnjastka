@@ -30,6 +30,8 @@ class AuthController(BaseController):
                     del session['return_to']
                     session.save()
                     redirect(to)
+                elif 'return_to' in request.params:
+                    redirect(request.params['return_to'])
                 else:
                     redirect('/')
             else:

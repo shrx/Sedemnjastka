@@ -43,4 +43,14 @@ $(function() {
         $("#pph-tabs").tabs("add", "/users/" + user_id + "/charts/pph/start/" + iso_start + "/end/" + iso_end, start + "–" + end);
         return false;
     });
+
+    // Login dialog
+    $("#login-dialog").dialog({
+        autoOpen: false,
+        modal: true
+    })
+    $("#open-login-dialog").click(function () {
+        $("#login-dialog").dialog("open");
+        return false;
+    });
 });
