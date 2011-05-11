@@ -31,7 +31,7 @@ zakaj ne <a href="${url('claim', id=c.user.id)}">prevzameš svojega računa</a> 
                     do
                     <input class="datepicker" name="ppdow-end-date" id="ppdow-end-date" />
                     ${h.hidden('ppdow-user-id', c.user.id)}
-                    <input type="submit" value="Naredi, Polde!" id="ppdow-do" />
+                    <input type="submit" value="Poženi, Afriški Američan!" id="ppdow-do" />
                 </p>
             </form>
         </div>
@@ -55,7 +55,7 @@ zakaj ne <a href="${url('claim', id=c.user.id)}">prevzameš svojega računa</a> 
                     do
                     <input class="datepicker" id="pph-end-date" />
                     ${h.hidden('pph-user-id', c.user.id)}
-                    <input type="submit" value="Naredi, Polde!" id="pph-do" />
+                    <input type="submit" value="Poženi, Afriški Američan!" id="pph-do" />
                 </p>
             </form>
         </div>
