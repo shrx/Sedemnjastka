@@ -7,7 +7,9 @@
 
 Further required Python packages:
 
+* GChartWrapper
 * Pylons
+* SQLAlchemy
 * lxml
 * mechanize
-* SQLAlchemy
+* pytz
