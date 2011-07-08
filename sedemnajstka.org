@@ -1,28 +1,97 @@
 * Archiver script
 ** TODO [#A] Handle deleted users
+   :PROPERTIES:
+   :ID:       f675705a-48e9-46ee-bfbe-90a5c348170b
+   :END:
 ** TODO Track uptime with fancy display on site
+   :PROPERTIES:
+   :ID:       2465b446-8018-4457-93f5-5689a0a0eccd
+   :END:
 ** TODO User's badges?
+   :PROPERTIES:
+   :ID:       a7ec6bfc-3520-4665-99cb-7e1312a25f96
+   :END:
 ** TODO Cycling login
+   :PROPERTIES:
+   :ID:       3f340576-cd2e-40a7-80c8-f4cc404e83ba
+   :END:
 ** TODO Set some timeouts for browser
+   :PROPERTIES:
+   :ID:       b0f6cc63-a063-4bce-8b4c-5365d3da70ad
+   :END:
 ** TODO If an HTTP GET fails, it should retry, in increasing periods of time
+   :PROPERTIES:
+   :ID:       fc4f13b5-df31-4714-8720-106bcf0dfb97
+   :END:
 ** TODO Have to take into account possible timezone differences between user accounts!
+   :PROPERTIES:
+   :ID:       ce79ae56-646e-44b0-8c4d-3ddac5121074
+   :END:
 * Website
 ** TODO Posting capability
+   :PROPERTIES:
+   :ID:       16f11798-6c0e-4097-8c25-9cd402313cf5
+   :END:
 ** TODO Track joker.si uptime on WALL OF SHAME
+   :PROPERTIES:
+   :ID:       507facd0-7742-43b0-a46f-8bff856e331a
+   :END:
 ** TODO Continuous page loading with AJAX, possibly optional
+   :PROPERTIES:
+   :ID:       c80a9b4d-c156-4bb5-8ece-169143fb3b4e
+   :END:
 ** TODO Further date limiting controls on topics/posts
+   :PROPERTIES:
+   :ID:       3790a52f-f97a-40a4-a59d-65090f23a9bc
+   :END:
 ** TODO Possible user profile editing features
+   :PROPERTIES:
+   :ID:       1ff8a0df-6ad8-4d6b-b822-081b0a3138c3
+   :END:
 ** TODO User reviews, and ratings
+   :PROPERTIES:
+   :ID:       0439d881-c8ff-4efb-8cc3-614e12e1a68d
+   :END:
 ** TODO Do authorship analysis on posts
+   :PROPERTIES:
+   :ID:       47365451-3b67-465e-86df-3963b44bc6f3
+   :END:
 ** TODO Reconsider HTML and CSS work, use of tables, look into CSS frameworks
+   :PROPERTIES:
+   :ID:       3d5aabbf-2303-4c49-8c27-611d21776370
+   :END:
 ** TODO Sort quotes by Wilson score
+   :PROPERTIES:
+   :ID:       030774a5-90ac-4ea4-a72f-aa9ee516576f
+   :END:
 ** TODO API
+   :PROPERTIES:
+   :ID:       964e328b-7ea0-4aa3-9f38-c93f45e05af2
+   :END:
 ** TODO Users world map (would require claimed accounts first?)
+   :PROPERTIES:
+   :ID:       06561252-c188-4608-a377-8c3622af9e43
+   :END:
 ** TODO Global and per user word cloud
+   :PROPERTIES:
+   :ID:       9356faed-dd29-44dd-9e2f-c744b1511506
+   :END:
 ** TODO Favorites for topics
+   :PROPERTIES:
+   :ID:       1aae8b6d-53cd-41dc-aaa6-50f4c95624d2
+   :END:
 ** TODO For every user, a list of topics they've posted in
+   :PROPERTIES:
+   :ID:       862af369-f61f-4b55-a8be-e41a3d29dbd2
+   :END:
 ** TODO List of users with most posts in their topics
+   :PROPERTIES:
+   :ID:       828f8b2a-a286-42c9-a3eb-ae315e9567b9
+   :END:
 ** TODO Voting as a ranking system?
+   :PROPERTIES:
+   :ID:       bd7e2ac3-730d-4dea-b9fc-3f8e8fbe5ca9
+   :END:
 ** DONE Users can claim their accounts, through ZS
    CLOSED: [2011-04-24 Sun 18:25]
 ** DONE Quotes database
