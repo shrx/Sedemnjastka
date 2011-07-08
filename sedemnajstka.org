@@ -1,4 +1,5 @@
 * Archiver script
+** TODO [#A] Handle deleted users
 ** TODO Track uptime with fancy display on site
 ** TODO User's badges?
 ** TODO Cycling login
