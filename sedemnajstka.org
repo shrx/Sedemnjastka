@@ -1,11 +1,12 @@
 * Archiver script
-** TODO [#A] Handle deleted users
 ** TODO Track uptime with fancy display on site
 ** TODO User's badges?
 ** TODO Cycling login
 ** TODO Set some timeouts for browser
 ** TODO If an HTTP GET fails, it should retry, in increasing periods of time
 ** TODO Have to take into account possible timezone differences between user accounts!
+** DONE [#A] Handle deleted users
+   CLOSED: [2011-07-11 Mon 01:35]
 * Website
 ** TODO Posting capability
 ** TODO Track joker.si uptime on WALL OF SHAME

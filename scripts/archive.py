@@ -135,15 +135,19 @@ def scrape_body(tree):
     return body[23:body.rindex('</div>')]
 
 def scrape_user_id(tree):
-    href = tree.xpath('../../..//span[@class="normalname"]/a/@href')[0]
-    return re.findall('showuser=([0-9]+)', href)[0]
+    if not tree.xpath('../../..//span[@class="unreg"]'):
+        href = tree.xpath('../../..//span[@class="normalname"]/a/@href')[0]
+        return re.findall('showuser=([0-9]+)', href)[0]
 
 def scrape_nick_name(tree):
     try:
-        return tree.xpath('../../..//div[@class="popupmenu-item"]/' +
-                          'strong/text()')[0]
+        return tree.xpath('../../..//span[@class="unreg"]/text()')[0][10:-2]
     except IndexError:
-        return tree.xpath('../../..//span[@class="normalname"]/a/text()')[0]
+        try:
+            return tree. \
+                xpath('../../..//div[@class="popupmenu-item"]/strong/text()')[0]
+        except IndexError:
+            return tree.xpath('../../..//span[@class="normalname"]/a/text()')[0]
 
 topic_s = Scraper({
         'next_page': u'//a[@title="Sledeča stran"]/@href',
@@ -209,7 +213,12 @@ class Archive:
 
         while True:
             for post in data['posts[]']:
-                user = session.query(User).get(post['user_id'])
+                if post['user_id']:
+                    user = session.query(User).get(post['user_id'])
+                else:
+                    user = session.query(User). \
+                        filter(User.nick_name==post['nick_name']).first()
+
                 if not user:
                     browser.open('%s/?showuser=%s' % (BASE_URL, post['user_id']))
                     tree = lxml.html.parse(browser.response())
