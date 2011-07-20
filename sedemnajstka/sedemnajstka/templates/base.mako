@@ -102,6 +102,7 @@
                         <img alt="" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/scr/pixel.gif" width="1" height="1" />
                     </p>
                 </form>
+                <a href="http://repo.or.cz/w/sedemnajstka.git"><img src="/images/git-logo.png" width="72" height="27" alt="sedemnajstka.git" /></a>
                 <a href="http://www.gnu.org/software/emacs/"><img src="/images/powered_by_gnu_emacs.png" width="100" height="36" alt="Powered by GNU Emacs" /></a>
                 <a href="http://www.debian.org/"><img src="/images/button-k1.png" width="88" height="30" alt="Powered by Debian" /></a>
                 <a href="http://www.python.org/"><img src="/images/pythonPowered2.png" width="93" height="46" alt="Powered by Python" /></a>
