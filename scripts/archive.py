@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from datetime import datetime, timedelta
+from optparse import OptionParser
 import ConfigParser
 import logging
 import logging.config
@@ -29,6 +30,13 @@ class MyCookiePolicy(mechanize.DefaultCookiePolicy):
         if cookie.name == 'mn3njalnik_topicsread':
             return False
         return True
+
+
+parser = OptionParser()
+parser.add_option("-f", "--full-force", action="store_true", dest="force",
+                  help="force full archival run")
+
+(options, args) = parser.parse_args()
 
 
 browser = mechanize.Browser()
@@ -101,8 +109,11 @@ sqlalchemy.orm.mapper(User, users_table)
 
 # Set up the scrapers
 def scrape_uid(tree):
-    return re.findall('showuser=([0-9]+)',
-                      tree.xpath('../..//td[@class="row1"]/a/@href')[0])[0]
+    try:
+        return re.findall('showuser=([0-9]+)',
+                          tree.xpath('../..//td[@class="row1"]/a/@href')[0])[0]
+    except IndexError:
+        return None # Izbrisani
 
 forum_s = Scraper({
         'next_page' : u'//a[@title="Sledeča stran"]/@href',
@@ -264,10 +275,14 @@ class Crawler:
                 elif not ot:
                     nt = Topic(topic['id'], topic['title'],
                                topic['subtitle'], topic['user_id'])
-                    logger.info('Archiving *NEW* topic #%s.' % nt.id)
-                    self.archive.archive(nt)
+                    if not nt.user_id:
+                        logger.info('Skipping *EVIL* topic #%s.' % nt.id)
+                    else:
+                        logger.info('Archiving *NEW* topic #%s.' % nt.id)
+                        self.archive.archive(nt)
                 # else it is an already up-to-date topic, so we're done
-                else:
+                # unless full force is in effect
+                elif not options.force:
                     next_page = None
 
 

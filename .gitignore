@@ -1,7 +1,9 @@
+*.pyc
+.dir-locals.el
+.ropeproject/*
 backups/*
-sedemnajstka/data/*
 scripts/config.ini
+sedemnajstka/data/*
 sedemnajstka/development.ini
 sedemnajstka/production.ini
 sedemnajstka/test.ini
-*.pyc
