@@ -274,3 +274,8 @@ a.elita[href="/users/10787"] {
 a.elita[href="/users/10787"]:before {
     content: url(images/tamaki2.png);
 }
+
+/* Kokodajs */
+a.elita[href="/users/130"]:before {
+    content: url(images/ladybug.png);
+}
