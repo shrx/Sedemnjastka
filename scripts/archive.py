@@ -6,9 +6,10 @@ from optparse import OptionParser
 import ConfigParser
 import logging
 import logging.config
+import os.path
 import random
 import re
-import os.path
+import warnings
 
 import lxml.etree
 import lxml.html
@@ -60,7 +61,9 @@ Session = sqlalchemy.orm.sessionmaker(bind=engine)
 session = Session()
 
 info_table = sqlalchemy.Table('info', metadata, autoload=True)
-posts_table = sqlalchemy.Table('posts', metadata, autoload=True)
+with warnings.catch_warnings():
+    warnings.simplefilter('ignore')
+    posts_table = sqlalchemy.Table('posts', metadata, autoload=True)
 topics_table = sqlalchemy.Table('topics', metadata, autoload=True)
 users_table = sqlalchemy.Table('users', metadata, autoload=True)
 

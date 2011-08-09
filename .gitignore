@@ -2,6 +2,7 @@
 .dir-locals.el
 .ropeproject/*
 backups/*
+scripts/archive.log
 scripts/config.ini
 sedemnajstka/data/*
 sedemnajstka/development.ini
