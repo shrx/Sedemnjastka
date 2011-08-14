@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS users, topics, posts;
+DROP TABLE IF EXISTS users, topics, posts, quotes, quote_votes, avatars, info;
 
 CREATE TABLE users (
     id integer PRIMARY KEY,
@@ -6,11 +6,14 @@ CREATE TABLE users (
     avatar varchar(255),
     nick_name varchar(255) NOT NULL,
     password varchar(60),
-    token varchar(32)
+    token varchar(32),
 
     num_of_posts integer DEFAULT 0 NOT NULL,
     num_of_topics integer DEFAULT 0 NOT NULL
 );
+
+-- For the edge case where a user is deleted before we get to him
+INSERT INTO users (id, nick_name) VALUES (0, 'Izbrisani');
 
 CREATE TABLE topics (
     id integer PRIMARY KEY,

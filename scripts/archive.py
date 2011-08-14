@@ -116,7 +116,7 @@ def scrape_uid(tree):
         return re.findall('showuser=([0-9]+)',
                           tree.xpath('../..//td[@class="row1"]/a/@href')[0])[0]
     except IndexError:
-        return None # Izbrisani
+        return 0 # Izbrisani
 
 forum_s = Scraper({
         'next_page' : u'//a[@title="Sledeča stran"]/@href',
@@ -152,6 +152,8 @@ def scrape_user_id(tree):
     if not tree.xpath('../../..//span[@class="unreg"]'):
         href = tree.xpath('../../..//span[@class="normalname"]/a/@href')[0]
         return re.findall('showuser=([0-9]+)', href)[0]
+    else:
+        return 0 # Izbrisani
 
 def scrape_nick_name(tree):
     try:
@@ -229,17 +231,18 @@ class Archive:
             for post in data['posts[]']:
                 if post['user_id']:
                     user = session.query(User).get(post['user_id'])
+                    if not user:
+                        browser.open('%s/?showuser=%s' % (BASE_URL, post['user_id']))
+                        tree = lxml.html.parse(browser.response())
+                        d2 = profile_s.scrape(tree)
+                        user = User(post['user_id'], d2['nick_name'], d2['avatar'])
+                        session.add(user)
+                        session.commit()
                 else:
                     user = session.query(User). \
                         filter(User.nick_name==post['nick_name']).first()
-
-                if not user:
-                    browser.open('%s/?showuser=%s' % (BASE_URL, post['user_id']))
-                    tree = lxml.html.parse(browser.response())
-                    d2 = profile_s.scrape(tree)
-                    user = User(post['user_id'], d2['nick_name'], d2['avatar'])
-                    session.add(user)
-                    session.commit()
+                    if not user:
+                        user = session.query(User).get(0)
 
                 post = Post(post['body'], post['created_at'], topic.id, user.id)
                 session.add(post)
@@ -278,11 +281,8 @@ class Crawler:
                 elif not ot:
                     nt = Topic(topic['id'], topic['title'],
                                topic['subtitle'], topic['user_id'])
-                    if not nt.user_id:
-                        logger.info('Skipping *EVIL* topic #%s.' % nt.id)
-                    else:
-                        logger.info('Archiving *NEW* topic #%s.' % nt.id)
-                        self.archive.archive(nt)
+                    logger.info('Archiving *NEW* topic #%s.' % nt.id)
+                    self.archive.archive(nt)
                 # else it is an already up-to-date topic, so we're done
                 # unless full force is in effect
                 elif not options.force:
