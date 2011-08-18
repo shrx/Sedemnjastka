@@ -1,9 +1,22 @@
 <%inherit file="/base.mako" />
-<h2>${h.link_to(c.user.nick_name, url('user', id=c.user.id), class_='elita')}</h2>
-% if c.user.password == None:
-<p><em>${c.user.nick_name} se še ni polastil/a svojega računa. ${c.user.nick_name}, če si to ti,
-zakaj ne <a href="${url('claim', id=c.user.id)}">prevzameš svojega računa</a> zdaj.</em></p>
-% endif
+<div id="user-info">
+    <div id="user-basic-info">
+        <h2>${h.link_to(c.user.nick_name, url('user', id=c.user.id), class_='elita')}</h2>
+        % if c.user.password == None:
+        <p><em>${c.user.nick_name} se še ni polastil/a svojega računa. ${c.user.nick_name}, če si to ti,
+                zakaj ne <a href="${url('claim', id=c.user.id)}">prevzameš svojega računa</a> zdaj.</em></p>
+        % endif
+    </div>
+    <div id="user-avatar">
+        % if c.user.avatar:
+        ${c.user.avatar.img()}
+        % endif
+        <p>${h.link_to(u'prikaži celotno zgodovino avatarjev', url('user_avatars', id=c.user.id), id='load-avatar-history')}</p>
+    </div>
+</div>
+<div class="clear"></div>
+<div id="avatar-history">
+</div>
 <h3>statistika</h3>
 <div class="yello">
     <dl>

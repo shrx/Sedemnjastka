@@ -11,10 +11,12 @@
         <tr class="even">
             <td class="author">
                 <p><strong>${h.link_to(c.quote.post.user.nick_name, url('user', id=c.quote.post.user.id), class_='elita')}</strong></p>
-                <img src="${c.quote.post.user.avatar}" alt="${c.quote.post.user.nick_name}" />
+                % if c.quote.post.avatar:
+                ${c.quote.post.avatar.img()}
+                % endif
                 <p>Sporočil: ${c.quote.post.user.num_of_posts}</p>
                 <p><strong>Napisano:</strong></p>
-                <p>${c.quote.post.created_at}</p>
+                <p>${h.fdt(c.quote.post.created_at)}</p>
             </td>
             <td>
                 <p><em>${h.link_to(c.quote.post.topic.title, url('topic', id=c.quote.post.topic.id))}</em></p>

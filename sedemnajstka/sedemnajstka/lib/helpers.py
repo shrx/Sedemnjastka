@@ -12,3 +12,7 @@ from webhelpers.html.tags import *
 
 from webhelpers.pylonslib.flash import Flash as _Flash
 flash = _Flash()
+
+# format datetime
+def fdt(dt):
+    return dt.strftime(pylons.config.get('datetime_format'))

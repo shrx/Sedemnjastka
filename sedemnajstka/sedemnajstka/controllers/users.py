@@ -18,6 +18,7 @@ from sedemnajstka.model import User, Topic, Post
 import sedemnajstka.lib.helpers as h
 
 from GChartWrapper import HorizontalBarStack, VerticalBarStack
+from sqlalchemy import orm
 
 log = logging.getLogger(__name__)
 
@@ -43,6 +44,7 @@ class UsersController(BaseController):
         c.user = Session.query(User).filter(User.id==int(id)).first()
         c.posts = webhelpers.paginate.Page(
             Session.query(Post, Topic). \
+                options(orm.joinedload(Post.avatar)). \
                 filter(Post.topic_id==Topic.id). \
                 filter(Post.user_id==c.user.id). \
                 order_by(Post.created_at.desc()),
@@ -64,7 +66,9 @@ class UsersController(BaseController):
         return render('/users/topics.mako')
 
     def show(self, id):
-        c.user = Session.query(User).filter(User.id==id).first()
+        c.user = Session.query(User). \
+            options(orm.joinedload(User.avatar)). \
+            get(id)
         if not c.user: abort(404)
 
         c.title = c.user.nick_name
@@ -193,3 +197,11 @@ Lep pozdrav, in ostani vedno /17/
             abort(400)
 
         return chart.img()
+
+    def avatars(self, id):
+        c.user = Session.query(User). \
+            options(orm.joinedload(User.avatars)). \
+            get(id)
+        if not c.user: abort(404)
+
+        return render('/users/avatars.mako')

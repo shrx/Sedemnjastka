@@ -37,6 +37,8 @@ def make_map(config):
     map.connect('/users', controller='users', action='index')
     map.connect('user', '/users/{id:\d+}', controller='users', action='show')
 
+    map.connect('user_avatars', '/users/{id:\d+}/avatars', controller='users', action='avatars')
+
     map.connect('user_posts', '/users/{id:\d+}/posts', controller='users', action='posts')
     map.connect('/users/{id:\d+}/posts/{page:\d+}', controller='users', action='posts')
 

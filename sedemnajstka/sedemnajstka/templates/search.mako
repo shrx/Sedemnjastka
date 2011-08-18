@@ -18,10 +18,12 @@
         <tr class="even">
             <td class="author">
                 <p><strong>${h.link_to(user.nick_name, url('user', id=user.id), class_='elita')}</strong></p>
-                <img src="${user.avatar}" alt="${user.nick_name}" />
+                % if post.avatar:
+                ${post.avatar.img()}
+                % endif
                 <p>Sporočil: ${user.num_of_posts}</p>
                 <p><strong>Napisano:</strong></p>
-                <p>${post.created_at}</p>
+                <p>${h.fdt(post.created_at)}</p>
             </td>
             <td>
                 <p><em>${h.link_to(topic.title, url('topic', id=topic.id))}</em></p>

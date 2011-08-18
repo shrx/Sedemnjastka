@@ -3,7 +3,6 @@ DROP TABLE IF EXISTS users, topics, posts, quotes, quote_votes, avatars, info;
 CREATE TABLE users (
     id integer PRIMARY KEY,
 
-    avatar varchar(255),
     nick_name varchar(255) NOT NULL,
     password varchar(60),
     token varchar(32),
@@ -59,6 +58,22 @@ CREATE TABLE quote_votes (
 
     PRIMARY KEY (quote_id, user_id)
 );
+
+CREATE TABLE avatars (
+    id serial PRIMARY KEY,
+
+    created_at timestamp with time zone DEFAULT now() NOT NULL,
+    filename VARCHAR(255),
+    md5sum VARCHAR(32) NOT NULL,
+
+    width integer,
+    height integer,
+
+    user_id integer NOT NULL REFERENCES users
+);
+
+ALTER TABLE posts ADD COLUMN avatar_id integer REFERENCES avatars;
+ALTER TABLE users ADD COLUMN avatar_id integer REFERENCES avatars;
 
 CREATE INDEX posts_created_at_idx ON posts (created_at);
 CREATE INDEX posts_topic_id_idx ON posts (topic_id);

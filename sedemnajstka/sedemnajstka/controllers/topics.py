@@ -8,6 +8,8 @@ from pylons.controllers.util import abort, redirect
 from sedemnajstka.lib.base import BaseController, render, Session
 from sedemnajstka.model import Post, Topic, User
 
+from sqlalchemy import orm
+
 log = logging.getLogger(__name__)
 
 class TopicsController(BaseController):
@@ -16,6 +18,7 @@ class TopicsController(BaseController):
         c.topic = Session.query(Topic).filter(Topic.id==int(id)).first()
         c.posts = webhelpers.paginate.Page(
             Session.query(Post, User).filter(Post.user_id==User.id). \
+                options(orm.joinedload(Post.avatar)). \
                 filter(Post.topic_id==c.topic.id). \
                 order_by(Post.created_at),
             page=int(page),

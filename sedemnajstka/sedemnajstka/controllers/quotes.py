@@ -10,6 +10,8 @@ from sedemnajstka.model import Post, Quote, QuoteVote
 
 import sedemnajstka.lib.helpers as h
 
+from sqlalchemy import orm
+
 log = logging.getLogger(__name__)
 
 class QuotesController(BaseController):
@@ -17,7 +19,9 @@ class QuotesController(BaseController):
     requires_auth = ['new', 'create', 'vote']
 
     def new(self, post):
-        c.post = Session.query(Post).filter(Post.id==post).first()
+        c.post = Session.query(Post). \
+            options(orm.joinedload(Post.avatar)). \
+            get(post)
         if not c.post:
             abort(404)
 
@@ -43,12 +47,15 @@ class QuotesController(BaseController):
 
     def index(self):
         c.quotes = Session.query(Quote). \
+            options(orm.joinedload_all(Quote.post, Post.avatar)). \
             order_by((Quote.upvotes-Quote.downvotes).desc())
         c.title = 'baza navedkov'
         return render('/quotes/index.mako')
 
     def show(self, id):
-        c.quote = Session.query(Quote).filter(Quote.id==id).first()
+        c.quote = Session.query(Quote). \
+            options(orm.joinedload_all(Quote.post, Post.avatar)). \
+            get(id)
         if not c.quote:
             abort(404)
         c.title = 'navedek'

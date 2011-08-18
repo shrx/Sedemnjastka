@@ -8,6 +8,7 @@ username =
 password =
 
 [misc]
+avatars_dir = ../sedemnajstka/sedemnajstka/public/avatars/
 datetime_format = %d.%m.%Y, %H:%M
 
 greetings = Aloha, Ave, Ciao, Howdy, Moin, Yo

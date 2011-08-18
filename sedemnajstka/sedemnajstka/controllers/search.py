@@ -8,6 +8,7 @@ from pylons.controllers.util import abort, redirect
 from sedemnajstka.lib.base import BaseController, render, Session
 from sedemnajstka.model import Topic, Post, User
 
+from sqlalchemy import orm
 from sqlalchemy.sql import func
 
 log = logging.getLogger(__name__)
@@ -21,6 +22,7 @@ class SearchController(BaseController):
 
         c.results = webhelpers.paginate.Page(
             Session.query(Post, Topic, User). \
+                options(orm.joinedload(Post.avatar)). \
                 filter(Topic.id==Post.topic_id). \
                 filter(User.id==Post.user_id). \
 

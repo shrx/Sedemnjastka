@@ -6,8 +6,10 @@ from sqlalchemy import orm
 from sqlalchemy.sql import select, func, and_
 
 from sedemnajstka.model import meta
+import sedemnajstka.lib.helpers as h
 
 
+t_avatars = None
 t_info = None
 t_posts = None
 t_quotes = None
@@ -21,7 +23,8 @@ def init_model(engine):
     meta.Session.configure(bind=engine)
     meta.Base.metadata.bind = engine
 
-    global t_info, t_posts, t_quotes, t_quote_votes, t_topics, t_users
+    global t_avatars, t_info, t_posts, t_quotes, t_quote_votes, t_topics, t_users
+    t_avatars = sa.Table('avatars', meta.Base.metadata, autoload=True)
     t_info = sa.Table('info', meta.Base.metadata, autoload=True)
     t_posts = sa.Table('posts', meta.Base.metadata, autoload=True)
     t_quotes = sa.Table('quotes', meta.Base.metadata, autoload=True)
@@ -29,8 +32,12 @@ def init_model(engine):
     t_topics = sa.Table('topics', meta.Base.metadata, autoload=True)
     t_users = sa.Table('users', meta.Base.metadata, autoload=True)
 
+    orm.mapper(Avatar, t_avatars, properties={
+        'user': orm.relationship(User, uselist=False,
+                                 primaryjoin=t_avatars.c.user_id==t_users.c.id)})
     orm.mapper(Info, t_info)
     orm.mapper(Post, t_posts, properties={
+            'avatar': orm.relationship(Avatar, uselist=False),
             'user': orm.relationship(User, backref='posts'),
             'topic': orm.relationship(Topic, backref='posts')})
     orm.mapper(Quote, t_quotes, properties={
@@ -41,7 +48,20 @@ def init_model(engine):
             'user': orm.relationship(User, backref='quote_votes')})
     orm.mapper(Topic, t_topics)
     orm.mapper(User, t_users, properties={
+            'avatar': orm.relationship(Avatar, uselist=False,
+                                       primaryjoin=t_users.c.avatar_id==t_avatars.c.id,
+                                       post_update=True),
+            'avatars': orm.relationship(Avatar,
+                                        primaryjoin=t_avatars.c.user_id==t_users.c.id,
+                                        order_by=t_avatars.c.created_at),
             'topics': orm.relationship(Topic, backref='user')})
+
+
+class Avatar(object):
+
+    def img(self):
+        return h.image('/avatars/%s' % self.filename, None,
+                       self.width, self.height)
 
 
 class Info(object):
@@ -55,7 +75,7 @@ class User(object):
         q = select([func.date_part('isodow', t_posts.c.created_at),
                     func.count(t_posts.c.id)],
                     t_posts.c.user_id==self.id).group_by('1').order_by('1')
-    
+
         if start_date: q = q.where(t_posts.c.created_at>=start_date)
         if end_date: q = q.where(t_posts.c.created_at<end_date)
 
@@ -67,7 +87,7 @@ class User(object):
         q = select([func.date_part('hour', t_posts.c.created_at),
                     func.count(t_posts.c.id)],
                     t_posts.c.user_id==self.id).group_by('1').order_by('1')
-    
+
         if start_date: q = q.where(t_posts.c.created_at>=start_date)
         if end_date: q = q.where(t_posts.c.created_at<end_date)
 

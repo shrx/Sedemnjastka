@@ -53,4 +53,16 @@ $(function() {
         $("#login-dialog").dialog("open");
         return false;
     });
+
+    // User avatar history
+    $("#load-avatar-history").one("click", function () {
+        $.ajax({
+            url: $(this).attr("href"),
+            success: function(html) {
+                $("#avatar-history").append(html);
+            }
+        });
+        $(this).removeAttr("href");
+        return false;
+    });
 });

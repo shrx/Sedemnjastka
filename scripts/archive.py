@@ -4,18 +4,22 @@
 from datetime import datetime, timedelta
 from optparse import OptionParser
 import ConfigParser
+import hashlib
 import logging
 import logging.config
 import os.path
 import random
 import re
+import urllib2
 import warnings
 
+import Image
 import lxml.etree
 import lxml.html
 import mechanize
-import sqlalchemy
-import sqlalchemy.orm
+import pytz
+import sqlalchemy as sa
+from sqlalchemy import orm
 
 from scraper import Scraper
 
@@ -54,18 +58,28 @@ logging.config.fileConfig(os.path.join(os.path.dirname(__file__), 'config.ini'))
 logger = logging.getLogger(config.get('misc', 'logger'))
 
 # Set up database
-engine = sqlalchemy.create_engine(config.get('database', 'url'))
+engine = sa.create_engine(config.get('database', 'url'))
 engine.connect()
-metadata = sqlalchemy.MetaData(engine)
-Session = sqlalchemy.orm.sessionmaker(bind=engine)
+metadata = sa.MetaData(engine)
+Session = orm.sessionmaker(bind=engine)
 session = Session()
 
-info_table = sqlalchemy.Table('info', metadata, autoload=True)
+t_avatars = sa.Table('avatars', metadata, autoload=True)
+t_info = sa.Table('info', metadata, autoload=True)
 with warnings.catch_warnings():
     warnings.simplefilter('ignore')
-    posts_table = sqlalchemy.Table('posts', metadata, autoload=True)
-topics_table = sqlalchemy.Table('topics', metadata, autoload=True)
-users_table = sqlalchemy.Table('users', metadata, autoload=True)
+    t_posts = sa.Table('posts', metadata, autoload=True)
+t_topics = sa.Table('topics', metadata, autoload=True)
+t_users = sa.Table('users', metadata, autoload=True)
+
+
+class Avatar(object):
+
+    __tablename__ = 'avatars'
+
+    def __init__(self, md5sum, user):
+        self.md5sum = md5sum
+        self.user = user
 
 
 class Info(object):
@@ -99,16 +113,28 @@ class User(object):
 
     __tablename__ = 'users'
 
-    def __init__(self, id, nick_name, avatar=None):
+    def __init__(self, id, nick_name):
         self.id = id and int(id)
         self.nick_name = nick_name and unicode(nick_name)
-        self.avatar = avatar
 
 
-sqlalchemy.orm.mapper(Info, info_table)
-sqlalchemy.orm.mapper(Post, posts_table)
-sqlalchemy.orm.mapper(Topic, topics_table)
-sqlalchemy.orm.mapper(User, users_table)
+orm.mapper(Avatar, t_avatars, properties={
+        'user': orm. \
+            relationship(User, uselist=False,
+                         primaryjoin=t_avatars.c.user_id==t_users.c.id)})
+orm.mapper(Info, t_info)
+orm.mapper(Post, t_posts, properties={
+        'avatar': orm.relationship(Avatar, uselist=False)})
+orm.mapper(Topic, t_topics)
+orm.mapper(User, t_users, properties={
+        'avatar': orm. \
+            relationship(Avatar, uselist=False,
+                         primaryjoin=t_users.c.avatar_id==t_avatars.c.id,
+                         post_update=True),
+        'avatars': orm. \
+            relationship(Avatar,
+                         primaryjoin=t_avatars.c.user_id==t_users.c.id)})
+
 
 # Set up the scrapers
 def scrape_uid(tree):
@@ -168,6 +194,8 @@ def scrape_nick_name(tree):
 topic_s = Scraper({
         'next_page': u'//a[@title="Sledeča stran"]/@href',
         'posts[]'  : ('//div[@class="postcolor"]', Scraper({
+                    'avatar'    : '../..//span[@class="postdetails"]' + \
+                        '/img[contains(@src, "//av")]/@src',
                     'body'      : scrape_body,
                     'created_at': scrape_created_at,
                     'nick_name' : scrape_nick_name,
@@ -177,7 +205,6 @@ topic_s = Scraper({
 
 
 profile_s = Scraper({
-        'avatar': '//div[@class="pp-name"]//img[contains(@src, "//av")]/@src',
         'nick_name': '//h3/text()',
         })
 
@@ -208,7 +235,7 @@ class Archive:
             browser.open('%s/?showuser=%s' % (BASE_URL, topic.user_id))
             tree = lxml.html.parse(browser.response())
             data = profile_s.scrape(tree)
-            user = User(topic.user_id, data['nick_name'], data['avatar'])
+            user = User(topic.user_id, data['nick_name'])
             session.add(user)
             session.commit()
 
@@ -232,10 +259,11 @@ class Archive:
                 if post['user_id']:
                     user = session.query(User).get(post['user_id'])
                     if not user:
-                        browser.open('%s/?showuser=%s' % (BASE_URL, post['user_id']))
+                        browser.open('%s/?showuser=%s' % (BASE_URL,
+                                                          post['user_id']))
                         tree = lxml.html.parse(browser.response())
                         d2 = profile_s.scrape(tree)
-                        user = User(post['user_id'], d2['nick_name'], d2['avatar'])
+                        user = User(post['user_id'], d2['nick_name'])
                         session.add(user)
                         session.commit()
                 else:
@@ -244,9 +272,58 @@ class Archive:
                     if not user:
                         user = session.query(User).get(0)
 
-                post = Post(post['body'], post['created_at'], topic.id, user.id)
-                session.add(post)
-                topic.last_post_created_at = post.created_at
+                new_post = Post(post['body'], post['created_at'],
+                                topic.id, user.id)
+
+                # Avatar
+                if post['avatar']:
+                    req = mechanize.Request(post['avatar'])
+                    if user.avatar:
+                        http_date = '%a, %d %b %Y %H:%M:%S GMT'
+                        req.add_header('If-Modified-Since',
+                                       user.avatar.created_at. \
+                                           astimezone(pytz.utc). \
+                                           strftime(http_date))
+                    try:
+                        browser.open(req)
+                        md5sum = hashlib. \
+                            md5(browser.response().read()).hexdigest()
+                        if not user.avatar or md5sum != user.avatar.md5sum:
+                            logger. \
+                                info('Fetching *NEW AVATAR* for user "%s"' % \
+                                         user.nick_name)
+                            mimetype = browser.response().info().gettype()
+                            if mimetype == 'image/gif': ext = '.gif'
+                            elif mimetype == 'image/jpeg': ext = '.jpg'
+                            elif mimetype == 'image/png': ext = '.png'
+
+                            av = Avatar(md5sum, user)
+                            session.add(av)
+                            user.avatar = av
+                            session.commit()
+                            new_post.avatar = av
+
+                            path = os.path.join(config.get('misc',
+                                                           'avatars_dir'),
+                                                '%d%s' % (av.id, ext))
+                            with open(path, 'wb') as f:
+                                f.write(browser.response().read())
+
+                            av.filename = os.path.basename(path)
+                            img = Image.open(path)
+                            av.width, av.height = img.size
+                        else:
+                            new_post.avatar = user.avatar
+                    except urllib2.HTTPError, e:
+                        # 304 - Not Modified
+                        if e.code == 304: new_post.avatar = user.avatar
+                        elif e.code == 404: pass
+                        else: raise
+                else:
+                    user.avatar = None
+
+                session.add(new_post)
+                topic.last_post_created_at = new_post.created_at
                 topic.num_of_posts = Topic.num_of_posts + 1
                 user.num_of_posts = User.num_of_posts + 1
                 session.commit()

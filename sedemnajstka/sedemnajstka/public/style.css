@@ -51,6 +51,28 @@ ul#flash-messages {
     list-style: none;
 }
 
+#user-info {
+    margin-top: 1em;
+}
+
+#user-basic-info {
+    float: left;
+}
+
+#user-avatar {
+    float: right;
+    text-align: right;
+}
+
+#avatar-history table, #avatar-history td {
+    border-style: none;
+}
+
+#avatar-history .date {
+    color: gray;
+    font-weight: bold;
+}
+
 /* Evens and odds */
 .even { background-color: #ffeebb; }
 
