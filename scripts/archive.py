@@ -52,6 +52,8 @@ browser.set_cookiejar(cj)
 config = ConfigParser.ConfigParser()
 config.read(os.path.join(os.path.dirname(__file__), 'config.ini'))
 
+AVATARS_DIR = os.path.join(os.path.dirname(__file__),
+                           config.get('misc', 'avatars_dir'))
 BASE_URL = config.get('forum', 'url').rstrip('/')
 
 logging.config.fileConfig(os.path.join(os.path.dirname(__file__), 'config.ini'))
@@ -303,8 +305,7 @@ class Archive:
                             session.commit()
                             new_post.avatar = av
 
-                            path = os.path.join(config.get('misc',
-                                                           'avatars_dir'),
+                            path = os.path.join(AVATARS_DIR,
                                                 '%d%s' % (av.id, ext))
                             with open(path, 'wb') as f:
                                 f.write(browser.response().read())
