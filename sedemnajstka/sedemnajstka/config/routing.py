@@ -72,4 +72,7 @@ def make_map(config):
     # search
     map.connect('search', '/search', controller='search', action='index')
 
+    # collage
+    map.connect('/collage', controller='collage', action='index')
+
     return map

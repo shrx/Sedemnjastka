@@ -54,6 +54,7 @@
                     <a href="/">Arhiv</a> |
                     <a href="/quotes">baza navedkov</a> |
                     <a href="/info">Info</a> |
+                    <a href="/collage">Kolaž</a> |
                     <a href="/rankings">Kralji Gnoja</a> |
                     <a href="/users">Uporabniki</a>
                 </div>

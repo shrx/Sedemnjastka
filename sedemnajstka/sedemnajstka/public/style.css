@@ -73,6 +73,8 @@ ul#flash-messages {
     font-weight: bold;
 }
 
+.collage { text-align: center; }
+
 /* Evens and odds */
 .even { background-color: #ffeebb; }
 
