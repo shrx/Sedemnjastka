@@ -303,3 +303,13 @@ a.elita[href="/users/10787"]:before {
 a.elita[href="/users/130"]:before {
     content: url(images/ladybug.png);
 }
+
+/* Vladimir Gajšek */
+a.elita[href="/users/1067"] {
+    /* Gray-asparagus */
+    color: #465945;
+}
+
+a.elita[href="/users/1067"]:before {
+    content: url(images/donator.gif);
+}
