@@ -1,0 +1,11 @@
+[
+    % for user in c.users:
+    {
+        id: ${user.id},
+        nick_name: "${user.nick_name}",
+        num_of_posts: ${user.num_of_posts},
+        num_of_topics: ${user.num_of_topics},
+        avatar_id: ${user.avatar_id},
+    },
+    % endfor
+]
