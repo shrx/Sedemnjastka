@@ -110,10 +110,10 @@ input[type="submit"] {
 /* Header */
 #header img { float: left; }
 
-#header { background: url(images/header_m.gif) repeat-x; }
+#header { background: url(../images/header_m.gif) repeat-x; }
 
 #header-r {
-    background: url(images/header_r.gif) right no-repeat;
+    background: url(../images/header_r.gif) right no-repeat;
     position: relative;
 }
 
@@ -232,7 +232,7 @@ a.elita[href="/users/1583"] {
 }
 
 a.elita[href="/users/1583"]:before {
-    content: url(images/crown.gif);
+    content: url(../images/crown.gif);
 }
 
 /* Ezekiel */
@@ -246,7 +246,7 @@ a.elita[href="/users/16752"]:after {
 }
 
 a.elita[href="/users/16752"]:before {
-    content: url(images/rose.gif);
+    content: url(../images/rose.gif);
 }
 
 /* Vladimir Gajšek */
@@ -256,7 +256,7 @@ a.elita[href="/users/14638"] {
 }
 
 a.elita[href="/users/14638"]:before {
-    content: url(images/donator.gif);
+    content: url(../images/donator.gif);
 }
 
 /* viddek */
@@ -266,7 +266,7 @@ a.elita[href="/users/16506"] {
 }
 
 a.elita[href="/users/16506"]:before {
-    content: url(images/donator.gif);
+    content: url(../images/donator.gif);
 }
 
 /* Mr Shears */
@@ -276,7 +276,7 @@ a.elita[href="/users/1947"] {
 }
 
 a.elita[href="/users/1947"]:before {
-    content: url(images/sunglasses.png);
+    content: url(../images/sunglasses.png);
 }
 
 /* loky3000 */
@@ -286,7 +286,7 @@ a.elita[href="/users/4735"] {
 }
 
 a.elita[href="/users/4735"]:before {
-    content: url(images/axe.png);
+    content: url(../images/axe.png);
 }
 
 /* Lord Jocker */
@@ -296,12 +296,12 @@ a.elita[href="/users/10787"] {
 }
 
 a.elita[href="/users/10787"]:before {
-    content: url(images/tamaki2.png);
+    content: url(../images/tamaki2.png);
 }
 
 /* Kokodajs */
 a.elita[href="/users/130"]:before {
-    content: url(images/ladybug.png);
+    content: url(../images/ladybug.png);
 }
 
 /* Vladimir Gajšek */
@@ -311,5 +311,5 @@ a.elita[href="/users/1067"] {
 }
 
 a.elita[href="/users/1067"]:before {
-    content: url(images/donator.gif);
+    content: url(../images/donator.gif);
 }
