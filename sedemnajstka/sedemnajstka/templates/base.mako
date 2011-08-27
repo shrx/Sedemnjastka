@@ -5,6 +5,7 @@
         <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
         <link href="/favicon.png" rel="icon" type="image/png" />
         <link href="/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="/css/demo_page.css" rel="stylesheet" type="text/css" />
         <link href="/css/demo_table_jui.css" rel="stylesheet" type="text/css" />
         <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/sunny/jquery-ui.css" rel="stylesheet" type="text/css" />
         <script src="https://www.google.com/jsapi?key=ABQIAAAAIiJO64nS9X44-5zAPRx_CBQ2dbh21h_ChSbOJ2YbyL15pL-xehSxEyXymi-V54dT254KfCJZfHpG4A" type="text/javascript"></script>
