@@ -1,5 +1,6 @@
 <%inherit file="/base.mako" />
-<table>
+<h2>${c.title}</h2>
+<table id="users-index">
     <thead>
         <tr>
             <th>Ime</th>
@@ -7,12 +8,8 @@
         </tr>
     </thead>
     <tbody>
-        % for i, user in enumerate(c.users):
-        % if i % 2 == 0:
-        <tr class="even">
-            % else:
-        <tr class="odd">
-            % endif
+        % for user in c.users:
+        <tr>
             <td>${h.link_to(user.nick_name, url('user', id=user.id), class_='elita')}</td>
             <td>${user.num_of_posts}</td>
         </tr>
