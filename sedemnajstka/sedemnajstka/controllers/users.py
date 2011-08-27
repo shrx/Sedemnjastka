@@ -41,8 +41,8 @@ class UsersController(BaseController):
 
         c.title = 'uporabniki'
 
-        response.content_type = content_type
         if content_type == 'application/json':
+            response.headers['Content-Type'] = 'application/json; charset=UTF-8'
             return render('/users/index.json')
         else:
             return render('/users/index.mako')
