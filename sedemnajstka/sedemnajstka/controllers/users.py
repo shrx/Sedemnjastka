@@ -34,11 +34,16 @@ class UsersController(BaseController):
 
     requires_auth = ['edit']
 
-    def index(self):
+    def index(self, content_type='text/html'):
         c.users = Session.query(User).order_by(User.nick_name)
 
         c.title = 'uporabniki'
-        return render('/users/index.mako')
+
+        response.content_type = content_type
+        if content_type == 'application/json':
+            return render('/users/index.json')
+        else:
+            return render('/users/index.mako')
 
     def posts(self, id, page=1):
         c.user = Session.query(User).filter(User.id==int(id)).first()

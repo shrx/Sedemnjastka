@@ -35,6 +35,7 @@ def make_map(config):
 
     # users
     map.connect('/users', controller='users', action='index')
+    map.connect('/users.json', controller='users', action='index', content_type='application/json')
     map.connect('user', '/users/{id:\d+}', controller='users', action='show')
 
     map.connect('user_avatars', '/users/{id:\d+}/avatars', controller='users', action='avatars')
