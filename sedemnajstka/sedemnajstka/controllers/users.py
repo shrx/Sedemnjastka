@@ -35,7 +35,9 @@ class UsersController(BaseController):
     requires_auth = ['edit']
 
     def index(self, content_type='text/html'):
-        c.users = Session.query(User).order_by(User.nick_name)
+        c.users = Session.query(User).\
+            options(orm.joinedload(User.avatar)). \
+            order_by(User.nick_name)
 
         c.title = 'uporabniki'
 
