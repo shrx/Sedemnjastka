@@ -76,4 +76,10 @@ def make_map(config):
     # collage
     map.connect('/collage', controller='collage', action='index')
 
+    # games
+    map.connect('/games', controller='games', action='index')
+
+    map.connect('/games/guess-avatar', controller='guess_avatar', action='index')
+    map.connect('/games/guess-avatar/guessed', controller='guess_avatar', action='guessed')
+
     return map

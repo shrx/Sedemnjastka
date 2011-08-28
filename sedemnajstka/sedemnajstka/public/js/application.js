@@ -88,4 +88,50 @@ $(function() {
         },
         sPaginationType: "full_numbers"
     });
+
+    // Avatar guessing game
+    $(".guess").live("click", function () {
+        $(this).attr("id", "guessed");
+        var form = $("#ga-form");
+        // Append user_id to form
+        $("<input>").attr({
+            name: "user_id",
+            value: $(this).attr("value"),
+            type: "hidden"
+        }).appendTo(form);
+        $("<input>").attr({name: "ajax", value: true,
+                           type: "hidden"}).appendTo(form);
+
+        $.post(form.attr("action"), form.serialize(), function(data) {
+            var animation = "blind";
+            var avatar_guess = $(data);
+            var color = "#DE3163";
+            if ($(".correct-guess", avatar_guess).length != 0) {
+                color = "#BFFF00";
+            }
+
+            $("#guessed").css("background-image", "none");
+            $("#guessed").animate({backgroundColor: color}, 900, function () {
+                // Hide old and fetch new
+                $("#guess-avatar").hide(animation, {}, 900, function () {
+                    // Insert result of this round into history
+                    // See if last history item was even/odd, and reverse ours
+                    if ($("#guessing-history tr:first").hasClass("even")) {
+                        $(avatar_guess, "tr").addClass("odd");
+                    } else {
+                        $(avatar_guess, "tr").addClass("even");
+                    }
+                    avatar_guess.prependTo($("#guessing-history"));
+
+                    // Load new question
+                    $("#guess-avatar").empty();
+                    $.get("/games/guess-avatar", {ajax: true}, function(data) {
+                        $(data).appendTo($("#guess-avatar"));
+                        $("#guess-avatar").show(animation, {}, 900);
+                    });
+                });
+            });
+        });
+        return false;
+    });
 });

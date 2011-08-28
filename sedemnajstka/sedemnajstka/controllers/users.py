@@ -13,7 +13,7 @@ from pylons.controllers.util import abort, redirect
 
 from sedemnajstka.lib import mn3njalnik
 from sedemnajstka.lib.base import BaseController, render, Session
-from sedemnajstka.model import User, Topic, Post
+from sedemnajstka.model import User, Topic, Post, AvatarGuess
 
 import sedemnajstka.lib.helpers as h
 
@@ -77,6 +77,13 @@ class UsersController(BaseController):
             options(orm.joinedload(User.avatar)). \
             get(id)
         if not c.user: abort(404)
+        c.avatar_guesses_total = Session.query(AvatarGuess). \
+            filter(AvatarGuess.user==c.user). \
+            count()
+        c.avatars_guessed = Session.query(AvatarGuess). \
+            filter(AvatarGuess.user==c.user). \
+            filter(AvatarGuess.guessed==True). \
+            count()
 
         c.title = c.user.nick_name
         return render('/users/show.mako')

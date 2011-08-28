@@ -9,6 +9,7 @@ from sedemnajstka.model import meta
 import sedemnajstka.lib.helpers as h
 
 
+t_avatar_guesses = None
 t_avatars = None
 t_info = None
 t_posts = None
@@ -23,7 +24,9 @@ def init_model(engine):
     meta.Session.configure(bind=engine)
     meta.Base.metadata.bind = engine
 
-    global t_avatars, t_info, t_posts, t_quotes, t_quote_votes, t_topics, t_users
+    global t_avatar_guesses, t_avatars, t_info, t_posts, t_quotes, \
+        t_quote_votes, t_topics, t_users
+    t_avatar_guesses = sa.Table('avatar_guesses', meta.Base.metadata, autoload=True)
     t_avatars = sa.Table('avatars', meta.Base.metadata, autoload=True)
     t_info = sa.Table('info', meta.Base.metadata, autoload=True)
     t_posts = sa.Table('posts', meta.Base.metadata, autoload=True)
@@ -32,6 +35,9 @@ def init_model(engine):
     t_topics = sa.Table('topics', meta.Base.metadata, autoload=True)
     t_users = sa.Table('users', meta.Base.metadata, autoload=True)
 
+    orm.mapper(AvatarGuess, t_avatar_guesses, properties={
+            'guessed_avatar_': orm.relationship(Avatar, uselist=False),
+            'user': orm.relationship(User, uselist=False, backref='avatar_guesses')})
     orm.mapper(Avatar, t_avatars, properties={
         'user': orm.relationship(User, uselist=False,
                                  primaryjoin=t_avatars.c.user_id==t_users.c.id)})
@@ -55,6 +61,14 @@ def init_model(engine):
                                         primaryjoin=t_avatars.c.user_id==t_users.c.id,
                                         order_by=t_avatars.c.created_at),
             'topics': orm.relationship(Topic, backref='user')})
+
+
+class AvatarGuess(object):
+
+    def __init__(self, guessed, guessed_avatar, user):
+        self.guessed = guessed
+        self.guessed_avatar_ = guessed_avatar
+        self.user = user
 
 
 class Avatar(object):

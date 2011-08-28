@@ -215,6 +215,37 @@ th { text-align: center; }
     padding: 10px;
 }
 
+/* Avatar guessing game */
+#guess-avatar {
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+#guess-avatar p {
+    background-color: #ffeebb;
+    padding: 1em;
+}
+
+#guess-avatar ul {
+    column-count: 4;
+    column-gap: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.guess {
+    background: #fece2f url(../images/ui-bg_gloss-wave_60_fece2f_500x100.png) 50% 50% repeat-x;
+    border: 1px solid #d19405;
+    color: #4c3000;
+    font-weight: bold;
+    padding: 1.4em;
+    width: 100%;
+}
+
+.correct-guess { color: #BFFF00; font-size: 4em; }
+.wrong-guess { color: #DE3163; font-size: 4em; }
+
 /* Voting */
 a.upvote { color: #009530; }
 

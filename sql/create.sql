@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS users, topics, posts, quotes, quote_votes, avatars, info;
+DROP TABLE IF EXISTS users, topics, posts, quotes, quote_votes, avatars, info, avatar_guesses;
 
 CREATE TABLE users (
     id integer PRIMARY KEY,
@@ -74,6 +74,16 @@ CREATE TABLE avatars (
 
 ALTER TABLE posts ADD COLUMN avatar_id integer REFERENCES avatars;
 ALTER TABLE users ADD COLUMN avatar_id integer REFERENCES avatars;
+
+CREATE TABLE avatar_guesses (
+    id serial PRIMARY KEY,
+
+    created_at timestamp DEFAULT now() NOT NULL,
+    guessed boolean NOT NULL,
+    guessed_avatar integer NOT NULL REFERENCES avatars,
+
+    user_id integer NOT NULL REFERENCES users
+);
 
 CREATE INDEX posts_created_at_idx ON posts (created_at);
 CREATE INDEX posts_topic_id_idx ON posts (topic_id);
