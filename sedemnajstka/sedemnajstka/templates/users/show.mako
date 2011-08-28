@@ -25,7 +25,11 @@
         <dt>število tem</dt>
         <dd>${h.link_to(c.user.num_of_topics, url('user_topics', id=c.user.id))}</dd>
         <dt>uganjenih avatarjev</dt>
+        % if c.avatar_guesses_total > 0:
         <dd><strong>${c.avatars_guessed}/${c.avatar_guesses_total} (${int((c.avatars_guessed / float(c.avatar_guesses_total)) * 100)}%)</strong></dd>
+        % else:
+        <dd><strong>0/0</strong></dd>
+        % endif
     </dl>
 </div>
 <h3>posti glede na dan tedna</h3>
