@@ -1,18 +1,18 @@
 [
     % for user in c.users:
     {
-        id: ${user.id},
-        nick_name: "${user.nick_name}",
-        num_of_posts: ${user.num_of_posts},
-        num_of_topics: ${user.num_of_topics},
+        "id": ${user.id},
+        "nick_name": "${user.nick_name}",
+        "num_of_posts": ${user.num_of_posts},
+        "num_of_topics": ${user.num_of_topics},
         % if user.avatar:
-        avatar: {
-            id: ${user.avatar.id},
-            created_at: "${user.avatar.created_at}",
-            filename: "${user.avatar.filename}",
-            md5sum: "${user.avatar.md5sum}",
-            width: ${user.avatar.width},
-            height: ${user.avatar.height}
+        "avatar": {
+            "id": ${user.avatar.id},
+            "created_at": "${user.avatar.created_at}",
+            "filename": "${user.avatar.filename}",
+            "md5sum": "${user.avatar.md5sum}",
+            "width": ${user.avatar.width},
+            "height": ${user.avatar.height}
         }
         % endif
     },
