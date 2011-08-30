@@ -20,7 +20,7 @@
         <tbody>
             % for player in c.players:
             <tr>
-                <td>${h.link_to(player.nick_name, url('user', id=player.id), class_='elita')}</td>
+                <td>${h.link_to(player.nick_name, url('user', id=player.id), class_='elita') | n}</td>
                 <td>${player.count_1}&times;</td>
                 <td>${player.sum_1}&times;</td>
                 <td>${player.count_1 - player.sum_1}&times;</td>
