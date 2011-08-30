@@ -10,6 +10,7 @@ import webhelpers.paginate
 
 from pylons import request, response, session, tmpl_context as c, url, config
 from pylons.controllers.util import abort, redirect
+from pylons.decorators import jsonify
 
 from sedemnajstka.lib import mn3njalnik
 from sedemnajstka.lib.base import BaseController, render, Session
@@ -35,17 +36,33 @@ class UsersController(BaseController):
     requires_auth = ['edit']
 
     def index(self, content_type='text/html'):
-        c.users = Session.query(User).\
-            options(orm.joinedload(User.avatar)). \
-            order_by(User.nick_name)
+        c.users = Session.query(User).order_by(User.nick_name)
 
         c.title = 'uporabniki'
+        return render('/users/index.mako')
 
-        if content_type == 'application/json':
-            response.headers['Content-Type'] = 'application/json; charset=UTF-8'
-            return render('/users/index.json')
-        else:
-            return render('/users/index.mako')
+    @jsonify
+    def index_json(self):
+        users = Session.query(User). \
+            options(orm.joinedload(User.avatar))
+
+        usrs = {}
+        for user in users:
+            usrs[user.id] = {'id': user.id,
+                             'nick_name': user.nick_name,
+                             'num_of_posts': user.num_of_posts,
+                             'num_of_topics': user.num_of_topics}
+            if user.avatar:
+                usrs[user.id]['avatar'] = {
+                    'id': user.avatar.id,
+                    'created_at': user.avatar.created_at.isoformat(),
+                    'filename': user.avatar.filename,
+                    'md5sum': user.avatar.md5sum,
+                    'width': user.avatar.width,
+                    'height': user.avatar.height
+                    }
+
+        return usrs
 
     def posts(self, id, page=1):
         c.user = Session.query(User).filter(User.id==int(id)).first()
