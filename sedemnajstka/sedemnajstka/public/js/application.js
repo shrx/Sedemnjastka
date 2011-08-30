@@ -67,8 +67,9 @@ $(function() {
     });
 
     // users-index DataTable
-    $("#users-index").dataTable({
+    $("#users-index, #players").dataTable({
         bJQueryUI: true,
+        iDisplayLength: 25,
         oLanguage: {
 	    "sProcessing":   "Obdelujem...",
 	    "sLengthMenu":   "Prikaži _MENU_ zapisov",

@@ -215,6 +215,10 @@ th { text-align: center; }
     padding: 10px;
 }
 
+#games {
+    text-align: center;
+}
+
 /* Avatar guessing game */
 #guess-avatar {
     margin-bottom: 1em;
