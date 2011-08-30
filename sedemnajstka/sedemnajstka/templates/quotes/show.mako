@@ -10,7 +10,7 @@
     <tbody>
         <tr class="even">
             <td class="author">
-                <p><strong>${h.link_to(c.quote.post.user.nick_name, url('user', id=c.quote.post.user.id), class_='elita')}</strong></p>
+                <p><strong>${h.link_to(h.literal(c.quote.post.user.nick_name), url('user', id=c.quote.post.user.id), class_='elita')}</strong></p>
                 % if c.quote.post.avatar:
                 ${c.quote.post.avatar.img()}
                 % endif

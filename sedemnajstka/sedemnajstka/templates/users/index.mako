@@ -10,7 +10,7 @@
     <tbody>
         % for user in c.users:
         <tr>
-            <td>${h.link_to(user.nick_name, url('user', id=user.id), class_='elita')}</td>
+            <td>${h.link_to(h.literal(user.nick_name), url('user', id=user.id), class_='elita')}</td>
             <td>${user.num_of_posts}</td>
         </tr>
         % endfor

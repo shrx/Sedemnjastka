@@ -8,7 +8,7 @@
     <tr class="odd">
     % endif
         <td>${i + 1}</td>
-        <td>${h.link_to(user.nick_name, url('user', id=user.id), class_='elita')}</td>
+        <td>${h.link_to(h.literal(user.nick_name), url('user', id=user.id), class_='elita')}</td>
         <td>${user.num_of_posts}</td>
     </tr>
     % endfor
@@ -22,7 +22,7 @@
     <tr class="odd">
     % endif
         <td>${i + 1}</td>
-        <td>${h.link_to(user.nick_name, url('user', id=user.id), class_='elita')}</td>
+        <td>${h.link_to(h.literal(user.nick_name), url('user', id=user.id), class_='elita')}</td>
         <td>${user.num_of_topics}</td>
     </tr>
     % endfor

@@ -21,7 +21,7 @@
         <tr class="odd">
         % endif
             <td class="author">
-                <p><strong>${h.link_to(user.nick_name, url('user', id=user.id), class_='elita')}</strong></p>
+                <p><strong>${h.link_to(h.literal(user.nick_name), url('user', id=user.id), class_='elita')}</strong></p>
                 % if post.avatar:
                 ${post.avatar.img()}
                 % endif

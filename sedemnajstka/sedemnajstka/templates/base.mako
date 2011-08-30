@@ -64,7 +64,7 @@
                 </div>
                 <div id="nav-r">
                     % if 'user' in session:
-                    <p>ojla, ${h.link_to(session['user'].nick_name, url('user_edit'))}! (${h.link_to('odjava', url('logout'))})</p>
+                    <p>ojla, ${h.link_to(h.literal(session['user'].nick_name), url('user_edit'))}! (${h.link_to('odjava', url('logout'))})</p>
                     % else:
                     ${h.link_to('prijava', url('login'), id='open-login-dialog')}
                     <div id="login-dialog">

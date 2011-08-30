@@ -18,7 +18,7 @@
         <tr>
             <td class="title">${h.link_to(topic.full_title(), url('topic', id=topic.id))}</td>
             <td class="posts">${topic.num_of_posts}</td>
-            <td class="author">${h.link_to(user.nick_name, url('user', id=user.id), class_='elita')}</td>
+            <td class="author">${h.link_to(h.literal(user.nick_name), url('user', id=user.id), class_='elita')}</td>
         </tr>
         % endfor
     </tbody>

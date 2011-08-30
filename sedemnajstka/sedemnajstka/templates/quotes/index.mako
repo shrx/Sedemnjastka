@@ -11,7 +11,7 @@
     <tbody>
         <tr class="even">
             <td class="author">
-                <p><strong>${h.link_to(quote.post.user.nick_name, url('user', id=quote.post.user.id), class_='elita')}</strong></p>
+                <p><strong>${h.link_to(h.literal(quote.post.user.nick_name), url('user', id=quote.post.user.id), class_='elita')}</strong></p>
                 % if quote.post.avatar:
                 ${quote.post.avatar.img()}
                 % endif
