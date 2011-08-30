@@ -17,8 +17,6 @@ log = logging.getLogger(__name__)
 
 class GuessAvatarController(BaseController):
 
-    requires_auth = ['index', 'guessed']
-
     def index(self):
         c.users = Session.query(User). \
             filter(User.avatar!=None). \
@@ -27,11 +25,12 @@ class GuessAvatarController(BaseController):
             limit(8). \
             all()
         c.one = choice(c.users)
-        c.avatar_guesses = Session.query(AvatarGuess). \
-            options(orm.joinedload(AvatarGuess.guessed_avatar_)). \
-            filter(AvatarGuess.user==session['user']). \
-            order_by(AvatarGuess.created_at.desc()). \
-            limit(25)
+        if 'user' in session:
+            c.avatar_guesses = Session.query(AvatarGuess). \
+                options(orm.joinedload(AvatarGuess.guessed_avatar_)). \
+                filter(AvatarGuess.user==session['user']). \
+                order_by(AvatarGuess.created_at.desc()). \
+                limit(25)
 
         if 'ajax' in request.params:
             return render('/guess-avatar/choice.mako')
@@ -46,10 +45,13 @@ class GuessAvatarController(BaseController):
             get(request.params['avatar_id'])
 
         guessed = user.avatar.id == avatar.id
-        avatar_guess = AvatarGuess(guessed, avatar, session['user'])
-        Session.add(avatar_guess)
-        Session.commit()
-        Session.refresh(session['user'])
+        if 'user' in session:
+            avatar_guess = AvatarGuess(guessed, avatar, session['user'])
+            Session.add(avatar_guess)
+            Session.commit()
+            Session.refresh(session['user'])
+        else:
+            avatar_guess = AvatarGuess(guessed, avatar)
 
         if 'ajax' in request.params:
             c.avatar_guess = avatar_guess

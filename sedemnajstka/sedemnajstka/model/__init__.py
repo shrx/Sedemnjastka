@@ -65,7 +65,8 @@ def init_model(engine):
 
 class AvatarGuess(object):
 
-    def __init__(self, guessed, guessed_avatar, user):
+    def __init__(self, guessed, guessed_avatar, user=None):
+        self.created_at = datetime.datetime.now()
         self.guessed = guessed
         self.guessed_avatar_ = guessed_avatar
         self.user = user

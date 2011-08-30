@@ -6,6 +6,7 @@
     </div>
     <div id="avatar-history">
         <table id="guessing-history">
+            % if 'user' in session:
             % for i, ag in enumerate(c.avatar_guesses):
             % if i % 2 == 0:
             <tr class="even">
@@ -23,6 +24,7 @@
                 </td>
             </tr>
             % endfor
+            % endif
         </table>
     </div>
 </div>
