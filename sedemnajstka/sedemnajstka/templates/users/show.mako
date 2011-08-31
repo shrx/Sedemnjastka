@@ -50,7 +50,7 @@
                     do
                     <input class="datepicker" name="ppdow-end-date" id="ppdow-end-date" />
                     ${h.hidden('ppdow-user-id', c.user.id)}
-                    <input type="submit" value="Poženi, Afriški Američan!" id="ppdow-do" />
+                    <input type="submit" value="Poženi, schatz!" id="ppdow-do" />
                 </p>
             </form>
         </div>
@@ -74,7 +74,7 @@
                     do
                     <input class="datepicker" id="pph-end-date" />
                     ${h.hidden('pph-user-id', c.user.id)}
-                    <input type="submit" value="Poženi, Afriški Američan!" id="pph-do" />
+                    <input type="submit" value="Poženi, schatz!" id="pph-do" />
                 </p>
             </form>
         </div>
