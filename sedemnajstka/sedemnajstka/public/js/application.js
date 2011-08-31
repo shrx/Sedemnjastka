@@ -92,6 +92,7 @@ $(function() {
 
     // Avatar guessing game
     $(".guess").live("click", function () {
+        $(".guess").attr("disabled", true); // Disable resubmit cheat
         $(this).attr("id", "guessed");
         var form = $("#ga-form");
         // Append user_id to form
