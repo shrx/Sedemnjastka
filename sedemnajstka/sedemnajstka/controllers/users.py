@@ -33,7 +33,7 @@ days = [(1, 'Ponedeljek'),
 
 class UsersController(BaseController):
 
-    requires_auth = ['edit']
+    requires_auth = ['edit', 'posts']
 
     def index(self, content_type='text/html'):
         c.users = Session.query(User).order_by(User.nick_name)

@@ -15,6 +15,8 @@ log = logging.getLogger(__name__)
 
 class SearchController(BaseController):
 
+    requires_auth = ['index']
+
     def index(self):
         current_page = 'page' in request.params \
             and int(request.params['page']) or 1

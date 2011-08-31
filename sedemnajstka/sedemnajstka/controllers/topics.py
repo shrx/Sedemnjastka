@@ -14,6 +14,8 @@ log = logging.getLogger(__name__)
 
 class TopicsController(BaseController):
 
+    requires_auth = ['show']
+
     def show(self, id, page=1):
         c.topic = Session.query(Topic).filter(Topic.id==int(id)).first()
         if not c.topic: abort(404)
