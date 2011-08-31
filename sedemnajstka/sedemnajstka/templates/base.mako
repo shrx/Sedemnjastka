@@ -83,6 +83,7 @@
                             ${h.submit('submit', 'Prijavi me')}
                         </p>
                         ${h.end_form()}
+                        <p style="text-align: right">${h.link_to('pozabljeno geslo?', url('reset_passwd'))}</p>
                     </div>
                     % endif
                 </div>
