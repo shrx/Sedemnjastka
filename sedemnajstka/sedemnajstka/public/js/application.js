@@ -135,4 +135,18 @@ $(function() {
         });
         return false;
     });
+
+    // Date range slider
+    $("#date-range").slider({
+        max: new Date().getTime() / 1000, // today
+        min: 1253941200,                  // when we started
+        range: true,
+        step: 86400,            // one day in seconds
+        values: [new Date($("#from").val()) / 1000,
+                 new Date($("#to").val()) / 1000],
+        slide: function(ev, ui) {
+            $("#from").val($.datepicker.formatDate("yy-mm-dd", new Date(ui.values[0] * 1000)));
+            $("#to").val($.datepicker.formatDate("yy-mm-dd", new Date(ui.values[1] * 1000)));
+        }
+    });
 });

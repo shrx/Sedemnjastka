@@ -140,11 +140,21 @@ input[type="submit"] {
 #nav-r { float: right; }
 
 /* Pager */
-.pager { font-weight: bold; }
+.pager {
+    font-weight: bold;
+    margin: 1em 0;
+}
 
 .pager a:link, .pager a:visited { text-decoration: underline; }
 
 .pager a:hover { text-decoration: none; }
+
+/* Archive date range controller */
+.date-range-controller input[type="text"] {
+    border: 0;
+    color: #f6931f;
+    font-weight: bold;
+}
 
 /* Quotes */
 .quotetop, .quotemain {

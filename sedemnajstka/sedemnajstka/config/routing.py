@@ -27,7 +27,6 @@ def make_map(config):
     # archive
     map.connect('/', controller='archive', action='index')
     map.connect('/archive', controller='archive', action='index')
-    map.connect('/archive/{page:\d+}', controller='archive', action='index')
 
     # topics
     map.connect('topic', '/topics/{id:\d+}', controller='topics', action='show')
