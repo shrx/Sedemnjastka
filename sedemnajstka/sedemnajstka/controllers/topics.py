@@ -16,6 +16,7 @@ class TopicsController(BaseController):
 
     def show(self, id, page=1):
         c.topic = Session.query(Topic).filter(Topic.id==int(id)).first()
+        if not c.topic: abort(404)
         c.posts = webhelpers.paginate.Page(
             Session.query(Post, User).filter(Post.user_id==User.id). \
                 options(orm.joinedload(Post.avatar)). \
