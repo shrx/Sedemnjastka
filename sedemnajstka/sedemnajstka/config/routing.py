@@ -50,6 +50,7 @@ def make_map(config):
 
     map.connect('claim', '/users/{id:\d+}/claim', controller='users', action='claim')
     map.connect('passwd', '/users/passwd/{token}', controller='users', action='passwd')
+    map.connect('reset_passwd', '/users/reset_passwd', controller='users', action='reset_passwd')
 
     map.connect('user_chart_1', '/users/{id:\d+}/charts/{type}', controller='users', action='charts')
     map.connect('user_chart_2', '/users/{id:\d+}/charts/{type}/limit/{limit:\d+}', controller='users', action='charts')

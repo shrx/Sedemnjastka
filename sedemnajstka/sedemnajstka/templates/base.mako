@@ -115,11 +115,6 @@
                 <a href="http://www.debian.org/"><img src="/images/button-k1.png" width="88" height="30" alt="Powered by Debian" /></a>
                 <a href="http://www.python.org/"><img src="/images/pythonPowered2.png" width="93" height="46" alt="Powered by Python" /></a>
                 <a href="http://www.postgresql.org/"><img src="/images/pg-power.png" width="130" height="47" alt="Powered by Postgres" /></a>
-                <p class="disclaimer">
-                    Vsi prispevki (ki so dela fikcije, neprimerna za resno
-                    obravnavo) na tej strani so lastnost njihovih individualnih
-                    avtorjev.
-                </p>
             </div>
         </div>
     </body>

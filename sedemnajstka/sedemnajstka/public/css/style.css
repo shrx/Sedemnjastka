@@ -86,12 +86,6 @@ ul#flash-messages {
     text-align: center;
 }
 
-.disclaimer {
-    color: gray;
-    font-size: 0.9em;
-    font-weight: bold;
-}
-
 /* Forms */
 input[type="submit"] {
     background-color: #fff;
@@ -264,6 +258,24 @@ a.downvote { color: #cc0000; }
 .votes {
     font-size: 14px;
     float: right;
+}
+
+/* Login form */
+#login-form {
+    float: left;
+}
+
+#login-info {
+    background-color: #ffeebb;
+    float: right;
+    font-size: 1.2em;
+    margin: 1em 0;
+    padding: 1em 1em 1em 2em;
+}
+
+#login-info ul {
+    padding: 0;
+    margin: 0;
 }
 
 /* schatz */

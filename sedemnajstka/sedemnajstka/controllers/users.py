@@ -129,12 +129,8 @@ Svojega racuna na nasi strani http://sedemnajst.si se lahko polastis zdaj:
 
 http://sedemnajst.si/users/passwd/%s
 
-Zahteva za to sporocilo je bila podana iz sledecega IP naslova:
-
-%s
-
 Lep pozdrav, in ostani vedno /17/
-                       """ % (c.user.token, request.environ['REMOTE_ADDR']))
+                       """ % c.user.token)
                 h.flash(u'Imaš ZS—velik uspeh!')
             except:
                 h.flash(u'Oh ne, nekaj je šlo napak.')
@@ -161,6 +157,44 @@ Lep pozdrav, in ostani vedno /17/
 
         c.title = 'nastavi geslo'
         return render('/users/passwd.mako')
+
+    def reset_passwd(self):
+        if request.method == 'POST':
+            user = Session.query(User). \
+                filter(User.nick_name==request.params['nick_name']). \
+                first()
+            if user:
+                user.token = uuid.uuid4().get_hex()
+                Session.add(user)
+                Session.commit()
+
+                mn3 = mn3njalnik.Mn3njalnik()
+                try:
+                    mn3.login(config['mn3njalnik.username'],
+                              config['mn3njalnik.password'])
+                    mn3.pm(user.nick_name.encode('utf-8'),
+                           'Pozabljeno geslo? Ni problema!',
+                           """
+Ojla, prijatelj!
+
+Zahteval si ponastavitev svojega gesla na nasi strani: http://sedemnajst.si
+
+To lahko storis sedaj, na naslednjem naslovu:
+
+http://sedemnajst.si/users/passwd/%s
+
+Ce te zahteve nisi sprozil sam, pa lahko to sporocilo brez skrbi ignoriras.
+
+Lep pozdrav, in ostani vedno /17/
+                           """ % user.token)
+                    h.flash(u'Rečeno, storjeno—imaš ZS.')
+                except:
+                    h.flash(u'Oh ne, nekaj je šlo napak.')
+            else:
+                h.flash(u'Sori, uporabnik s takšnim imenom ne obstaja.')
+
+        c.title = 'resetiraj geslo'
+        return render('/users/reset_passwd.mako')
 
     def edit(self):
         c.user = session['user']
