@@ -139,6 +139,7 @@ $(function() {
 
     // Date range slider
     $("#date-range").slider({
+        animate: true,
         max: new Date().getTime() / 1000, // today
         min: 1253941200,                  // when we started
         range: true,
