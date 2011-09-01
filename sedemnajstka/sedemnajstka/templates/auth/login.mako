@@ -15,7 +15,7 @@
 
     <div id="login-info">
         <ul>
-            <li>Registriraš se preko linka na svojemu profilu, ki ga lahko najdeš
+            <li>Registriraš se lahko preko linka na svojemu profilu, ki ga najdeš
                 ${h.link_to('tukaj', url('/users'))}.</li>
             <li>Pozabljeno geslo lahko ${h.link_to(u'resetiraš', url('reset_passwd'))}.</li>
         </ul>
