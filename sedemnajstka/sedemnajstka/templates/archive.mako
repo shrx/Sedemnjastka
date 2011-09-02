@@ -1,6 +1,4 @@
 <%inherit file="/base.mako" />
-
-
 <div class="date-range-controller">
     ${h.form('/archive', method='GET')}
     <p>
@@ -13,8 +11,6 @@
     ${h.end_form()}
 </div>
 <div id="date-range"></div>
-
-
 <div class="pager">
     ${c.topics.pager(format='Skok na stran $link_previous ~2~ $link_next',
                      separator=', ',
