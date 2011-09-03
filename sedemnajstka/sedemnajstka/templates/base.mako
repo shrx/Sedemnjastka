@@ -12,8 +12,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/i18n/jquery-ui-i18n.min.js" type="text/javascript"></script>
-        <script src="/js/application.js" type="text/javascript"></script>
         <script src="/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="/js/jquery.cookie.js" type="text/javascript"></script>
+        <script src="/js/application.js" type="text/javascript"></script>
         % if hasattr(c, 'title'):
         <title>${c.title} - sedemnajst.si</title>
         % else:

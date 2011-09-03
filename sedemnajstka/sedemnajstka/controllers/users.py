@@ -194,7 +194,7 @@ Lep pozdrav, in ostani vedno /17/
                 h.flash(u'Sori, uporabnik s takšnim imenom ne obstaja.')
 
         c.title = 'resetiraj geslo'
-        return render('/users/reset_passwd.mako')
+        return render('/users/reset-passwd.mako')
 
     def edit(self):
         c.user = session['user']

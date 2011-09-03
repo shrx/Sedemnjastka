@@ -68,7 +68,7 @@ ul#flash-messages {
     border-style: none;
 }
 
-#avatar-history .date {
+.date {
     color: gray;
     font-weight: bold;
 }
@@ -156,6 +156,36 @@ input[type="submit"] {
     font-weight: bold;
 }
 
+#archive-view-controller {
+    padding: 1em 0;
+}
+
+#archive-limit { float: left; }
+#archive-view { float: right; }
+
+/* My icons for jQuery UI */
+#container .ui-widget-content .my-icon-compact-view,
+#container .ui-widget-content .my-icon-full-view { background-image: url(../images/my-icons_d19405_256x240.png); }
+#container .ui-widget-header .my-icon-compact-view,
+#container .ui-widget-header .my-icon-full-view { background-image: url(../images/my-icons_fadc7a_256x240.png); }
+#container .ui-state-default .my-icon-compact-view,
+#container .ui-state-default .my-icon-full-view { background-image: url(../images/my-icons_3d3d3d_256x240.png); }
+#container .ui-state-hover .my-icon-compact-view,
+#container .ui-state-hover .my-icon-full-view,
+#container .ui-state-focus .my-icon-compact-view,
+#container .ui-state-focus .my-icon-full-view { background-image: url(../images/my-icons_bd7b00_256x240.png); }
+#container .ui-state-active .my-icon-compact-view,
+#container .ui-state-active .my-icon-full-view { background-image: url(../images/my-icons_eb990f_256x240.png); }
+#container .ui-state-highlight .my-icon-compact-view,
+#container .ui-state-highlight .my-icon-full-view { background-image: url(../images/my-icons_ed9f26_256x240.png); }
+#container .ui-state-error .my-icon-compact-view,
+#container .ui-state-error .my-icon-full-view,
+#container .ui-state-error-text .my-icon-compact-view,
+#container .ui-state-error-text .my-icon-full-view { background-image: url(../images/my-icons_ffe180_256x240.png); }
+
+.my-icon-compact-view { background-position: 0 0; }
+.my-icon-full-view { background-position: -16px 0; }
+
 /* Quotes */
 .quotetop, .quotemain {
     margin-left: 2em;
@@ -204,12 +234,42 @@ th { text-align: center; }
 
 .quote { float: right; }
 
-.topics td.author { background-color: #ffd555; }
+/* Archive topics */
+.full-view td.posts {
+    font-family: Arial Black, sans-serif;
+    font-size: 2em;
+}
 
-.topics td.posts { background-color: #ffeebb; }
+.full-view td.author {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.full-view td.title { font-size: 1.2em; }
+.full-view td.title p { font-size: 0.8em; }
+
+.topics td.author {
+    background-color: #ffd555;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.topics td.avatar {
+    background-color: #ffeebb;
+    text-align: center;
+    vertical-align: middle;
+    width: 64px;
+}
+
+.topics td.posts {
+    background-color: #ffeebb;
+    text-align: center;
+    vertical-align: middle;
+}
 
 .topics td.title { background-color: #ffe495; }
 
+/* Other */
 .warning {
     background-color: #000;
     color: #00ff00;

@@ -3,7 +3,9 @@ $(function() {
     $(".datepicker").datepicker({
         changeMonth: true,
         changeYear: true,
-        dateFormat: "d.m.yy"
+        dateFormat: "dd.mm.yy",
+        maxDate: new Date().getDate(),
+        minDate: new Date(1253941200 * 1000)
     });
 
     $("input:submit").button();
@@ -22,8 +24,8 @@ $(function() {
         start = $("#ppdow-start-date").val();
         end = $("#ppdow-end-date").val();
 
-        iso_start = $.datepicker.formatDate("yy-mm-dd", $.datepicker.parseDate("d.m.yy", start));
-        iso_end = $.datepicker.formatDate("yy-mm-dd", $.datepicker.parseDate("d.m.yy", end));
+        iso_start = $.datepicker.formatDate("yy-mm-dd", $.datepicker.parseDate("dd.mm.yy", start));
+        iso_end = $.datepicker.formatDate("yy-mm-dd", $.datepicker.parseDate("dd.mm.yy", end));
 
         user_id = $("#ppdow-user-id").val();
 
@@ -35,8 +37,8 @@ $(function() {
         start = $("#pph-start-date").val();
         end = $("#pph-end-date").val();
 
-        iso_start = $.datepicker.formatDate("yy-mm-dd", $.datepicker.parseDate("d.m.yy", start));
-        iso_end = $.datepicker.formatDate("yy-mm-dd", $.datepicker.parseDate("d.m.yy", end));
+        iso_start = $.datepicker.formatDate("yy-mm-dd", $.datepicker.parseDate("dd.mm.yy", start));
+        iso_end = $.datepicker.formatDate("yy-mm-dd", $.datepicker.parseDate("dd.mm.yy", end));
 
         user_id = $("#pph-user-id").val();
 
@@ -144,11 +146,43 @@ $(function() {
         min: 1253941200,                  // when we started
         range: true,
         step: 86400,            // one day in seconds
-        values: [new Date($("#from").val()) / 1000,
-                 new Date($("#to").val()) / 1000],
+        values: [$.datepicker.parseDate("dd.mm.yy", $("#from").val()) / 1000,
+                 $.datepicker.parseDate("dd.mm.yy", $("#to").val()) / 1000],
         slide: function(ev, ui) {
-            $("#from").val($.datepicker.formatDate("yy-mm-dd", new Date(ui.values[0] * 1000)));
-            $("#to").val($.datepicker.formatDate("yy-mm-dd", new Date(ui.values[1] * 1000)));
+            $("#from").val($.datepicker.formatDate("dd.mm.yy", new Date(ui.values[0] * 1000)));
+            $("#to").val($.datepicker.formatDate("dd.mm.yy", new Date(ui.values[1] * 1000)));
         }
+    });
+
+    $("#from").change(function () {
+        $("#date-range").slider("values", 0, $.datepicker.parseDate("dd.mm.yy", $("#from").val()) / 1000);
+    });
+    $("#to").change(function () {
+        $("#date-range").slider("values", 1, $.datepicker.parseDate("dd.mm.yy", $("#to").val()) / 1000);
+    });
+
+    $("#date-range-form").submit(function () {
+        $("#from").val($.datepicker.formatDate("yy-mm-dd", $.datepicker.parseDate("dd.mm.yy", $("#from").val())));
+        $("#to").val($.datepicker.formatDate("yy-mm-dd", $.datepicker.parseDate("dd.mm.yy", $("#to").val())));
+    });
+
+    // Archive view controls
+    $("#archive_limit").change(function() {
+        $.cookie("archive_limit", $("#archive_limit option:selected").val());
+        location.reload();
+    });
+
+    $("#archive-view-radio").buttonset();
+    $("#compact-view").button({icons: {primary: "my-icon-compact-view"}, text: false});
+    $("#full-view").button({icons: {primary: "my-icon-full-view"}, text: false});
+
+    $("#compact-view").click(function () {
+        $.cookie("archive_view", "compact");
+        location.reload();
+    });
+
+    $("#full-view").click(function () {
+        $.cookie("archive_view", "full");
+        location.reload();
     });
 });

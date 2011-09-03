@@ -9,6 +9,8 @@ from pylons.controllers.util import abort, redirect
 from sedemnajstka.lib.base import BaseController, render, Session
 from sedemnajstka.model import Topic, User
 
+from sqlalchemy import orm
+
 log = logging.getLogger(__name__)
 
 class ArchiveController(BaseController):
@@ -20,7 +22,15 @@ class ArchiveController(BaseController):
             else:
                 page = 1
 
+        if request.cookies.get("archive_limit"):
+            c.limit = int(request.cookies.get("archive_limit"))
+        else: c.limit = 10
+        if request.cookies.get("archive_view"):
+            c.view = request.cookies.get("archive_view")
+        else: c.view = "full"
+
         query = Session.query(Topic, User). \
+            options(orm.joinedload(User.avatar)). \
             filter(Topic.user_id==User.id). \
             order_by(Topic.last_post_created_at.desc())
 
@@ -30,7 +40,7 @@ class ArchiveController(BaseController):
         else: c.from_ = datetime(2009, 9, 26) # Day we started
         if 'to' in request.params:
             c.to = datetime.strptime(request.params['to'], '%Y-%m-%d')
-            # Default to 00:00 on that day, while we need end of day
+            # Defaults to 00:00 on that day, while we need end of day
             c.to += timedelta(days=1)
             query = query.filter(Topic.last_post_created_at<=c.to)
         else: c.to = datetime.now()
@@ -38,8 +48,8 @@ class ArchiveController(BaseController):
         c.topics = webhelpers.paginate.Page(
             query,
             page=int(page),
-            items_per_page=50,
+            items_per_page=c.limit,
             url=webhelpers.paginate.PageURL_WebOb(request))
 
         c.title = 'arhiv'
-        return render('/archive.mako')
+        return render('/archive/index.mako')

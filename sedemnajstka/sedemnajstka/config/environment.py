@@ -49,5 +49,7 @@ def load_environment(global_conf, app_conf):
 
     # CONFIGURATION OPTIONS HERE (note: all config options will override
     # any Pylons config options)
+    import locale
+    locale.setlocale(locale.LC_ALL, 'sl_SI.UTF-8')
     
     return config
