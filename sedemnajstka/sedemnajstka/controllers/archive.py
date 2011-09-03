@@ -24,7 +24,7 @@ class ArchiveController(BaseController):
 
         if request.cookies.get("archive_limit"):
             c.limit = int(request.cookies.get("archive_limit"))
-        else: c.limit = 10
+        else: c.limit = 25
         if request.cookies.get("archive_view"):
             c.view = request.cookies.get("archive_view")
         else: c.view = "full"
