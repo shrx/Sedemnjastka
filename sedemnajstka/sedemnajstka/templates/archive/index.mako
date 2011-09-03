@@ -11,12 +11,6 @@
     ${h.end_form()}
 </div>
 <div id="date-range"></div>
-<div class="pager">
-    ${c.topics.pager(format='Skok na stran $link_previous ~2~ $link_next',
-                     separator=', ',
-                     symbol_next='Naslednja',
-                     symbol_previous=u'Prejsnja')}
-</div>
 <div id="archive-view-controller">
     <div id="archive-limit">
         ${h.form(None)}
@@ -38,6 +32,12 @@
         ${h.end_form()}
     </div>
     <div class="clear"></div>
+</div>
+<div class="pager">
+    ${c.topics.pager(format='Skok na stran $link_previous ~2~ $link_next',
+                     separator=', ',
+                     symbol_next='Naslednja',
+                     symbol_previous=u'Prejsnja')}
 </div>
 % if c.view == 'compact':
 <%include file='compact-view.mako' />
