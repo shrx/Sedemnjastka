@@ -112,9 +112,9 @@
                     </p>
                 </form>
                 <a href="http://repo.or.cz/w/sedemnajstka.git"><img src="/images/git-logo.png" width="72" height="27" alt="sedemnajstka.git" /></a>
-                <a href="http://www.gnu.org/software/emacs/"><img src="/images/powered_by_gnu_emacs.png" width="100" height="36" alt="Powered by GNU Emacs" /></a>
-                <a href="http://www.debian.org/"><img src="/images/button-k1.png" width="88" height="30" alt="Powered by Debian" /></a>
-                <a href="http://www.python.org/"><img src="/images/pythonPowered2.png" width="93" height="46" alt="Powered by Python" /></a>
+                <a href="http://www.gnu.org/software/emacs/"><img src="/images/powered_by_GNU_Emacs.jpeg" width="113" height="43" alt="Powered by GNU Emacs" /></a>
+                <a href="http://www.debian.org/"><img src="/images/button-4.gif" width="88" height="31" alt="Powered by Debian" /></a>
+                <a href="http://www.python.org/"><img src="/images/python-powered-w-100x40.png" width="100" height="40" alt="Powered by Python" /></img>
                 <a href="http://www.postgresql.org/"><img src="/images/pg-power.png" width="130" height="47" alt="Powered by Postgres" /></a>
             </div>
         </div>
