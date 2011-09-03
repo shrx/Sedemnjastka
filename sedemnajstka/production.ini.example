@@ -42,7 +42,7 @@ sqlalchemy.url = sqlite:///%(here)s/development.db
 # execute malicious code after an exception is raised.
 set debug = false
 
-datetime_format = %d.%m.%Y, %H:%M
+datetime_format = %a, %e. %b %Y, %H:%M
 
 mn3njalnik.username =
 mn3njalnik.password =
