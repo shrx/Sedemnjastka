@@ -33,12 +33,6 @@
     </div>
     <div class="clear"></div>
 </div>
-<div class="pager">
-    ${c.topics.pager(format='Skok na stran $link_previous ~2~ $link_next',
-                     separator=', ',
-                     symbol_next='Naslednja',
-                     symbol_previous=u'Prejsnja')}
-</div>
 % if c.view == 'compact':
 <%include file='compact-view.mako' />
 % elif c.view == 'full':
