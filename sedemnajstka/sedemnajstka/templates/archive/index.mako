@@ -16,7 +16,7 @@
         ${h.form(None)}
         <p>
             Prikaži
-            ${h.select('archive_limit', c.limit, options=[('10', '10'), ('25', '25'), ('50', '50')])}
+            ${h.select('archive_limit', c.limit, options=[('10', '10'), ('25', '25'), ('50', '50'), ('75', '75')])}
             zapisov
         </p>
         ${h.end_form()}
