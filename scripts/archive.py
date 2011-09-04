@@ -405,4 +405,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    if os.path.exists(os.path.join(os.path.dirname(__file__), 'do-not-run')):
+        pass
+    else:
+        main()
