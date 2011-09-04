@@ -18,7 +18,7 @@
                 % endif
             </td>
             <td class="title">
-                ${h.link_to(topic.full_title(), url('topic', id=topic.id))}
+                ${h.link_to(topic.full_title(), url('topic', id=topic.id), class_='topic-summary')}
                 <p class="date">${h.fdt(topic.last_post_created_at)}</p>
             </td>
             <td class="posts">${topic.num_of_posts}</td>

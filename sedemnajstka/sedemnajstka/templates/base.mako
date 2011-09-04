@@ -14,6 +14,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/i18n/jquery-ui-i18n.min.js" type="text/javascript"></script>
         <script src="/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="/js/jquery.cookie.js" type="text/javascript"></script>
+        <script src="/js/jquery.qtip-1.0.0-rc3.min.js" type="text/javascript"></script>
         <script src="/js/application.js" type="text/javascript"></script>
         % if hasattr(c, 'title'):
         <title>${c.title} - sedemnajst.si</title>

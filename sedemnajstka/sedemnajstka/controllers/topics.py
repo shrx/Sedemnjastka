@@ -1,5 +1,7 @@
+import textwrap
 import logging
 
+import lxml.html
 import webhelpers.paginate
 
 from pylons import request, response, session, tmpl_context as c, url
@@ -29,3 +31,20 @@ class TopicsController(BaseController):
 
         c.title = c.topic.full_title()
         return render('/topics/show.mako')
+
+    def summary(self, id):
+        post = Session.query(Post). \
+            filter(Post.topic_id==id). \
+            order_by(Post.created_at). \
+            first()
+        text = lxml.html.fromstring(post.body).text_content()
+        parts = textwrap.wrap(text, 250)
+
+        if len(parts) == 0:
+            c.summary = '[&hellip;]'
+        elif len(parts) == 1:
+            c.summary = parts[0]
+        else:
+            c.summary = parts[0] + ' [&hellip;]'
+
+        return render('/topics/summary.mako')

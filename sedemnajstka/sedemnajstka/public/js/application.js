@@ -185,4 +185,37 @@ $(function() {
         $.cookie("archive_view", "full");
         location.reload();
     });
+
+    // Summary of topics with qTip
+    $(".topic-summary").each(function () {
+        $(this).qtip({
+            content: {
+                url: $(this).attr("href") + "/summary"
+            },
+
+            position: {
+                corner: {
+                    tooltip: "leftMiddle",
+                    target: "rightMiddle"
+                }
+            },
+            style: {
+                name: "dark",
+                tip: true,
+            },
+
+            show: {
+                effect: {
+                    type: "fade",
+                    length: 200
+                }
+            },
+            hide: {
+                effect: {
+                    type: "fade",
+                    length: 200
+                }
+            },
+        });
+    });
 });
