@@ -393,7 +393,7 @@ def login(username, password):
 
 def update_info():
     alr = session.query(Info).filter(Info.attribute=='archive_last_run').first()
-    alr.value = datetime.now().strftime(config.get('misc', 'datetime_format'))
+    alr.value = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     session.commit()
 
 
