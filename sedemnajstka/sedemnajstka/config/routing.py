@@ -58,9 +58,6 @@ def make_map(config):
     # rankings
     map.connect('/rankings', controller='rankings', action='index')
 
-    # info
-    map.connect('/info', controller='info', action='index')
-
     # quotes
     map.connect('/quotes', controller='quotes', action='create', conditions=dict(method=['PUT']))
     map.connect('quote', '/quotes/{id:\d+}', controller='quotes', action='show')

@@ -24,3 +24,19 @@ def fdt(dt):
         return u'včeraj, ' + dt.strftime('%H:%M')
     else:
         return dt.strftime(pylons.config.get('datetime_format')).decode('UTF-8')
+
+# format timedelta for use in info section
+def ftd(td):
+    minutes, seconds = td.seconds / 60, td.seconds % 60
+
+    if minutes == 1: minutes_ = '1 minuto'
+    elif minutes == 2: minutes_ = '2 minuti'
+    elif minutes == 3 or minutes == 4: minutes_ = '%d minute' % minutes
+    else: minutes_ = '%d minut' % minutes
+
+    if seconds == 1: seconds_ = '1 sekundo'
+    elif seconds == 2: seconds_ = '2 sekundi'
+    elif seconds == 3 or seconds == 4: seconds_ = '%d sekunde' % seconds
+    else: seconds_ = '%d sekund' % seconds
+
+    return minutes_ + ' in ' + seconds_
