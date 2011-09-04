@@ -313,6 +313,18 @@ class Archive:
                             av.filename = os.path.basename(path)
                             img = Image.open(path)
                             av.width, av.height = img.size
+
+                            # Create 48x48 thumbnail for archive's fancy view
+                            av.thumb_filename = '%d_thumb%s' % (av.id, ext)
+                            img.thumbnail((48, 48), Image.ANTIALIAS)
+                            thumb_path = os.path.join(AVATARS_DIR,
+                                                      av.thumb_filename)
+                            if 'transparency' in img.info:
+                                img.save(thumb_path,
+                                         transparency=img.info['transparency'])
+                            else:
+                                img.save(thumb_path)
+                            av.thumb_width, av.thumb_height = img.size
                         else:
                             new_post.avatar = user.avatar
                     except urllib2.HTTPError, e:

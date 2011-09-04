@@ -12,9 +12,9 @@
         <tr>
             <td class="avatar">
                 % if user.avatar:
-                ${user.avatar.img()}
+                ${user.avatar.thumb()}
                 % else:
-                <img src="/images/no-avatar.png" width="64" height="54" />
+                <img src="/images/no-avatar.png" width="48" height="41" />
                 % endif
             </td>
             <td class="title">

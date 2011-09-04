@@ -78,6 +78,10 @@ class Avatar(object):
         return h.image('/avatars/%s' % self.filename, None,
                        self.width, self.height)
 
+    def thumb(self):
+        return h.image('/avatars/%s' % self.thumb_filename, None,
+                       self.thumb_width, self.thumb_height)
+
 
 class Info(object):
 

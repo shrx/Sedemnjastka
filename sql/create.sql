@@ -63,11 +63,17 @@ CREATE TABLE avatars (
     id serial PRIMARY KEY,
 
     created_at timestamp with time zone DEFAULT now() NOT NULL,
-    filename VARCHAR(255),
     md5sum VARCHAR(32) NOT NULL,
 
+    -- original
+    filename VARCHAR(255),
     width integer,
     height integer,
+
+    -- thumbnail
+    thumb_filename VARCHAR(255),
+    thumb_width integer,
+    thumb_height integer,
 
     user_id integer NOT NULL REFERENCES users
 );
