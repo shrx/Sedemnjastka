@@ -116,10 +116,10 @@
                 <a href="http://www.python.org/"><img src="/images/python-powered-w-100x40.png" width="100" height="40" alt="Powered by Python" /></img></a>
                 <p class="date">
                 % if c.next_run.seconds / 60 > 0 and c.next_run.seconds / 60 < 17:
-                Ta arhiv je ${h.ftd(c.archive_age)} star; naslednjič bo
+                Ta arhiv je ${h.ftd(c.archive_age)} star. Naslednjič bo
                 posodobljen čez ${h.ftd(c.next_run)}.
                 % else:
-                Ta arhiv je ${h.ftd(c.archive_age)} star; posodablja se
+                Ta arhiv je ${h.ftd(c.archive_age)} star&mdash;posodablja se
                 <em>zdaj</em>!
                 % endif
                 </p>
