@@ -294,10 +294,10 @@ class Archive:
                             logger. \
                                 info('Fetching *NEW AVATAR* for user "%s"' % \
                                          user.nick_name)
-                            mimetype = browser.response().info().gettype()
-                            if mimetype == 'image/gif': ext = '.gif'
-                            elif mimetype == 'image/jpeg': ext = '.jpg'
-                            elif mimetype == 'image/png': ext = '.png'
+                            img = Image.open(browser.response())
+                            if img.format == 'GIF': ext = '.gif'
+                            elif img.format == 'JPEG': ext = '.jpg'
+                            elif img.format == 'PNG': ext = '.png'
 
                             av = Avatar(md5sum, user)
                             session.add(av)
@@ -311,7 +311,6 @@ class Archive:
                                 f.write(browser.response().read())
 
                             av.filename = os.path.basename(path)
-                            img = Image.open(path)
                             av.width, av.height = img.size
 
                             # Create 48x48 thumbnail for archive's fancy view
