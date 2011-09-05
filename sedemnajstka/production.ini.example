@@ -27,6 +27,7 @@ static_files = true
 cache_dir = %(here)s/data
 beaker.session.key = sedemnajstka
 beaker.session.secret = somesecret
+beaker.session.cookie_expires = false
 
 # If you'd like to fine-tune the individual locations of the cache data dirs
 # for the Cache data, or the Session saves, un-comment the desired settings

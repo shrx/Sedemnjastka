@@ -1,4 +1,5 @@
 """Pylons environment configuration"""
+from datetime import datetime, timedelta
 import os
 
 from mako.lookup import TemplateLookup
@@ -16,7 +17,7 @@ def load_environment(global_conf, app_conf):
     object
     """
     config = PylonsConfig()
-    
+
     # Pylons paths
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     paths = dict(root=root,
@@ -30,11 +31,10 @@ def load_environment(global_conf, app_conf):
     config['routes.map'] = make_map(config)
     config['pylons.app_globals'] = app_globals.Globals(config)
     config['pylons.h'] = sedemnajstka.lib.helpers
-    
+
     # Setup cache object as early as possible
     import pylons
     pylons.cache._push_object(config['pylons.app_globals'].cache)
-    
 
     # Create the Mako TemplateLookup, with the default auto-escaping
     config['pylons.app_globals'].mako_lookup = TemplateLookup(
@@ -51,5 +51,5 @@ def load_environment(global_conf, app_conf):
     # any Pylons config options)
     import locale
     locale.setlocale(locale.LC_ALL, 'sl_SI.UTF-8')
-    
+
     return config

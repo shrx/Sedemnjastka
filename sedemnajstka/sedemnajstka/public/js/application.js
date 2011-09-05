@@ -168,7 +168,8 @@ $(function() {
 
     // Archive view controls
     $("#archive_limit").change(function() {
-        $.cookie("archive_limit", $("#archive_limit option:selected").val());
+        var limit = $("#archive_limit option:selected").val();
+        $.cookie("archive_limit", limit, {expires: 365});
         location.reload();
     });
 
@@ -177,12 +178,12 @@ $(function() {
     $("#full-view").button({icons: {primary: "my-icon-full-view"}, text: false});
 
     $("#compact-view").click(function () {
-        $.cookie("archive_view", "compact");
+        $.cookie("archive_view", "compact", {expires: 365});
         location.reload();
     });
 
     $("#full-view").click(function () {
-        $.cookie("archive_view", "full");
+        $.cookie("archive_view", "full", {expires: 365});
         location.reload();
     });
 
