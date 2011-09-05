@@ -142,15 +142,8 @@ $(function() {
     });
 
     $("#players").dataTable({
-        aoColumns: [
-            null,
-            {stype: "numeric"},
-            {stype: "numeric"},
-            {stype: "numeric"},
-            {stype: "numeric"}
-        ],
         bJQueryUI: true,
-        iDisplayLength: 25,
+        iDisplayLength: 10,
         oLanguage: dataTableTranslation,
         sPaginationType: "full_numbers"
     });
