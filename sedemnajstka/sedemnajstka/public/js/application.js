@@ -1,3 +1,21 @@
+var dataTableTranslation = {
+    "sProcessing":   "Obdelujem...",
+    "sLengthMenu":   "Prikaži _MENU_ zapisov",
+    "sZeroRecords":  "Noben zapis ni bil najden",
+    "sInfo":         "Prikazanih od _START_ do _END_ od skupno _TOTAL_ zapisov",
+    "sInfoEmpty":    "Prikazanih od 0 do 0 od skupno 0 zapisov",
+    "sInfoFiltered": "(filtrirano po vseh _MAX_ zapisih)",
+    "sInfoPostFix":  "",
+    "sSearch":       "Išči:",
+    "sUrl":          "",
+    "oPaginate": {
+	"sFirst":    "Prva",
+	"sPrevious": "Nazaj",
+	"sNext":     "Naprej",
+	"sLast":     "Zadnja"
+    }
+};
+
 $(function() {
     $.datepicker.setDefaults($.datepicker.regional["sl"])
     $(".datepicker").datepicker({
@@ -69,26 +87,10 @@ $(function() {
     });
 
     // users-index DataTable
-    $("#users-index, #players").dataTable({
+    $("#users-index").dataTable({
         bJQueryUI: true,
         iDisplayLength: 25,
-        oLanguage: {
-	    "sProcessing":   "Obdelujem...",
-	    "sLengthMenu":   "Prikaži _MENU_ zapisov",
-	    "sZeroRecords":  "Noben zapis ni bil najden",
-	    "sInfo":         "Prikazanih od _START_ do _END_ od skupno _TOTAL_ zapisov",
-	    "sInfoEmpty":    "Prikazanih od 0 do 0 od skupno 0 zapisov",
-	    "sInfoFiltered": "(filtrirano po vseh _MAX_ zapisih)",
-	    "sInfoPostFix":  "",
-	    "sSearch":       "Išči:",
-	    "sUrl":          "",
-	    "oPaginate": {
-		"sFirst":    "Prva",
-		"sPrevious": "Nazaj",
-		"sNext":     "Naprej",
-		"sLast":     "Zadnja"
-	    }
-        },
+        oLanguage: dataTableTranslation,
         sPaginationType: "full_numbers"
     });
 
@@ -137,6 +139,20 @@ $(function() {
             });
         });
         return false;
+    });
+
+    $("#players").dataTable({
+        aoColumns: [
+            null,
+            {stype: "numeric"},
+            {stype: "numeric"},
+            {stype: "numeric"},
+            {stype: "numeric"}
+        ],
+        bJQueryUI: true,
+        iDisplayLength: 25,
+        oLanguage: dataTableTranslation,
+        sPaginationType: "full_numbers"
     });
 
     // Date range slider
