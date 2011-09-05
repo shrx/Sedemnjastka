@@ -16,7 +16,7 @@ log = logging.getLogger(__name__)
 
 class TopicsController(BaseController):
 
-    requires_auth = ['show']
+    requires_auth = ['show', 'summary']
 
     def show(self, id, page=1):
         c.topic = Session.query(Topic).filter(Topic.id==int(id)).first()

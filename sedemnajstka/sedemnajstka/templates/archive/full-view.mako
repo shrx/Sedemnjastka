@@ -18,7 +18,11 @@
                 % endif
             </td>
             <td class="title">
+                % if 'user' in session:
                 ${h.link_to(topic.full_title(), url('topic', id=topic.id), class_='topic-summary')}
+                % else:
+                ${h.link_to(topic.full_title(), url('topic', id=topic.id))}
+                % endif
                 <p class="date">${h.fdt(topic.last_post_created_at)}</p>
             </td>
             <td class="posts">${topic.num_of_posts}</td>
