@@ -8,6 +8,7 @@
 ** DONE [#A] Handle deleted users
    CLOSED: [2011-07-11 Mon 01:35]
 * Website
+** TODO Keyboard navigation
 ** TODO User scripts for browsers to integrate quoting & voting into Mn3
 ** TODO Avatar (also post?) guessing game
 ** TODO Versioning of signatures, just like avatars
