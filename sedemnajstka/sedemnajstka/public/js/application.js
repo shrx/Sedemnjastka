@@ -155,8 +155,11 @@ $(function() {
         min: 1253941200,                  // when we started
         range: true,
         step: 86400,            // one day in seconds
-        values: [$.datepicker.parseDate("dd.mm.yy", $("#from").val()) / 1000,
-                 $.datepicker.parseDate("dd.mm.yy", $("#to").val()) / 1000],
+        values: [1253941200, new Date().getTime() / 1000],
+        create: function(ev, ui) {
+            $(this).slider("values", 0, $.datepicker.parseDate("dd.mm.yy", $("#from").val()) / 1000);
+            $(this).slider("values", 1, $.datepicker.parseDate("dd.mm.yy", $("#to").val()) / 1000);
+        },
         slide: function(ev, ui) {
             $("#from").val($.datepicker.formatDate("dd.mm.yy", new Date(ui.values[0] * 1000)));
             $("#to").val($.datepicker.formatDate("dd.mm.yy", new Date(ui.values[1] * 1000)));
