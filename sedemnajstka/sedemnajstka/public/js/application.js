@@ -231,4 +231,9 @@ $(function() {
             },
         });
     });
+
+    // Sexy password strength meter
+    $("#passwd, #new_passwd").nakedPassword({
+        path: "/images/"
+    });
 });

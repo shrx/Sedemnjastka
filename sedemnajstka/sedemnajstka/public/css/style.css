@@ -92,6 +92,9 @@ input[type="submit"] {
     color: #000;
 }
 
+.big-form input { font-size: 2em; }
+.big-form input[type="submit"] { font-size: 1.4em; }
+
 /* Search */
 #search {
     bottom: 0;

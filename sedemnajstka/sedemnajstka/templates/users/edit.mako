@@ -1,7 +1,7 @@
 <%inherit file="/base.mako" />
 <h3>${c.title}</h3>
 <div class="yello">
-    ${h.form(url('user_edit'))}
+    ${h.form(url('user_edit'), class_='big-form')}
     <dl class="flat">
         <dt>trenutno geslo</dt>
         <dd>${h.password('cur_passwd')}</dd>
