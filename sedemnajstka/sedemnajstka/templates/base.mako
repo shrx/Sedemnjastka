@@ -114,7 +114,7 @@
                     </p>
                 </form>
                 <a href="http://repo.or.cz/w/sedemnajstka.git"><img src="/images/git-logo.png" width="72" height="27" alt="sedemnajstka.git" /></a>
-                <a href="http://www.debian.org/"><img src="/images/button-4.gif" width="88" height="31" alt="Powered by Debian" /></a>
+                <a href="http://www.slackware.com/"><img src="/images/simplepwrSW.gif" width="136" height="47" alt="Powered by Slackware" /></a>
                 <a href="http://www.python.org/"><img src="/images/python-powered-w-100x40.png" width="100" height="40" alt="Powered by Python" /></img></a>
                 <p class="date">
                 % if c.next_run.seconds / 60 > 0 and c.next_run.seconds / 60 < 17:
